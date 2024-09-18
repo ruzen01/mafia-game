@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Добро пожаловать в Мафию</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-900 text-white">
     <nav class="flex items-center justify-between p-6">

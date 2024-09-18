@@ -22,4 +22,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/rules', [RulesController::class, 'index'])->name('rules');
-Route::get('/rating', [RatingController::class, 'index'])->name('rules');
+Route::get('/rating', [RatingController::class, 'index'])->name('rating');
