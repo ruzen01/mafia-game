@@ -22,7 +22,7 @@
         </div>
     </main>
     <footer class="text-center p-4 bg-gray-800">
-        © 2023 Мафия. Все права защищены.
+        © 2024 Мафия.
     </footer>
 </body>
 </html>
