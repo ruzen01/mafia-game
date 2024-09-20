@@ -7,7 +7,6 @@
 
 <form action="{{ route('games.store') }}" method="POST">
     @csrf
-    <!-- Основная информация о игре -->
     <div>
         <label for="date">Дата игры:</label>
         <input type="date" name="date" id="date" required>
@@ -33,7 +32,6 @@
         </select>
     </div>
 
-    <!-- Таблица участников -->
     <h2>Участники</h2>
     <table>
         <thead>
@@ -60,7 +58,15 @@
 </form>
 
 <script>
-    let playerOptions = `@foreach($players as $player)<option value="{{ $player->id }}">{{ $player->name }}</option>@endforeach`;
+    let players = @json($players);
+
+    function generatePlayerOptions() {
+        let options = '';
+        players.forEach(function(player) {
+            options += `<option value="${player.id}">${player.name}</option>`;
+        });
+        return options;
+    }
 
     function addPlayerRow() {
         const table = document.getElementById('players-table');
@@ -69,7 +75,7 @@
         row.innerHTML = `
             <td>
                 <select name="players[][player_id]" required>
-                    ${playerOptions}
+                    ${generatePlayerOptions()}
                 </select>
             </td>
             <td>
@@ -80,19 +86,14 @@
                     <!-- Добавьте другие роли по необходимости -->
                 </select>
             </td>
-            <td><input type="number" name="players[][total_points]" required></td>
-            <td><input type="number" name="players[][additional_points]" required></td>
-            <td>
-                <input type="checkbox" name="players[][best_player]" value="1">
-            </td>
-            <td>
-                <input type="checkbox" name="players[][first_victim]" value="1">
-            </td>
-            <td><input type="number" name="players[][from_host_points]" required></td>
+            <td><input type="number" name="players[][total_points]" value="0" required></td>
+            <td><input type="number" name="players[][additional_points]" value="0" required></td>
+            <td><input type="checkbox" name="players[][best_player]" value="1"></td>
+            <td><input type="checkbox" name="players[][first_victim]" value="1"></td>
+            <td><input type="number" name="players[][from_host_points]" value="0" required></td>
             <td><input type="text" name="players[][comment]"></td>
             <td><button type="button" onclick="removePlayerRow(this)">Удалить</button></td>
         `;
-
         table.appendChild(row);
     }
 
