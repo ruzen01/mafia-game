@@ -5,6 +5,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RulesController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,3 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+Route::resource('games', GameController::class);
+Route::resource('players', PlayerController::class);

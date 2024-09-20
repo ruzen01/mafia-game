@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    use HasFactory;
+    protected $fillable = ['date', 'game_number', 'host_id', 'result'];
 
-    protected $fillable = ['user_id', 'status', 'result', 'score'];
+    protected $dates = ['date'];
 
-    public function user()
+    public function players()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Player::class, 'game_player')
+                    ->withPivot('role', 'total_points', 'additional_points', 'best_player', 'first_victim', 'from_host_points', 'comment')
+                    ->withTimestamps();
+    }
+
+    public function host()
+    {
+        return $this->belongsTo(Player::class, 'host_id');
     }
 }
