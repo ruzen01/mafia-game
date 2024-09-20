@@ -7,7 +7,7 @@
 @push('styles')
 <style>
     body {
-        background-image: url('{{ asset('images/background.jpg') }}');
+        background-image: url('https://tryitimagee.s3.eu-central-1.amazonaws.com/flux/500508893/204874.png');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
