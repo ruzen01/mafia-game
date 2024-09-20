@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Мафия')</title>
     @vite('resources/css/app.css') <!-- Подключение стилей через Vite -->
-    @stack('styles')
 </head>
-<body class="@yield('bodyClass', 'bg-gray-900 text-white flex flex-col min-h-screen')">
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
     <!-- Включаем навигацию -->
     @include('layouts.navigation')
 
     <!-- Основной контент страницы -->
-    <div class="flex-grow">
+    <div class="flex-grow container mx-auto p-4">
         @yield('content')
     </div>
 
