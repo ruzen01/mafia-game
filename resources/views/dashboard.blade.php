@@ -15,10 +15,10 @@
         <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 class="text-2xl font-bold mb-4">Статистика</h2>
             <ul class="space-y-2">
-                <li>Игры сыграно: <span class="font-bold">12</span></li>
-                <li>Победы: <span class="font-bold">8</span></li>
-                <li>Поражения: <span class="font-bold">4</span></li>
-                <li>Текущий рейтинг: <span class="font-bold">1500</span></li>
+                <li>Игры сыграно: <span class="font-bold">{{ $gamesPlayed }}</span></li>
+                <li>Победы: <span class="font-bold">{{ $wins }}</span></li>
+                <li>Поражения: <span class="font-bold">{{ $losses }}</span></li>
+                <li>Текущий рейтинг: <span class="font-bold">{{ $rating }}</span></li>
             </ul>
         </div>
 
@@ -38,12 +38,6 @@
                 <li>Игрок 3 — 1550 очков</li>
             </ol>
         </div>
-    </div>
-
-    <!-- Новости или события -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-4">Новости и события</h2>
-        <p class="text-gray-400">Новый турнир стартует 10 октября! Зарегистрируйтесь и участвуйте, чтобы выиграть призы.</p>
     </div>
 </div>
 @endsection
