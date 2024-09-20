@@ -15,7 +15,7 @@
     </div>
 
     <!-- Футер -->
-    <footer class="text-center p-4 bg-gray-800">
+    <footer class="text-center p-4 bg-gray-800 mt-auto">
         © 2024 Мафия
     </footer>
 </body>
