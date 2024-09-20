@@ -1,29 +1,34 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+@section('title', 'Редактировать профиль')
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+@section('content')
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4">Редактировать профиль</h1>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
+    @if ($errors->any())
+        <div class="bg-red-500 text-white p-4 mb-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-    </div>
-</x-app-layout>
+    @endif
+
+    <form action="{{ route('profile.update') }}" method="POST">
+        @csrf
+        <div class="mb-4">
+            <label for="name" class="block text-xl">Имя</label>
+            <input type="text" name="name" id="name" value="{{ $user->name }}" class="w-full p-2 rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="email" class="block text-xl">Email</label>
+            <input type="email" name="email" id="email" value="{{ $user->email }}" class="w-full p-2 rounded">
+        </div>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Сохранить изменения</button>
+    </form>
+</div>
+@endsection
