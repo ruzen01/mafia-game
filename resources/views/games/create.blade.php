@@ -3,58 +3,58 @@
 @section('title', 'Добавить новую игру')
 
 @section('content')
-<h1>Добавить новую игру</h1>
+<h1 class="text-2xl text-center mb-6">Добавить новую игру</h1>
 
 <form action="{{ route('games.store') }}" method="POST">
     @csrf
-    <div>
-        <label for="date">Дата игры:</label>
-        <input type="date" name="date" id="date" required>
+    <div class="mb-4">
+        <label for="date" class="block text-gray-700 font-bold mb-2">Дата игры:</label>
+        <input type="date" name="date" id="date" class="w-full px-4 py-2 border rounded text-gray-800" required>
     </div>
-    <div>
-        <label for="game_number">Порядковый номер игры:</label>
-        <input type="number" name="game_number" id="game_number" required>
+    <div class="mb-4">
+        <label for="game_number" class="block text-gray-700 font-bold mb-2">Порядковый номер игры:</label>
+        <input type="number" name="game_number" id="game_number" class="w-full px-4 py-2 border rounded text-gray-800" required>
     </div>
-    <div>
-        <label for="host_id">Имя ведущего:</label>
-        <select name="host_id" id="host_id" required>
+    <div class="mb-4">
+        <label for="host_id" class="block text-gray-700 font-bold mb-2">Имя ведущего:</label>
+        <select name="host_id" id="host_id" class="w-full px-4 py-2 border rounded text-gray-800" required>
             @foreach($players as $player)
                 <option value="{{ $player->id }}">{{ $player->name }}</option>
             @endforeach
         </select>
     </div>
-    <div>
-        <label for="result">Результат игры:</label>
-        <select name="result" id="result" required>
+    <div class="mb-4">
+        <label for="result" class="block text-gray-700 font-bold mb-2">Результат игры:</label>
+        <select name="result" id="result" class="w-full px-4 py-2 border rounded text-gray-800" required>
             <option value="Мафия">Мафия</option>
             <option value="Мирные жители">Мирные жители</option>
             <option value="Третья сторона">Третья сторона</option>
         </select>
     </div>
 
-    <h2>Участники</h2>
-    <table>
+    <h2 class="text-xl font-bold mb-4">Участники</h2>
+    <table class="w-full mb-4 border">
         <thead>
-            <tr>
-                <th>Участник</th>
-                <th>Роль</th>
-                <th>Итого за игру</th>
-                <th>Дополнительный</th>
-                <th>За лучшего игрока</th>
-                <th>За первую жертву убийства</th>
-                <th>От ведущего</th>
-                <th>Комментарий</th>
-                <th>Действие</th>
+            <tr class="bg-gray-200 text-gray-700">
+                <th class="p-2">Участник</th>
+                <th class="p-2">Роль</th>
+                <th class="p-2">Итого за игру</th>
+                <th class="p-2">Дополнительный</th>
+                <th class="p-2">За лучшего игрока</th>
+                <th class="p-2">За первую жертву убийства</th>
+                <th class="p-2">От ведущего</th>
+                <th class="p-2">Комментарий</th>
+                <th class="p-2">Действие</th>
             </tr>
         </thead>
         <tbody id="players-table">
             <!-- Динамически добавляемые строки участников -->
         </tbody>
     </table>
-    <button type="button" onclick="addPlayerRow()">Добавить участника</button>
+    <button type="button" onclick="addPlayerRow()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Добавить участника</button>
 
     <br><br>
-    <button type="submit">Сохранить результаты</button>
+    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Сохранить результаты</button>
 </form>
 
 <script>
@@ -74,25 +74,24 @@
 
         row.innerHTML = `
             <td>
-                <select name="players[][player_id]" required>
+                <select name="players[][player_id]" class="w-full px-2 py-1 border rounded" required>
                     ${generatePlayerOptions()}
                 </select>
             </td>
             <td>
-                <select name="players[][role]" required>
+                <select name="players[][role]" class="w-full px-2 py-1 border rounded" required>
                     <option value="Мафия">Мафия</option>
                     <option value="Мирный житель">Мирный житель</option>
                     <option value="Доктор">Доктор</option>
-                    <!-- Добавьте другие роли по необходимости -->
                 </select>
             </td>
-            <td><input type="number" name="players[][total_points]" value="0" required></td>
-            <td><input type="number" name="players[][additional_points]" value="0" required></td>
+            <td><input type="number" name="players[][total_points]" class="w-full px-2 py-1 border rounded" value="0" required></td>
+            <td><input type="number" name="players[][additional_points]" class="w-full px-2 py-1 border rounded" value="0" required></td>
             <td><input type="checkbox" name="players[][best_player]" value="1"></td>
             <td><input type="checkbox" name="players[][first_victim]" value="1"></td>
-            <td><input type="number" name="players[][from_host_points]" value="0" required></td>
-            <td><input type="text" name="players[][comment]"></td>
-            <td><button type="button" onclick="removePlayerRow(this)">Удалить</button></td>
+            <td><input type="number" name="players[][from_host_points]" class="w-full px-2 py-1 border rounded" value="0" required></td>
+            <td><input type="text" name="players[][comment]" class="w-full px-2 py-1 border rounded"></td>
+            <td><button type="button" onclick="removePlayerRow(this)" class="bg-red-500 text-white px-2 py-1 rounded">Удалить</button></td>
         `;
         table.appendChild(row);
     }
