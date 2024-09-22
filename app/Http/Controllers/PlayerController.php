@@ -2,72 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Game;
 use App\Models\Player;
+use App\Models\Game;
+use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $players = Player::all()->sortByDesc(function ($player) {
-            return $player->calculateRating();
-        });
-
+        $players = Player::with('game')->get(); // Загружаем игроков вместе с их играми
         return view('players.index', compact('players'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $games = Game::all(); // Получаем все игры для выбора
+        return view('players.create', compact('games'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Создаем игрока без привязки к игре
+        $player = Player::create([
+            'name' => $validated['name'],
+        ]);
+
+        return redirect()->route('players.index')->with('success', 'Игрок успешно создан');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    public function edit(Player $player)
     {
-        $player = Player::findOrFail($id);
-        $games = $player->games()->with('host')->orderBy('date', 'desc')->get();
-
-        return view('players.show', compact('player', 'games'));
+        $games = Game::all(); // Получаем все игры для выбора
+        return view('players.edit', compact('player', 'games'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Player $player)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $player->update($validated);
+
+        return redirect()->route('players.index')->with('success', 'Игрок успешно обновлен');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Player $player)
     {
-        //
-    }
+        $player->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
     }
 }

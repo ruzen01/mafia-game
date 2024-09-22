@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Название игры
+            $table->string('name'); // Имя игры
             $table->date('date'); // Дата игры
-            $table->integer('game_number'); // Номер игры
+            $table->integer('game_number'); // Порядковый номер игры в эту дату
             $table->string('host_name'); // Имя ведущего
-            $table->string('result'); // Результат игры
-            $table->timestamps();
+            $table->enum('winner', ['Мафия', 'Мирные жители', 'Третья сторона']); // Кто победил
+            $table->timestamps(); // Поля created_at и updated_at
         });
     }
 

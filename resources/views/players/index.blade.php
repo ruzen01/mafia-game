@@ -1,32 +1,42 @@
 @extends('layouts.app')
 
-@section('title', 'Рейтинг игроков')
-
 @section('content')
-<h1>Рейтинг игроков</h1>
-
-<table>
-    <thead>
-        <tr>
-            <th>Место</th>
-            <th>Имя игрока</th>
-            <th>Общий рейтинг</th>
-            <th>Количество игр</th>
-            <th>Средний балл за игру</th>
-            <th>Детали</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($players as $index => $player)
-            <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $player->name }}</td>
-                <td>{{ $player->calculateRating() }}</td>
-                <td>{{ $player->games->count() }}</td>
-                <td>{{ number_format($player->calculateRating() / max($player->games->count(), 1), 2) }}</td>
-                <td><a href="{{ route('players.show', $player->id) }}">Подробнее</a></td>
+<div class="container">
+    <h1 class="text-center">Список игроков</h1>
+    <div class="flex justify-center mb-4">
+        <a href="{{ route('players.create') }}" class="bg-blue-500 text-white py-2 px-4 rounded">Создать нового игрока</a>
+    </div>
+    <table class="table-auto border-collapse border border-gray-500 w-3/4 mx-auto">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border border-gray-400 px-4 py-2">ID</th>
+                <th class="border border-gray-400 px-4 py-2">Имя</th>
+                <th class="border border-gray-400 px-4 py-2">Игра</th>
+                <th class="border border-gray-400 px-4 py-2">Дата создания</th>
+                <th class="border border-gray-400 px-4 py-2">Действия</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach($players as $player)
+            <tr>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->id }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->name }}</td>
+                <!-- Проверка на наличие игры перед попыткой доступа к ее имени -->
+                <td class="border border-gray-400 px-4 py-2">
+                    {{ $player->game ? $player->game->name : 'Нет игры' }}
+                </td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->created_at }}</td>
+                <td class="border border-gray-400 px-4 py-2">
+                    <a href="{{ route('players.edit', $player) }}" class="bg-yellow-500 text-white py-1 px-2 rounded">Изменить</a>
+                    <form action="{{ route('players.destroy', $player) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection
