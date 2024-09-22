@@ -44,6 +44,7 @@ class GameController extends Controller
             'scores' => 'required|array',
             'players.*' => 'exists:players,id',
             'scores.*' => 'integer|min:0',
+            'winner' => 'required|string|in:Мафия,Мирные жители,Третья сторона', // добавлено поле
         ]);
     
         // Создание новой игры
@@ -52,7 +53,7 @@ class GameController extends Controller
             'date' => $validated['date'],
             'game_number' => $validated['game_number'],
             'host_name' => $validated['host_name'],
-            'winner' => 'some_default_value', // Обязательно передайте значение для winner
+            'winner' => $validated['winner'],
             'created_at' => now(),
             'updated_at' => now(),
         ]);
