@@ -3,29 +3,29 @@
 @section('title', 'Список игр')
 
 @section('content')
-<h1>Список игр</h1>
+<h1 class="text-2xl font-bold mb-4">Список игр</h1>
 
-<a href="{{ route('games.create') }}">Добавить новую игру</a>
+<a href="{{ route('games.create') }}" class="bg-blue-500 text-white py-2 px-4 rounded mb-4 inline-block">Добавить новую игру</a>
 
-<table>
+<table class="table-auto w-full">
     <thead>
         <tr>
-            <th>Дата</th>
-            <th>Игра №</th>
-            <th>Ведущий</th>
-            <th>Результат</th>
-            <th>Детали</th>
+            <th class="text-left px-4 py-2">Название игры</th>
+            <th class="text-left px-4 py-2">Дата</th>
+            <th class="text-left px-4 py-2">Номер игры</th>
+            <th class="text-left px-4 py-2">Ведущий</th>
+            <th class="text-left px-4 py-2">Результат</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($games as $game)
-            <tr>
-                <td>{{ $game->date->format('d.m.Y') }}</td>
-                <td>{{ $game->game_number }}</td>
-                <td>{{ $game->host->name }}</td>
-                <td>{{ $game->result }}</td>
-                <td><a href="{{ route('games.show', $game->id) }}">Подробнее</a></td>
-            </tr>
+        @foreach ($games as $game)
+        <tr>
+            <td class="border px-4 py-2">{{ $game->name }}</td>
+            <td class="border px-4 py-2">{{ $game->date->format('Y-m-d') }}</td>
+            <td class="border px-4 py-2">{{ $game->game_number }}</td>
+            <td class="border px-4 py-2">{{ $game->host_name }}</td>
+            <td class="border px-4 py-2">{{ $game->result }}</td>
+        </tr>
         @endforeach
     </tbody>
 </table>

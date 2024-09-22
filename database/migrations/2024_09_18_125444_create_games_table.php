@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Добавляем поле для названия игры
-            $table->date('date');
-            $table->integer('game_number');
-            $table->unsignedBigInteger('host_id');
-            $table->string('result');
+            $table->string('name'); // Название игры
+            $table->date('date'); // Дата игры
+            $table->integer('game_number'); // Номер игры
+            $table->string('host_name'); // Имя ведущего
+            $table->string('result'); // Результат игры
             $table->timestamps();
-
-            $table->foreign('host_id')->references('id')->on('players')->onDelete('cascade');
         });
     }
 

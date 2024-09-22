@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('game_player', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
-            $table->unsignedBigInteger('player_id');
+            $table->unsignedBigInteger('player_id')->nullable(); // Делаем поле nullable для ручного ввода
             $table->string('role');
             $table->integer('total_points')->default(0);
             $table->integer('additional_points')->default(0);
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('first_victim')->default(false);
             $table->integer('from_host_points')->default(0);
             $table->text('comment')->nullable();
-            $table->string('custom_name')->nullable(); // Добавляем поле custom_name
+            $table->string('custom_name')->nullable(); // Поле для вручную введенных имен
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
