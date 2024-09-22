@@ -5,7 +5,7 @@
     <title>@yield('title', 'Мафия')</title>
     @vite('resources/css/app.css') <!-- Подключение стилей через Vite -->
 </head>
-<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+<body class="bg-gray-900 flex flex-col min-h-screen text-gray-300">
     <!-- Включаем навигацию -->
     @include('layouts.navigation')
 

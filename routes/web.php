@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RulesController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\DashboardController;
@@ -25,13 +24,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/rules', [RulesController::class, 'index'])->name('rules');
-Route::get('/rating', [RatingController::class, 'index'])->name('rating');
-
-// Маршрут для создания новой игры
-Route::middleware(['auth'])->group(function () {
-    Route::get('/game/new', [GameController::class, 'create'])->name('game.new');
-    Route::post('/game/store', [GameController::class, 'store'])->name('game.store');
-});
 
 // Маршрут для редактирования профиля
 Route::middleware(['auth'])->group(function () {
