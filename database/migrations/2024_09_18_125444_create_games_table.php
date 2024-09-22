@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); // Добавляем поле для названия игры
             $table->date('date');
             $table->integer('game_number');
             $table->unsignedBigInteger('host_id');

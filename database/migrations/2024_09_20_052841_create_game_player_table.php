@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('first_victim')->default(false);
             $table->integer('from_host_points')->default(0);
             $table->text('comment')->nullable();
+            $table->string('custom_name')->nullable(); // Добавляем поле custom_name
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
