@@ -26,6 +26,11 @@
             <input type="text" name="host_name" id="host_name" class="border rounded w-full py-2 px-3">
         </div>
 
+        <div class="mb-4">
+            <label for="host_name" class="block text-sm font-medium">Кто победил:</label>
+            <input type="text" name="winner" id="winner" class="border rounded w-full py-2 px-3">
+        </div>
+
         <!-- Поле для добавления игроков и их баллов -->
         <div class="mb-4">
             <h2 class="block text-sm font-medium">Игроки и их баллы:</h2>
