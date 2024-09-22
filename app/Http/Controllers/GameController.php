@@ -52,6 +52,9 @@ class GameController extends Controller
             'date' => $validated['date'],
             'game_number' => $validated['game_number'],
             'host_name' => $validated['host_name'],
+            'winner' => 'some_default_value', // Обязательно передайте значение для winner
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     
         // Привязка игроков к игре с баллами
