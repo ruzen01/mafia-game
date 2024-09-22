@@ -3,23 +3,33 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Game extends Model
 {
-    protected $fillable = ['name', 'date', 'game_number', 'host_id', 'result']; // Добавили 'name'
+    use HasFactory;
 
-    protected $dates = ['date'];
+    protected $fillable = [
+        'name',
+        'date',
+        'game_number',
+        'host_name',  // Используем host_name вместо host_id
+        'result',
+    ];
+
+    protected $casts = [
+        'date' => 'datetime:Y-m-d',
+    ];
 
     public function players()
     {
         return $this->belongsToMany(Player::class, 'game_player')
-                    ->withPivot('role', 'total_points', 'additional_points', 'best_player', 'first_victim', 'from_host_points', 'comment', 'custom_name') // Добавлено поле 'custom_name'
-                    ->withTimestamps();
+            ->withPivot('role', 'total_points', 'additional_points', 'best_player', 'first_victim', 'from_host_points', 'comment', 'custom_name')
+            ->withTimestamps();
     }
-
+    
     public function host()
     {
-        return $this->belongsTo(User::class, 'host_id');
+        return $this->belongsTo(Player::class, 'host_name');
     }
 }
