@@ -38,9 +38,9 @@
             <input type="text" name="winner" id="winner" value="{{ $game->winner }}" class="border rounded w-full py-2 px-3" required>
         </div>
 
-        <!-- Существующие игроки и их баллы -->
+        <!-- Существующие игроки, их роли и баллы -->
         <div class="mb-4">
-            <h2 class="block text-sm font-medium">Игроки и их баллы:</h2>
+            <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
 
             <div id="players-list">
                 @foreach($game->players as $player)
@@ -50,6 +50,14 @@
                             @foreach($allPlayers as $availablePlayer)
                                 <option value="{{ $availablePlayer->id }}" {{ $player->id == $availablePlayer->id ? 'selected' : '' }}>
                                     {{ $availablePlayer->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <!-- Список существующих ролей -->
+                        <select name="roles[]" class="border rounded py-2 px-3 ml-2" required>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}" {{ $player->pivot->role_id == $role->id ? 'selected' : '' }}>
+                                    {{ $role->name }} ({{ $role->category }})
                                 </option>
                             @endforeach
                         </select>
@@ -81,6 +89,11 @@
             <select name="players[]" class="border rounded py-2 px-3" required>
                 @foreach($allPlayers as $availablePlayer)
                     <option value="{{ $availablePlayer->id }}">{{ $availablePlayer->name }}</option>
+                @endforeach
+            </select>
+            <select name="roles[]" class="border rounded py-2 px-3 ml-2" required>
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
             </select>
             <input type="number" name="scores[]" placeholder="Баллы" class="border rounded py-2 px-3 ml-2" min="0" required>

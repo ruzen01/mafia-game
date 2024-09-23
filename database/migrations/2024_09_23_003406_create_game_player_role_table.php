@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_player', function (Blueprint $table) {
+        Schema::create('game_player_role', function (Blueprint $table) {
             $table->id();
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
-            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade'); // Убедитесь, что столбец role_id присутствует
-            $table->integer('score')->default(0);
+            $table->foreignId('role_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_player');
+        Schema::dropIfExists('game_player_role');
     }
 };
