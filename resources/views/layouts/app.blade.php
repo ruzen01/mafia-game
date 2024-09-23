@@ -10,7 +10,7 @@
         @include('layouts.navigation')
 
         <!-- Основной контент страницы -->
-        <div class="container mx-auto p-4">
+        <div class="container mx-auto p-4 text-white">
             @yield('content')
         </div>
 
