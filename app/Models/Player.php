@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    use HasFactory;
-    
-    protected $fillable = ['name', 'game_id'];
+    protected $fillable = ['name'];
 
-    public function game()
+    // Связь многие ко многим с моделью Game
+    public function games()
     {
-        return $this->belongsTo(Game::class, 'game_id');
+        return $this->belongsToMany(Game::class)->withPivot('score')->withTimestamps();
     }
 }

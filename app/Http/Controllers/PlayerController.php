@@ -10,7 +10,9 @@ class PlayerController extends Controller
 {
     public function index()
     {
-        $players = Player::with('game')->get(); // Загружаем игроков вместе с их играми
+        // Загружаем игроков вместе с их играми
+        $players = Player::with('games')->get();
+
         return view('players.index', compact('players'));
     }
 
