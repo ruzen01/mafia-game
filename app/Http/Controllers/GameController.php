@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Player;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -25,9 +26,11 @@ class GameController extends Controller
     {
         // Получаем всех игроков
         $players = Player::all();
-    
-        // Передаем игроков в представление
-        return view('games.create', compact('players'));
+        // Получаем все роли
+        $roles = Role::all();
+
+        // Передаем игроков и роли в представление
+        return view('games.create', compact('players', 'roles'));
     }
 
     /**
@@ -41,28 +44,21 @@ class GameController extends Controller
             'game_number' => 'required|string|max:255',
             'host_name' => 'required|string|max:255',
             'players' => 'required|array',
+            'roles' => 'required|array',
             'scores' => 'required|array',
             'players.*' => 'exists:players,id',
+            'roles.*' => 'exists:roles,id',
             'scores.*' => 'integer|min:0',
-            'winner' => 'required|string|in:Мафия,Мирные жители,Третья сторона', // добавлено поле
+            'winner' => 'required|string|in:Мафия,Мирные жители,Третья сторона',
         ]);
-    
-        // Создание новой игры
-        $game = Game::create([
-            'name' => $validated['name'],
-            'date' => $validated['date'],
-            'game_number' => $validated['game_number'],
-            'host_name' => $validated['host_name'],
-            'winner' => $validated['winner'],
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-    
-        // Привязка игроков к игре с баллами
-        foreach ($validated['players'] as $index => $player_id) {
-            $game->players()->attach($player_id, ['score' => $validated['scores'][$index]]);
+
+        $game = Game::create($validated);
+
+        foreach ($validated['players'] as $index => $playerId) {
+            $roleId = $validated['roles'][$index];
+            $game->players()->attach($playerId, ['role_id' => $roleId, 'score' => $validated['scores'][$index]]);
         }
-    
+
         return redirect()->route('games.index')->with('success', 'Игра успешно создана');
     }
 
@@ -82,7 +78,9 @@ class GameController extends Controller
     {
         $game = Game::with('players')->findOrFail($id);
         $allPlayers = Player::all();  // Получаем всех игроков для выбора
-        return view('games.edit', compact('game', 'allPlayers'));
+        $roles = Role::all();  // Получаем все роли
+
+        return view('games.edit', compact('game', 'allPlayers', 'roles'));
     }
 
     /**
@@ -92,38 +90,27 @@ class GameController extends Controller
     {
         $game = Game::findOrFail($id);
 
-        // Валидируем запрос
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
             'game_number' => 'required|string|max:255',
             'host_name' => 'required|string|max:255',
-            'winner' => 'required|string|max:255',
-            'players' => 'required|array',  // Убедимся, что игроки отправлены
-            'scores' => 'required|array',   // Убедимся, что баллы для каждого игрока отправлены
-            'scores.*' => 'integer|min:0',  // Каждое значение баллов должно быть числом
+            'players' => 'required|array',
+            'roles' => 'required|array',
+            'scores' => 'required|array',
+            'players.*' => 'exists:players,id',
+            'roles.*' => 'exists:roles,id',
+            'scores.*' => 'integer|min:0',
+            'winner' => 'required|string|in:Мафия,Мирные жители,Третья сторона',
         ]);
 
-        // Обновляем основные данные игры
-        $game->update([
-            'name' => $request->name,
-            'date' => $request->date,
-            'game_number' => $request->game_number,
-            'host_name' => $request->host_name,
-            'winner' => $request->winner,
-        ]);
+        $game->update($validated);
 
-        // Синхронизируем игроков с их баллами
-        $players = $request->players; // Массив ID игроков
-        $scores = $request->scores;   // Массив баллов
-
-        // Формируем массив для синхронизации игроков и их баллов
         $syncData = [];
-        foreach ($players as $index => $playerId) {
-            $syncData[$playerId] = ['score' => $scores[$index]];
+        foreach ($validated['players'] as $index => $playerId) {
+            $syncData[$playerId] = ['role_id' => $validated['roles'][$index], 'score' => $validated['scores'][$index]];
         }
 
-        // Синхронизируем игроков с их баллами
         $game->players()->sync($syncData);
 
         return redirect()->route('games.index')->with('success', 'Игра успешно обновлена!');

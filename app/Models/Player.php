@@ -14,4 +14,9 @@ class Player extends Model
     {
         return $this->belongsToMany(Game::class)->withPivot('score')->withTimestamps();
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'game_player_role')->withTimestamps();
+    }
 }

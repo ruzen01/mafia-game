@@ -36,15 +36,20 @@
             <input type="text" name="winner" id="winner" class="border rounded w-full py-2 px-3" required>
         </div>
 
-        <!-- Поле для добавления игроков и их баллов -->
+        <!-- Поле для добавления игроков, ролей и баллов -->
         <div class="mb-4">
-            <h2 class="block text-sm font-medium">Игроки и их баллы:</h2>
+            <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
 
             <div id="players-list">
                 <div class="player-row mb-2">
                     <select name="players[]" class="border rounded py-2 px-3">
                         @foreach($players as $player)
                             <option value="{{ $player->id }}">{{ $player->name }}</option>
+                        @endforeach
+                    </select>
+                    <select name="roles[]" class="border rounded py-2 px-3 ml-2">
+                        @foreach($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                         @endforeach
                     </select>
                     <input type="number" name="scores[]" placeholder="Баллы" class="border rounded py-2 px-3 ml-2" min="0">
@@ -70,6 +75,11 @@
             <select name="players[]" class="border rounded py-2 px-3">
                 @foreach($players as $player)
                     <option value="{{ $player->id }}">{{ $player->name }}</option>
+                @endforeach
+            </select>
+            <select name="roles[]" class="border rounded py-2 px-3 ml-2">
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
             </select>
             <input type="number" name="scores[]" placeholder="Баллы" class="border rounded py-2 px-3 ml-2" min="0">
