@@ -17,6 +17,11 @@ return new class extends Migration
             $table->foreignId('player_id')->constrained()->onDelete('cascade');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade'); // Убедитесь, что столбец role_id присутствует
             $table->integer('score')->default(0);
+            $table->boolean('best_player')->default(false); // галочка "балл за лучшего игрока"
+            $table->boolean('first_victim')->default(false); // галочка "балл за первую жертву"
+            $table->integer('leader_score')->default(0); // балл от ведущего
+            $table->boolean('additional_score')->default(0);
+            $table->text('comment')->nullable(); // комментарий
             $table->timestamps();
         });
     }

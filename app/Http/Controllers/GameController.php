@@ -14,7 +14,6 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
         $games = Game::all();
         return view('games.index', compact('games'));
     }
@@ -24,12 +23,10 @@ class GameController extends Controller
      */
     public function create()
     {
-        // Получаем всех игроков
+        // Получаем всех игроков и роли
         $players = Player::all();
-        // Получаем все роли
         $roles = Role::all();
 
-        // Передаем игроков и роли в представление
         return view('games.create', compact('players', 'roles'));
     }
 
@@ -45,29 +42,50 @@ class GameController extends Controller
             'host_name' => 'required|string|max:255',
             'players' => 'required|array',
             'roles' => 'required|array',
-            'scores' => 'required|array',
-            'players.*' => 'exists:players,id',
-            'roles.*' => 'exists:roles,id',
-            'scores.*' => 'integer|min:0',
             'winner' => 'required|string|in:Мафия,Мирные жители,Третья сторона',
+            'best_player' => 'array',
+            'first_victim' => 'array',
+            'leader_scores' => 'array',
+            'comments' => 'array',
+            'additional_score' => 'array', // Новое поле
         ]);
 
         $game = Game::create($validated);
 
         foreach ($validated['players'] as $index => $playerId) {
             $roleId = $validated['roles'][$index];
-            $game->players()->attach($playerId, ['role_id' => $roleId, 'score' => $validated['scores'][$index]]);
+            $isBestPlayer = in_array($playerId, $validated['best_player'] ?? []);
+            $isFirstVictim = in_array($playerId, $validated['first_victim'] ?? []);
+            $leaderScore = $validated['leader_scores'][$index] ?? 0;
+            $comment = $validated['comments'][$index] ?? null;
+            $additionalScore = in_array($playerId, $validated['additional_score'] ?? []) ? 1 : 0;
+
+            // Определение баллов в зависимости от победившей категории
+            $roleCategory = Role::find($roleId)->category;
+            $score = $roleCategory === $validated['winner'] ? 2 : 0;
+
+            // Итоговый расчет баллов
+            $totalScore = $score + ($isBestPlayer ? 2 : 0) + ($isFirstVictim ? 1 : 0) + $leaderScore + $additionalScore;
+
+            // Привязка игрока к игре с рассчитанными баллами
+            $game->players()->attach($playerId, [
+                'role_id' => $roleId,
+                'score' => $totalScore,
+                'best_player' => $isBestPlayer,
+                'first_victim' => $isFirstVictim,
+                'leader_score' => $leaderScore,
+                'additional_score' => $additionalScore, // Добавляем новое поле
+                'comment' => $comment,
+            ]);
         }
 
         return redirect()->route('games.index')->with('success', 'Игра успешно создана');
-    }
-
+    }    
     /**
      * Display the specified resource.
      */
     public function show(Game $game)
     {
-        //
         return view('games.show', compact('game'));
     }
 
@@ -77,8 +95,8 @@ class GameController extends Controller
     public function edit($id)
     {
         $game = Game::with('players')->findOrFail($id);
-        $allPlayers = Player::all();  // Получаем всех игроков для выбора
-        $roles = Role::all();  // Получаем все роли
+        $allPlayers = Player::all();
+        $roles = Role::all();
 
         return view('games.edit', compact('game', 'allPlayers', 'roles'));
     }
@@ -97,23 +115,47 @@ class GameController extends Controller
             'host_name' => 'required|string|max:255',
             'players' => 'required|array',
             'roles' => 'required|array',
-            'scores' => 'required|array',
-            'players.*' => 'exists:players,id',
-            'roles.*' => 'exists:roles,id',
-            'scores.*' => 'integer|min:0',
             'winner' => 'required|string|in:Мафия,Мирные жители,Третья сторона',
+            'best_player' => 'array',
+            'first_victim' => 'array',
+            'leader_scores' => 'array',
+            'comments' => 'array',
+            'additional_score' => 'array', // Новое поле
         ]);
 
         $game->update($validated);
 
         $syncData = [];
         foreach ($validated['players'] as $index => $playerId) {
-            $syncData[$playerId] = ['role_id' => $validated['roles'][$index], 'score' => $validated['scores'][$index]];
+            $roleId = $validated['roles'][$index];
+            $isBestPlayer = in_array($playerId, $validated['best_player'] ?? []);
+            $isFirstVictim = in_array($playerId, $validated['first_victim'] ?? []);
+            $leaderScore = $validated['leader_scores'][$index] ?? 0;
+            $comment = $validated['comments'][$index] ?? null;
+            $additionalScore = in_array($playerId, $validated['additional_score'] ?? []) ? 1 : 0;
+
+            // Определение баллов в зависимости от победившей категории
+            $roleCategory = Role::find($roleId)->category;
+            $score = $roleCategory === $validated['winner'] ? 2 : 0;
+
+            // Итоговый расчет баллов
+            $totalScore = $score + ($isBestPlayer ? 2 : 0) + ($isFirstVictim ? 1 : 0) + $leaderScore + $additionalScore;
+
+            // Формируем данные для синхронизации
+            $syncData[$playerId] = [
+                'role_id' => $roleId,
+                'score' => $totalScore,
+                'best_player' => $isBestPlayer,
+                'first_victim' => $isFirstVictim,
+                'leader_score' => $leaderScore,
+                'additional_score' => $additionalScore, // Добавляем новое поле
+                'comment' => $comment,
+            ];
         }
 
         $game->players()->sync($syncData);
 
-        return redirect()->route('games.index')->with('success', 'Игра успешно обновлена!');
+        return redirect()->route('games.index')->with('success', 'Игра успешно обновлена');
     }
     /**
      * Remove the specified resource from storage.

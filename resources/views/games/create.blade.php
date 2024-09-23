@@ -52,7 +52,26 @@
                             <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                         @endforeach
                     </select>
-                    <input type="number" name="scores[]" placeholder="Баллы" class="border rounded py-2 px-3 ml-2" min="0">
+                    
+
+                    <!-- Лучший игрок -->
+                    <label class="ml-2">Лучший игрок:</label>
+                    <input type="checkbox" name="best_player[]" value="1">
+
+                    <!-- Первая жертва -->
+                    <label class="ml-2">Первая жертва:</label>
+                    <input type="checkbox" name="first_victim[]" value="1">
+
+                    <!-- Баллы от ведущего -->
+                    <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
+
+                    <!-- Дополнительный балл -->
+                    <label class="ml-2">Дополнительный балл:</label>
+                    <input type="checkbox" name="additional_score[]" value="1">
+
+                    <!-- Комментарий -->
+                    <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
+
                     <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
                 </div>
             </div>
@@ -82,7 +101,16 @@
                     <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
             </select>
-            <input type="number" name="scores[]" placeholder="Баллы" class="border rounded py-2 px-3 ml-2" min="0">
+
+            <label class="ml-2">Лучший игрок:</label>
+            <input type="checkbox" name="best_player[]" value="1">
+            <label class="ml-2">Первая жертва:</label>
+            <input type="checkbox" name="first_victim[]" value="1">
+            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
+
+            <label class="ml-2">Дополнительный балл:</label>
+            <input type="checkbox" name="additional_score[]" value="1">
+            <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
             <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
         `;
         playersList.appendChild(newRow);
