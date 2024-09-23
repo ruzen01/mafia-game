@@ -26,25 +26,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($games as $game)  <!-- Используем переменную $games -->
+                @foreach($games as $game)
                 <tr>
-                    <td class="border border-gray-400 px-4 py-2">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="border border-gray-400 px-4 py-2">
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
                         <a href="{{ route('games.show', $game->id) }}" class="text-blue-500 underline">
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="border border-gray-400 px-4 py-2 text-center w-20">{{ $game->game_number }}</td>
-                    <td class="border border-gray-400 px-4 py-2">{{ $game->host_name }}</td>
-                    <td class="border border-gray-400 px-4 py-2">{{ $game->winner }}</td>
-                    <td class="border border-gray-400 px-4 py-2 break-words max-w-xs">
+                    <td class="border border-gray-400 px-4 py-2 text-center w-20 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->game_number }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->host_name }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->winner }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-xs">
                         @if ($game->players)
                             {{ $game->players->pluck('name')->implode(', ') }}
                         @else
                             Игроки не указаны
                         @endif
                     </td>
-                    <td class="border border-gray-400 px-4 py-2 text-center">
+                    <td class="border border-gray-400 px-4 py-2 text-center whitespace-nowrap overflow-hidden text-ellipsis">
                         <a href="{{ route('games.edit', $game->id) }}" class="bg-yellow-500 text-white py-1 px-2 rounded">
                             Изменить
                         </a>
