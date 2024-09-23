@@ -6,34 +6,48 @@
 
     <form action="{{ route('games.store') }}" method="POST">
         @csrf
-        <!-- Поле Название игры -->
-        <div class="mb-4">
-            <label for="name" class="block text-sm font-medium">Название игры:</label>
-            <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3" required>
+        <!-- Название игры, дата игры и номер игры на одной строке -->
+        <div class="flex mb-4">
+            <!-- Поле Название игры -->
+            <div class="flex-1 mr-4">
+                <label for="name" class="block text-sm font-medium">Название игры:</label>
+                <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3" required>
+            </div>
+
+            <!-- Поле Дата игры -->
+            <div class="mr-4">
+                <label for="date" class="block text-sm font-medium">Дата игры:</label>
+                <input type="date" name="date" id="date" class="border rounded py-2 px-3 w-40" required>
+            </div>
+
+            <!-- Поле Номер игры (выпадающий список) -->
+            <div>
+                <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
+                <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-20" required>
+                    @for ($i = 1; $i <= 10; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
         </div>
 
-        <!-- Поле Дата игры -->
-        <div class="mb-4">
-            <label for="date" class="block text-sm font-medium">Дата игры:</label>
-            <input type="date" name="date" id="date" class="border rounded w-full py-2 px-3" required>
-        </div>
+        <!-- Ведущий и кто победил на одной строке -->
+        <div class="flex mb-4">
+            <!-- Поле Имя ведущего -->
+            <div class="flex-1 mr-4">
+                <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
+                <input type="text" name="host_name" id="host_name" class="border rounded w-full py-2 px-3" required>
+            </div>
 
-        <!-- Поле Номер игры -->
-        <div class="mb-4">
-            <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
-            <input type="text" name="game_number" id="game_number" class="border rounded w-full py-2 px-3" required>
-        </div>
-
-        <!-- Поле Имя ведущего -->
-        <div class="mb-4">
-            <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
-            <input type="text" name="host_name" id="host_name" class="border rounded w-full py-2 px-3" required>
-        </div>
-
-        <!-- Поле Победитель -->
-        <div class="mb-4">
-            <label for="winner" class="block text-sm font-medium">Кто победил:</label>
-            <input type="text" name="winner" id="winner" class="border rounded w-full py-2 px-3" required>
+            <!-- Поле Кто победил (выпадающий список) -->
+            <div class="flex-1">
+                <label for="winner" class="block text-sm font-medium">Кто победил:</label>
+                <select name="winner" id="winner" class="border rounded py-2 px-3 w-full" required>
+                    <option value="Мафия">Мафия</option>
+                    <option value="Мирные жители">Мирные жители</option>
+                    <option value="Третья сторона">Третья сторона</option>
+                </select>
+            </div>
         </div>
 
         <!-- Поле для добавления игроков, ролей и баллов -->
@@ -52,7 +66,6 @@
                             <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                         @endforeach
                     </select>
-                    
 
                     <!-- Лучший игрок -->
                     <label class="ml-2">Лучший игрок:</label>
@@ -62,12 +75,12 @@
                     <label class="ml-2">Первая жертва:</label>
                     <input type="checkbox" name="first_victim[]" value="1">
 
-                    <!-- Баллы от ведущего -->
-                    <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
-
                     <!-- Дополнительный балл -->
                     <label class="ml-2">Дополнительный балл:</label>
                     <input type="checkbox" name="additional_score[]" value="1">
+
+                    <!-- Баллы от ведущего -->
+                    <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
 
                     <!-- Комментарий -->
                     <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
@@ -85,7 +98,6 @@
 
 <!-- Скрипт для добавления и удаления игроков -->
 <script>
-    // Добавление нового игрока
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
         var newRow = document.createElement('div');
@@ -106,10 +118,9 @@
             <input type="checkbox" name="best_player[]" value="1">
             <label class="ml-2">Первая жертва:</label>
             <input type="checkbox" name="first_victim[]" value="1">
-            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
-
             <label class="ml-2">Дополнительный балл:</label>
             <input type="checkbox" name="additional_score[]" value="1">
+            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
             <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
             <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
         `;
@@ -121,7 +132,6 @@
         });
     });
 
-    // Удаление игрока
     document.querySelectorAll('.remove-player-row').forEach(function(button) {
         button.addEventListener('click', function() {
             this.parentNode.remove();
