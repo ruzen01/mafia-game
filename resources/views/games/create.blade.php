@@ -11,7 +11,7 @@
             <!-- Поле Название игры -->
             <div class="flex-1 mr-4">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
-                <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3" required>
+                <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3 text-black" required>
             </div>
 
             <!-- Поле Дата игры -->
