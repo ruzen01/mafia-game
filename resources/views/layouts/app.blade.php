@@ -5,18 +5,18 @@
     <title>@yield('title', 'Мафия')</title>
     @vite('resources/css/app.css') <!-- Подключение стилей через Vite -->
 </head>
-<body class="bg-gray-900 flex flex-col min-h-screen text-gray-300">
-    <!-- Включаем навигацию -->
-    @include('layouts.navigation')
+    <body class="bg-gray-900 text-white">
+        <!-- Включаем навигацию -->
+        @include('layouts.navigation')
 
-    <!-- Основной контент страницы -->
-    <div class="flex-grow container mx-auto p-4">
-        @yield('content')
-    </div>
+        <!-- Основной контент страницы -->
+        <div class="container mx-auto p-4">
+            @yield('content')
+        </div>
 
-    <!-- Футер -->
-    <footer class="text-center p-4 bg-gray-800 mt-auto">
-        © 2024 Мафия
-    </footer>
-</body>
+        <!-- Футер -->
+        <footer class="text-center p-4 bg-gray-800">
+            © 2024 Мафия
+        </footer>
+    </body>
 </html>
