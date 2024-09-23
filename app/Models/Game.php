@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    protected $fillable = ['name', 'date', 'game_number', 'host_name', 'winner', 'players'];
+    protected $fillable = ['name', 'date', 'game_number', 'host_name', 'winner'];
 
-    protected $casts = [
-        'players' => 'array', // Преобразуем JSON в массив
-    ];
-
+    // Связь многие ко многим с моделью Player
     public function players()
     {
-        return $this->belongsToMany(Player::class)->withPivot('score');
+        return $this->belongsToMany(Player::class)->withPivot('score')->withTimestamps();
     }
 }

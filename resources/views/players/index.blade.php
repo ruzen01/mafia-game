@@ -11,7 +11,7 @@
             <tr class="bg-gray-200">
                 <th class="border border-gray-400 px-4 py-2">ID</th>
                 <th class="border border-gray-400 px-4 py-2">Имя</th>
-                <th class="border border-gray-400 px-4 py-2">Игра</th>
+                <th class="border border-gray-400 px-4 py-2">Игры</th>
                 <th class="border border-gray-400 px-4 py-2">Дата создания</th>
                 <th class="border border-gray-400 px-4 py-2">Действия</th>
             </tr>
@@ -21,9 +21,14 @@
             <tr>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->id }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->name }}</td>
-                <!-- Проверка на наличие игры перед попыткой доступа к ее имени -->
                 <td class="border border-gray-400 px-4 py-2">
-                    {{ $player->game ? $player->game->name : 'Нет игры' }}
+                    @if($player->games->isEmpty())
+                        Нет игр
+                    @else
+                        @foreach($player->games as $game)
+                            <span>{{ $game->name }}</span><br>
+                        @endforeach
+                    @endif
                 </td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->created_at }}</td>
                 <td class="border border-gray-400 px-4 py-2">

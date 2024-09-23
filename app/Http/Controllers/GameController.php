@@ -78,56 +78,56 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Game $game)
+    public function edit($id)
     {
-        // Загружаем игру вместе с её игроками
-        $game->load('players');
-    
-        // Получаем всех игроков
-        $players = Player::all();
-    
-        // Передаем игру и список игроков в шаблон
-        return view('games.edit', compact('game', 'players'));
+        $game = Game::with('players')->findOrFail($id);
+        $allPlayers = Player::all();  // Получаем всех игроков для выбора
+        return view('games.edit', compact('game', 'allPlayers'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Game $game)
+    public function update(Request $request, $id)
     {
-        // Валидируем входящие данные
-        $validated = $request->validate([
+        $game = Game::findOrFail($id);
+
+        // Валидируем запрос
+        $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
             'game_number' => 'required|string|max:255',
             'host_name' => 'required|string|max:255',
-            'players' => 'array',
-            'scores' => 'array',
+            'winner' => 'required|string|max:255',
+            'players' => 'required|array',  // Убедимся, что игроки отправлены
+            'scores' => 'required|array',   // Убедимся, что баллы для каждого игрока отправлены
+            'scores.*' => 'integer|min:0',  // Каждое значение баллов должно быть числом
         ]);
-    
-        // Обновляем основные поля игры
+
+        // Обновляем основные данные игры
         $game->update([
-            'name' => $validated['name'],
-            'date' => $validated['date'],
-            'game_number' => $validated['game_number'],
-            'host_name' => $validated['host_name'],
+            'name' => $request->name,
+            'date' => $request->date,
+            'game_number' => $request->game_number,
+            'host_name' => $request->host_name,
+            'winner' => $request->winner,
         ]);
-    
-        // Очищаем текущие записи игроков и добавляем новые
-        $players = $validated['players'] ?? [];
-        $scores = $validated['scores'] ?? [];
-    
-        // Привязываем игроков с их баллами
+
+        // Синхронизируем игроков с их баллами
+        $players = $request->players; // Массив ID игроков
+        $scores = $request->scores;   // Массив баллов
+
+        // Формируем массив для синхронизации игроков и их баллов
         $syncData = [];
         foreach ($players as $index => $playerId) {
             $syncData[$playerId] = ['score' => $scores[$index]];
         }
-        $game->players()->sync($syncData);
-    
-        // Перенаправляем обратно с сообщением об успехе
-        return redirect()->route('games.index')->with('success', 'Игра успешно обновлена');
-    }
 
+        // Синхронизируем игроков с их баллами
+        $game->players()->sync($syncData);
+
+        return redirect()->route('games.index')->with('success', 'Игра успешно обновлена!');
+    }
     /**
      * Remove the specified resource from storage.
      */
