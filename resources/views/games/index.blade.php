@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto">
-    <h1 class="text-center text-3xl mb-6">Список игр</h1>
+<div class="container mx-auto py-6">
+    <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
 
     <!-- Ссылка на создание новой игры -->
     <div class="flex justify-center mb-6">
@@ -13,7 +13,7 @@
 
     <!-- Таблица со списком игр -->
     <div class="overflow-x-auto">
-        <table class="table-auto border-collapse border border-gray-500 w-full text-red">
+        <table class="table-auto border-collapse border border-gray-500 w-full text-black">
             <thead>
                 <tr class="bg-gray-200">
                     <th class="border border-gray-400 px-4 py-2">Дата</th>
@@ -28,36 +28,23 @@
             <tbody>
                 @foreach($games as $game)
                 <tr>
-                    <!-- Дата игры (в формате день-месяц-год) -->
-                    <td class="border border-gray-400 px-4 py-2">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-
-                    <!-- Ссылка на страницу с подробной информацией об игре -->
-                    <td class="border border-gray-400 px-4 py-2">
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
                         <a href="{{ route('games.show', $game->id) }}" class="text-blue-500 underline">
                             {{ $game->name }}
                         </a>
                     </td>
-
-                    <!-- Номер игры (с узкой шириной) -->
-                    <td class="border border-gray-400 px-4 py-2 text-center w-20">{{ $game->game_number }}</td>
-
-                    <!-- Ведущий игры -->
-                    <td class="border border-gray-400 px-4 py-2">{{ $game->host_name }}</td>
-
-                    <!-- Победитель игры -->
-                    <td class="border border-gray-400 px-4 py-2">{{ $game->winner }}</td>
-
-                    <!-- Игроки игры (с переносом длинного текста) -->
-                    <td class="border border-gray-400 px-4 py-2 break-words max-w-xs">
+                    <td class="border border-gray-400 px-4 py-2 text-center w-20 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->game_number }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->host_name }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->winner }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-xs">
                         @if ($game->players)
                             {{ $game->players->pluck('name')->implode(', ') }}
                         @else
                             Игроки не указаны
                         @endif
                     </td>
-
-                    <!-- Кнопка редактирования игры -->
-                    <td class="border border-gray-400 px-4 py-2 text-center">
+                    <td class="border border-gray-400 px-4 py-2 text-center whitespace-nowrap overflow-hidden text-ellipsis">
                         <a href="{{ route('games.edit', $game->id) }}" class="bg-yellow-500 text-white py-1 px-2 rounded">
                             Изменить
                         </a>
