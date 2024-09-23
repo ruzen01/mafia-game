@@ -7,7 +7,7 @@
     @csrf
     <div class="mb-4">
         <label for="name" class="block text-sm font-medium">Имя игрока:</label>
-        <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3">
+        <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3 text-black">
     </div>
 
     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Создать игрока</button>
