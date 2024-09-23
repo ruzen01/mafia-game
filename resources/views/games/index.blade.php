@@ -15,7 +15,7 @@
     <div class="overflow-x-auto">
         <table class="table-auto border-collapse border border-gray-500 w-full text-black">
             <thead>
-                <tr class="bg-gray-200">
+                <tr>
                     <th class="border border-gray-400 px-4 py-2">Дата</th>
                     <th class="border border-gray-400 px-4 py-2">Имя</th>
                     <th class="border border-gray-400 px-4 py-2 w-20">Номер игры</th>

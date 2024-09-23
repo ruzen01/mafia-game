@@ -8,7 +8,7 @@
     </div>
     <table class="table-auto border-collapse border border-gray-500 w-3/4 mx-auto">
         <thead>
-            <tr class="bg-gray-200">
+            <tr>
                 <th class="border border-gray-400 px-4 py-2">ID</th>
                 <th class="border border-gray-400 px-4 py-2">Имя</th>
                 <th class="border border-gray-400 px-4 py-2">Игры</th>
