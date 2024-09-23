@@ -28,7 +28,7 @@
             <tbody>
                 @foreach($games as $game)
                 <tr>
-                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis !text-black">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
                     <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
                         <a href="{{ route('games.show', $game->id) }}" class="text-blue-500 underline">
                             {{ $game->name }}
