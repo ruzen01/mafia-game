@@ -11,7 +11,7 @@
 
     <!-- Проверка, есть ли игроки у игры -->
     <p><strong>Игроки:</strong>
-        @if($game->players)
+        @if($game->players->isNotEmpty())
             {{ $game->players->pluck('name')->implode(', ') }}
         @else
             Нет игроков
@@ -22,7 +22,7 @@
     <ul>
         @if($game->players)
             @foreach($game->players as $player)
-            <li>{{ $player->name }}: {{ $player->pivot->score }} баллов</li>
+            <li>{{ $player->name }}: {{ $player->pivot->score }} баллов, Лучший игрок: {{ $player->pivot->best_player ? 'Да' : 'Нет' }}, Первая жертва: {{ $player->pivot->first_victim ? 'Да' : 'Нет' }}, Баллы от ведущего: {{ $player->pivot->leader_score }},         Дополнительный балл: {{ $player->pivot->additional_score ? 'Да' : 'Нет' }}, Комментарий: {{ $player->pivot->comment }}</li>
             @endforeach
         @else
             <li>Нет игроков</li>
