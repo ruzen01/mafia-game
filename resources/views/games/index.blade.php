@@ -13,7 +13,7 @@
 
     <!-- Таблица со списком игр -->
     <div class="overflow-x-auto">
-        <table class="table-auto border-collapse border border-gray-500 w-full">
+        <table class="table-auto border-collapse border border-gray-500 w-full text-red">
             <thead>
                 <tr class="bg-gray-200">
                     <th class="border border-gray-400 px-4 py-2">Дата</th>
