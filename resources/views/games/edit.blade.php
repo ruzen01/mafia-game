@@ -8,16 +8,16 @@
         @csrf
         @method('PUT')
 
-        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
-        <div class="flex flex-wrap gap-4 mb-4">
-            <!-- Поле Название игры -->
-            <div class="flex-6">
+        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке с полной шириной -->
+        <div class="flex flex-wrap gap-4 mb-4 w-full">
+            <!-- Поле Название игры (6/16) -->
+            <div class="flex-[6_6_0%]">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
                 <input type="text" name="name" id="name" value="{{ $game->name }}" class="border rounded w-full py-2 px-3" required>
             </div>
 
-            <!-- Поле Сезон -->
-            <div class="flex-4">
+            <!-- Поле Сезон (4/16) -->
+            <div class="flex-[4_4_0%]">
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
                     @foreach ($seasons as $season)
@@ -26,14 +26,14 @@
                 </select>
             </div>
 
-            <!-- Поле Дата игры -->
-            <div class="flex-4">
+            <!-- Поле Дата игры (4/16) -->
+            <div class="flex-[4_4_0%]">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
                 <input type="date" name="date" id="date" value="{{ $game->date }}" class="border rounded py-2 px-3 w-full" required>
             </div>
 
-            <!-- Поле Номер игры -->
-            <div class="flex-2">
+            <!-- Поле Номер игры (2/16) -->
+            <div class="flex-[2_2_0%]">
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
                 <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-full" required>
                     @for ($i = 1; $i <= 10; $i++)
@@ -43,8 +43,8 @@
             </div>
         </div>
 
-        <!-- Ведущий и кто победил на одной строке -->
-        <div class="flex gap-4 mb-4">
+        <!-- Ведущий и Кто победил на одной строке с полной шириной -->
+        <div class="flex gap-4 mb-4 w-full">
             <div class="flex-1">
                 <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
                 <input type="text" name="host_name" id="host_name" value="{{ $game->host_name }}" class="border rounded w-full py-2 px-3" required>
