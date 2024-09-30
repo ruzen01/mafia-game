@@ -7,15 +7,15 @@
     <form action="{{ route('games.store') }}" method="POST">
         @csrf
         <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-4 gap-4 mb-4">
             <!-- Поле Название игры -->
-            <div>
+            <div class="col-span-1">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
                 <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3" required>
             </div>
 
             <!-- Поле Сезон -->
-            <div>
+            <div class="col-span-1">
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
                     @foreach ($seasons as $season)
@@ -25,13 +25,13 @@
             </div>
 
             <!-- Поле Дата игры -->
-            <div>
+            <div class="col-span-1">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
                 <input type="date" name="date" id="date" class="border rounded py-2 px-3 w-full" required>
             </div>
 
             <!-- Поле Номер игры -->
-            <div>
+            <div class="col-span-1">
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
                 <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-full" required>
                     @for ($i = 1; $i <= 10; $i++)
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <!-- Поле для добавления игроков, ролей и баллов -->
+        <!-- Поле для добавления игроков, их ролей и баллов -->
         <div class="mb-4">
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
             <div id="players-list">
@@ -120,7 +120,7 @@
             <input type="checkbox" name="best_player[]" value="1">
             <label class="ml-2">Первая кровь:</label>
             <input type="checkbox" name="first_victim[]" value="1">
-            <label class="ml-2">Доп:</label>
+            <label class="ml-2">Дополнительный балл:</label>
             <input type="checkbox" name="additional_score[]" value="1">
             <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2">
             <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
