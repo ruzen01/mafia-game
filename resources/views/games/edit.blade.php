@@ -9,7 +9,7 @@
         @method('PUT')
 
         <!-- Название игры, дата игры, номер игры и сезон на одной строке -->
-        <div class="flex mb-4">
+        <div class="flex flex-wrap mb-4">
             <!-- Поле Название игры -->
             <div class="flex-1 mr-4">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
@@ -17,7 +17,7 @@
             </div>
 
             <!-- Поле Сезон -->
-            <div class="ml-4">
+            <div class="flex-1 mr-4">
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
                     <option value="Осень-зима 2024-2025" {{ $game->season == 'Осень-зима 2024-2025' ? 'selected' : '' }}>Осень-зима 2024-2025</option>
@@ -32,7 +32,7 @@
             </div>
 
             <!-- Поле Номер игры (выпадающий список) -->
-            <div>
+            <div class="w-1/6">
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
                 <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-20" required>
                     @for ($i = 1; $i <= 10; $i++)
