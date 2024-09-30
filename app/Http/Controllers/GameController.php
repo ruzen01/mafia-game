@@ -100,7 +100,7 @@ class GameController extends Controller
         $roles = Role::all();
         $seasons = ['Осень-зима 2024-2025']; // Список сезонов
 
-        return view('games.edit', compact('game', 'allPlayers', 'roles'));
+        return view('games.edit', compact('game', 'allPlayers', 'roles', 'seasons'));
     }
 
     /**
