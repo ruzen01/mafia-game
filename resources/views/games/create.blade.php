@@ -14,14 +14,15 @@
                 <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3 text-gray-700" required>
             </div>
 
-            <div class="form-group">
-    <label for="season">Сезон</label>
-    <select name="season" id="season" class="form-control">
-        @foreach ($seasons as $season)
-            <option value="{{ $season }}">{{ $season }}</option>
-        @endforeach
-    </select>
-</div>
+            <!-- Поле Сезон -->
+            <div class="ml-4">
+                <label for="season" class="block text-sm font-medium">Сезон:</label>
+                <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
+                    @foreach ($seasons as $season)
+                        <option value="{{ $season }}">{{ $season }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <!-- Поле Дата игры -->
             <div class="mr-4">

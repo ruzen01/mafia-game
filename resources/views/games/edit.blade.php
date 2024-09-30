@@ -16,6 +16,15 @@
                 <input type="text" name="name" id="name" value="{{ $game->name }}" class="border rounded w-full py-2 px-3" required>
             </div>
 
+            <!-- Поле Сезон -->
+            <div class="ml-4">
+                <label for="season" class="block text-sm font-medium">Сезон:</label>
+                <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
+                    <option value="Осень-зима 2024-2025" {{ $game->season == 'Осень-зима 2024-2025' ? 'selected' : '' }}>Осень-зима 2024-2025</option>
+                    <!-- В будущем можно добавить больше сезонов -->
+                </select>
+            </div>
+
             <!-- Поле Дата игры -->
             <div class="mr-4">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
@@ -29,15 +38,6 @@
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}" {{ $game->game_number == $i ? 'selected' : '' }}>{{ $i }}</option>
                     @endfor
-                </select>
-            </div>
-
-            <!-- Поле Сезон -->
-            <div class="ml-4">
-                <label for="season" class="block text-sm font-medium">Сезон:</label>
-                <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
-                    <option value="Осень-зима 2024-2025" {{ $game->season == 'Осень-зима 2024-2025' ? 'selected' : '' }}>Осень-зима 2024-2025</option>
-                    <!-- В будущем можно добавить больше сезонов -->
                 </select>
             </div>
         </div>
