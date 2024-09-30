@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    protected $fillable = ['name', 'date', 'game_number', 'host_name', 'winner'];
+    protected $fillable = ['name', 'date', 'game_number', 'host_name', 'winner', 'season'];
 
     // Связь многие ко многим с моделью Player с дополнительными полями
     public function players()

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('host_name'); // Имя ведущего
             $table->enum('winner', ['Мафия', 'Мирные жители', 'Третья сторона']); // Кто победил
             $table->timestamps(); // Поля created_at и updated_at
+            $table->string('season')->default('Осень-зима 2024-2025'); // Добавляем новое поле
         });
     }
 

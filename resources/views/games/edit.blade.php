@@ -8,7 +8,7 @@
         @csrf
         @method('PUT')
 
-        <!-- Название игры, дата игры и номер игры на одной строке -->
+        <!-- Название игры, дата игры, номер игры и сезон на одной строке -->
         <div class="flex mb-4">
             <!-- Поле Название игры -->
             <div class="flex-1 mr-4">
@@ -29,6 +29,15 @@
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}" {{ $game->game_number == $i ? 'selected' : '' }}>{{ $i }}</option>
                     @endfor
+                </select>
+            </div>
+
+            <!-- Поле Сезон -->
+            <div class="ml-4">
+                <label for="season" class="block text-sm font-medium">Сезон:</label>
+                <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
+                    <option value="Осень-зима 2024-2025" {{ $game->season == 'Осень-зима 2024-2025' ? 'selected' : '' }}>Осень-зима 2024-2025</option>
+                    <!-- В будущем можно добавить больше сезонов -->
                 </select>
             </div>
         </div>
