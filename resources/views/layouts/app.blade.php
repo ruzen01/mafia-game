@@ -18,7 +18,7 @@
 
     <!-- Футер -->
     <footer class="text-center p-4 bg-gray-800 mt-auto">
-        © 2024 Мафия
+        © 2024 Zen
     </footer>
 </body>
 
