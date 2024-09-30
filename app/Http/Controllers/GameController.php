@@ -98,6 +98,7 @@ class GameController extends Controller
         $game = Game::with('players')->findOrFail($id);
         $allPlayers = Player::all();
         $roles = Role::all();
+        $seasons = ['Осень-зима 2024-2025']; // Список сезонов
 
         return view('games.edit', compact('game', 'allPlayers', 'roles'));
     }

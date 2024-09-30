@@ -6,16 +6,16 @@
 
     <form action="{{ route('games.store') }}" method="POST">
         @csrf
-        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке с использованием flex -->
-        <div class="flex gap-4 mb-4">
+        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке с полной шириной -->
+        <div class="flex flex-wrap gap-4 mb-4 w-full">
             <!-- Поле Название игры (6/16) -->
-            <div class="flex-6">
+            <div class="flex-[6_6_0%]">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
                 <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3" required>
             </div>
 
             <!-- Поле Сезон (4/16) -->
-            <div class="flex-4">
+            <div class="flex-[4_4_0%]">
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
                     @foreach ($seasons as $season)
@@ -25,13 +25,13 @@
             </div>
 
             <!-- Поле Дата игры (4/16) -->
-            <div class="flex-4">
+            <div class="flex-[4_4_0%]">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
                 <input type="date" name="date" id="date" class="border rounded py-2 px-3 w-full" required>
             </div>
 
             <!-- Поле Номер игры (2/16) -->
-            <div class="flex-2">
+            <div class="flex-[2_2_0%]">
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
                 <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-full" required>
                     @for ($i = 1; $i <= 10; $i++)
@@ -41,8 +41,8 @@
             </div>
         </div>
 
-        <!-- Ведущий и Кто победил на одной строке -->
-        <div class="flex gap-4 mb-4">
+        <!-- Ведущий и Кто победил на одной строке с полной шириной -->
+        <div class="flex gap-4 mb-4 w-full">
             <!-- Поле Ведущий -->
             <div class="flex-1">
                 <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
