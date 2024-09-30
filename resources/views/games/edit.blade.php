@@ -8,33 +8,32 @@
         @csrf
         @method('PUT')
 
-        <!-- Название игры, дата игры, номер игры и сезон на одной строке -->
-        <div class="flex flex-wrap mb-4">
+        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
+        <div class="grid grid-cols-2 gap-4 mb-4">
             <!-- Поле Название игры -->
-            <div class="flex-1 mr-4">
+            <div>
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
                 <input type="text" name="name" id="name" value="{{ $game->name }}" class="border rounded w-full py-2 px-3" required>
             </div>
 
             <!-- Поле Сезон -->
-            <div class="flex-1 mr-4">
+            <div>
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
                     <option value="Осень-зима 2024-2025" {{ $game->season == 'Осень-зима 2024-2025' ? 'selected' : '' }}>Осень-зима 2024-2025</option>
-                    <!-- В будущем можно добавить больше сезонов -->
                 </select>
             </div>
 
             <!-- Поле Дата игры -->
-            <div class="mr-4">
+            <div>
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
-                <input type="date" name="date" id="date" value="{{ $game->date }}" class="border rounded py-2 px-3 w-40" required>
+                <input type="date" name="date" id="date" value="{{ $game->date }}" class="border rounded py-2 px-3 w-full" required>
             </div>
 
-            <!-- Поле Номер игры (выпадающий список) -->
-            <div class="w-1/6">
+            <!-- Поле Номер игры -->
+            <div>
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
-                <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-20" required>
+                <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-full" required>
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}" {{ $game->game_number == $i ? 'selected' : '' }}>{{ $i }}</option>
                     @endfor
@@ -43,15 +42,13 @@
         </div>
 
         <!-- Ведущий и кто победил на одной строке -->
-        <div class="flex mb-4">
-            <!-- Поле Имя ведущего -->
-            <div class="flex-1 mr-4">
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
                 <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
                 <input type="text" name="host_name" id="host_name" value="{{ $game->host_name }}" class="border rounded w-full py-2 px-3" required>
             </div>
 
-            <!-- Поле Кто победил (выпадающий список) -->
-            <div class="flex-1">
+            <div>
                 <label for="winner" class="block text-sm font-medium">Кто победил:</label>
                 <select name="winner" id="winner" class="border rounded py-2 px-3 w-full" required>
                     <option value="Мафия" {{ $game->winner == 'Мафия' ? 'selected' : '' }}>Мафия</option>
@@ -64,7 +61,6 @@
         <!-- Игроки, их роли и баллы -->
         <div class="mb-4">
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
-
             <div id="players-list">
                 @foreach($game->players as $player)
                     <div class="player-row mb-2">
@@ -86,21 +82,16 @@
                         <!-- Лучший игрок -->
                         <label class="ml-2">Лучший игрок:</label>
                         <input type="checkbox" name="best_player[]" value="{{ $player->id }}" {{ $player->pivot->best_player ? 'checked' : '' }}>
-
                         <!-- Первая жертва -->
                         <label class="ml-2">Первая жертва:</label>
                         <input type="checkbox" name="first_victim[]" value="{{ $player->id }}" {{ $player->pivot->first_victim ? 'checked' : '' }}>
-
                         <!-- Дополнительный балл -->
                         <label class="ml-2">Дополнительный балл:</label>
                         <input type="checkbox" name="additional_score[]" value="{{ $player->id }}" {{ $player->pivot->additional_score ? 'checked' : '' }}>
-
                         <!-- Баллы от ведущего -->
                         <input type="number" name="leader_scores[]" value="{{ $player->pivot->leader_score }}" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
-
                         <!-- Комментарий -->
                         <input type="text" name="comments[]" value="{{ $player->pivot->comment }}" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
-
                         <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
                     </div>
                 @endforeach
@@ -113,7 +104,6 @@
     </form>
 </div>
 
-<!-- Скрипт для добавления и удаления игроков -->
 <script>
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
@@ -130,7 +120,6 @@
                     <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
             </select>
-
             <label class="ml-2">Лучший игрок:</label>
             <input type="checkbox" name="best_player[]" value="1">
             <label class="ml-2">Первая жертва:</label>
@@ -142,15 +131,7 @@
             <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
         `;
         playersList.appendChild(newRow);
-
-        // Добавление функционала удаления нового игрока
         newRow.querySelector('.remove-player-row').addEventListener('click', function() {
-            this.parentNode.remove();
-        });
-    });
-
-    document.querySelectorAll('.remove-player-row').forEach(function(button) {
-        button.addEventListener('click', function() {
             this.parentNode.remove();
         });
     });
