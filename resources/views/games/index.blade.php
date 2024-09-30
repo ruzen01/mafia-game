@@ -20,6 +20,7 @@
                     <th class="border border-gray-400 px-4 py-2">Имя</th>
                     <th class="border border-gray-400 px-4 py-2 w-20">№</th>
                     <th class="border border-gray-400 px-4 py-2">Ведущий</th>
+                    <th class="border border-gray-400 px-4 py-2">Сезон</th>
                     <th class="border border-gray-400 px-4 py-2">Победитель</th>
                     <th class="border border-gray-400 px-4 py-2">Игроки</th>
                     <th class="border border-gray-400 px-4 py-2">Действия</th>
@@ -36,6 +37,7 @@
                     </td>
                     <td class="border border-gray-400 px-4 py-2 text-left w-20 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->game_number }}</td>
                     <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->host_name }}</td>
+                    <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->season }}</td>
                     <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->winner }}</td>
                     <td class="border border-gray-400 px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-xs">
                         @if ($game->players)

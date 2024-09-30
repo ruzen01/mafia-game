@@ -23,11 +23,11 @@ class GameController extends Controller
      */
     public function create()
     {
-        // Получаем всех игроков и роли
         $players = Player::all();
         $roles = Role::all();
-
-        return view('games.create', compact('players', 'roles'));
+        $seasons = ['Осень-зима 2024-2025']; // Список сезонов
+    
+        return view('games.create', compact('players', 'roles', 'seasons'));
     }
 
     /**
@@ -48,6 +48,7 @@ class GameController extends Controller
             'leader_scores' => 'array',
             'comments' => 'array',
             'additional_score' => 'array', // Новое поле
+            'season' => 'required|string', // Добавляем валидацию для сезона
         ]);
 
         $game = Game::create($validated);
