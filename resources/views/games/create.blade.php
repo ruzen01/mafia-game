@@ -6,16 +6,16 @@
 
     <form action="{{ route('games.store') }}" method="POST">
         @csrf
-        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
-        <div class="grid grid-cols-4 gap-4 mb-4">
-            <!-- Поле Название игры -->
-            <div class="col-span-1">
+        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке с использованием flex -->
+        <div class="flex gap-4 mb-4">
+            <!-- Поле Название игры (6/16) -->
+            <div class="flex-6">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
                 <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3" required>
             </div>
 
-            <!-- Поле Сезон -->
-            <div class="col-span-1">
+            <!-- Поле Сезон (4/16) -->
+            <div class="flex-4">
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
                     @foreach ($seasons as $season)
@@ -24,14 +24,14 @@
                 </select>
             </div>
 
-            <!-- Поле Дата игры -->
-            <div class="col-span-1">
+            <!-- Поле Дата игры (4/16) -->
+            <div class="flex-4">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
                 <input type="date" name="date" id="date" class="border rounded py-2 px-3 w-full" required>
             </div>
 
-            <!-- Поле Номер игры -->
-            <div class="col-span-1">
+            <!-- Поле Номер игры (2/16) -->
+            <div class="flex-2">
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
                 <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-full" required>
                     @for ($i = 1; $i <= 10; $i++)
@@ -41,16 +41,16 @@
             </div>
         </div>
 
-        <!-- Ведущий и кто победил на одной строке -->
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <!-- Ведущий и Кто победил на одной строке -->
+        <div class="flex gap-4 mb-4">
             <!-- Поле Ведущий -->
-            <div>
+            <div class="flex-1">
                 <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
                 <input type="text" name="host_name" id="host_name" class="border rounded w-full py-2 px-3" required>
             </div>
 
             <!-- Поле Кто победил -->
-            <div>
+            <div class="flex-1">
                 <label for="winner" class="block text-sm font-medium">Кто победил:</label>
                 <select name="winner" id="winner" class="border rounded py-2 px-3 w-full" required>
                     <option value="Мафия">Мафия</option>
@@ -64,13 +64,13 @@
         <div class="mb-4">
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
             <div id="players-list">
-                <div class="player-row mb-2">
-                    <select name="players[]" class="border rounded py-2 px-3">
+                <div class="player-row mb-2 flex items-center gap-2">
+                    <select name="players[]" class="border rounded py-2 px-3 flex-1">
                         @foreach($players as $player)
                             <option value="{{ $player->id }}">{{ $player->name }}</option>
                         @endforeach
                     </select>
-                    <select name="roles[]" class="border rounded py-2 px-3 ml-2">
+                    <select name="roles[]" class="border rounded py-2 px-3 ml-2 flex-1">
                         @foreach($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                         @endforeach
@@ -85,9 +85,9 @@
                     <label class="ml-2">Доп:</label>
                     <input type="checkbox" name="additional_score[]" value="1">
                     <!-- Баллы от ведущего -->
-                    <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2">
+                    <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2 flex-1">
                     <!-- Комментарий -->
-                    <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
+                    <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1">
                     <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
                 </div>
             </div>
@@ -104,14 +104,14 @@
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
         var newRow = document.createElement('div');
-        newRow.classList.add('player-row', 'mb-2');
+        newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2');
         newRow.innerHTML = `
-            <select name="players[]" class="border rounded py-2 px-3">
+            <select name="players[]" class="border rounded py-2 px-3 flex-1">
                 @foreach($players as $player)
                     <option value="{{ $player->id }}">{{ $player->name }}</option>
                 @endforeach
             </select>
-            <select name="roles[]" class="border rounded py-2 px-3 ml-2">
+            <select name="roles[]" class="border rounded py-2 px-3 ml-2 flex-1">
                 @foreach($roles as $role)
                     <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
@@ -120,10 +120,10 @@
             <input type="checkbox" name="best_player[]" value="1">
             <label class="ml-2">Первая кровь:</label>
             <input type="checkbox" name="first_victim[]" value="1">
-            <label class="ml-2">Дополнительный балл:</label>
+            <label class="ml-2">Доп:</label>
             <input type="checkbox" name="additional_score[]" value="1">
-            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2">
-            <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
+            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2 flex-1">
+            <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1">
             <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
         `;
         playersList.appendChild(newRow);
