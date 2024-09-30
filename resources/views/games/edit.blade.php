@@ -1,37 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Редактировать игру</h1>
+<div class="container mx-auto py-6">
+    <h1 class="text-center text-3xl font-bold mb-6">Редактировать игру</h1>
 
     <form action="{{ route('games.update', $game->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-4 gap-4 mb-4">
             <!-- Поле Название игры -->
-            <div>
+            <div class="col-span-1">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
                 <input type="text" name="name" id="name" value="{{ $game->name }}" class="border rounded w-full py-2 px-3" required>
             </div>
 
             <!-- Поле Сезон -->
-            <div>
+            <div class="col-span-1">
                 <label for="season" class="block text-sm font-medium">Сезон:</label>
                 <select name="season" id="season" class="border rounded py-2 px-3 w-full" required>
-                    <option value="Осень-зима 2024-2025" {{ $game->season == 'Осень-зима 2024-2025' ? 'selected' : '' }}>Осень-зима 2024-2025</option>
+                    @foreach ($seasons as $season)
+                        <option value="{{ $season }}" {{ $game->season == $season ? 'selected' : '' }}>{{ $season }}</option>
+                    @endforeach
                 </select>
             </div>
 
             <!-- Поле Дата игры -->
-            <div>
+            <div class="col-span-1">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
                 <input type="date" name="date" id="date" value="{{ $game->date }}" class="border rounded py-2 px-3 w-full" required>
             </div>
 
             <!-- Поле Номер игры -->
-            <div>
+            <div class="col-span-1">
                 <label for="game_number" class="block text-sm font-medium">Номер игры:</label>
                 <select name="game_number" id="game_number" class="border rounded py-2 px-3 w-full" required>
                     @for ($i = 1; $i <= 10; $i++)
@@ -41,13 +43,15 @@
             </div>
         </div>
 
-        <!-- Ведущий и кто победил на одной строке -->
+        <!-- Ведущий и Кто победил на одной строке -->
         <div class="grid grid-cols-2 gap-4 mb-4">
+            <!-- Поле Ведущий -->
             <div>
                 <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
                 <input type="text" name="host_name" id="host_name" value="{{ $game->host_name }}" class="border rounded w-full py-2 px-3" required>
             </div>
 
+            <!-- Поле Кто победил -->
             <div>
                 <label for="winner" class="block text-sm font-medium">Кто победил:</label>
                 <select name="winner" id="winner" class="border rounded py-2 px-3 w-full" required>
@@ -78,7 +82,6 @@
                                 </option>
                             @endforeach
                         </select>
-
                         <!-- Лучший игрок -->
                         <label class="ml-2">Лучший игрок:</label>
                         <input type="checkbox" name="best_player[]" value="{{ $player->id }}" {{ $player->pivot->best_player ? 'checked' : '' }}>
@@ -126,7 +129,7 @@
             <input type="checkbox" name="first_victim[]" value="1">
             <label class="ml-2">Дополнительный балл:</label>
             <input type="checkbox" name="additional_score[]" value="1">
-            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2" min="0">
+            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2">
             <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2">
             <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
         `;
