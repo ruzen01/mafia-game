@@ -8,7 +8,9 @@
         <!-- Центральная часть: Кнопки "Рейтинг", "Игры", "Игроки" и "Дашборд" -->
         <div class="flex-1 text-center space-x-4">
             <a href="{{ route('games.index') }}" class="px-4 py-2 rounded hover:bg-gray-700">Игры</a>
-            <a href="{{ route('players.index') }}" class="px-4 py-2 rounded hover:bg-gray-700">Игроки</a><!-- Ссылка на игроков -->
+            <a href="{{ route('players.index') }}" class="px-4 py-2 rounded hover:bg-gray-700">Игроки</a>
+            <!-- Добавляем новую ссылку для перехода на страницу рейтинга -->
+            <a href="{{ route('players.ranking') }}" class="px-4 py-2 rounded hover:bg-gray-700">Рейтинг</a>
             @auth
                 <a href="{{ route('dashboard') }}" class="px-4 py-2 rounded hover:bg-gray-700">Дашборд</a>
             @endauth

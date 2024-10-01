@@ -65,4 +65,15 @@ class PlayerController extends Controller
     
         return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
     }
+
+    public function ranking()
+    {
+        // Получаем всех игроков с их данными, отсортированными по общему количеству баллов
+        $players = Player::with('games')
+            ->get()
+            ->sortByDesc('total_points');
+    
+        // Отправляем данные на представление
+        return view('players.ranking', compact('players'));
+    }
 }

@@ -33,3 +33,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('games', GameController::class);
 Route::resource('players', PlayerController::class);
+Route::get('/players/ranking', [PlayerController::class, 'ranking'])->name('players.ranking');
