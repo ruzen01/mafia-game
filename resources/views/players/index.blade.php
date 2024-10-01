@@ -74,6 +74,12 @@
             @endforeach
         </tbody>
     </table>
+
+    <!-- Добавляем ссылки на страницы -->
+    <div class="mt-4">
+    {{ $players->links() }}
+    </div>
+
 </div>
 
 <!-- JavaScript для раскрытия полного списка игр -->
