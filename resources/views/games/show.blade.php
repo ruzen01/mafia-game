@@ -52,7 +52,9 @@
     @foreach($game->players as $player)
     <tr class="hover:bg-gray-50">
         <td class="border border-gray-300 px-4 py-2">{{ $player->name }}</td>
-        <td class="border border-gray-300 px-4 py-2">{{ $player->role->name ?? 'Не назначена' }}</td> <!-- Отображение роли -->
+        <td class="border border-gray-300 px-4 py-2">
+            {{ $player->pivot->role_id ? \App\Models\Role::find($player->pivot->role_id)->name : 'Не назначена' }}
+        </td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->score }}</td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->best_player ? 'Да' : 'Нет' }}</td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->first_victim ? 'Да' : 'Нет' }}</td>
