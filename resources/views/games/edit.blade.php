@@ -8,20 +8,8 @@
         @csrf
         @method('PUT')
 
-        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
+        <!-- Дата игры, Номер игры и Сезон на одной строке -->
         <div class="flex flex-wrap gap-4 mb-4 w-full">
-            <div class="flex-1">
-                <label for="name" class="block text-sm font-medium">Название игры:</label>
-                <input type="text" name="name" id="name" value="{{ $game->name }}" class="border rounded py-2 px-3 w-full h-10" required>
-            </div>
-            <div class="flex-1">
-                <label for="season" class="block text-sm font-medium">Сезон:</label>
-                <select name="season" id="season" class="border rounded py-2 px-3 w-full h-10" required>
-                    @foreach ($seasons as $season)
-                        <option value="{{ $season }}" {{ $game->season == $season ? 'selected' : '' }}>{{ $season }}</option>
-                    @endforeach
-                </select>
-            </div>
             <div class="flex-1">
                 <label for="date" class="block text-sm font-medium">Дата игры:</label>
                 <input type="date" name="date" id="date" value="{{ $game->date }}" class="border rounded py-2 px-3 w-full h-10" required>
@@ -34,10 +22,22 @@
                     @endfor
                 </select>
             </div>
+            <div class="flex-1">
+                <label for="season" class="block text-sm font-medium">Сезон:</label>
+                <select name="season" id="season" class="border rounded py-2 px-3 w-full h-10" required>
+                    @foreach ($seasons as $season)
+                        <option value="{{ $season }}" {{ $game->season == $season ? 'selected' : '' }}>{{ $season }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
-        <!-- Ведущий и Кто победил на одной строке -->
-        <div class="flex gap-4 mb-4 w-full">
+        <!-- Название игры, Ведущий и Кто победил на одной строке -->
+        <div class="flex flex-wrap gap-4 mb-4 w-full">
+            <div class="flex-1">
+                <label for="name" class="block text-sm font-medium">Название игры:</label>
+                <input type="text" name="name" id="name" value="{{ $game->name }}" class="border rounded py-2 px-3 w-full h-10" required>
+            </div>
             <div class="flex-1">
                 <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
                 <input type="text" name="host_name" id="host_name" value="{{ $game->host_name }}" class="border rounded w-full py-2 px-3 h-10" required>
