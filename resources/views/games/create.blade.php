@@ -63,8 +63,8 @@
         <!-- Поле для добавления игроков, их ролей и баллов -->
         <div class="mb-4">
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
-            <div id="players-list" class="flex flex-wrap gap-4">
-                <div class="player-row mb-2 flex items-center gap-2 w-full">
+            <div id="players-list" class="flex flex-wrap gap-2">
+                <div class="player-row mb-1 flex items-center gap-2 w-full">
                     <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10">
                         @foreach($players as $player)
                             <option value="{{ $player->id }}">{{ $player->name }}</option>
@@ -76,17 +76,21 @@
                         @endforeach
                     </select>
 
-                    <!-- Лучший игрок -->
-                    <label class="ml-2">Лучший:</label>
-                    <input type="checkbox" name="best_player[]" value="1" class="h-10 w-6">
+                    <!-- Лучший игрок, Первая кровь и Доп в одинаковых рамках -->
+                    <div class="flex items-center gap-2 border rounded py-2 px-3">
+                        <label class="ml-2">Лучший:</label>
+                        <input type="checkbox" name="best_player[]" value="1" class="h-6 w-6">
+                    </div>
 
-                    <!-- Первая кровь -->
-                    <label class="ml-2">Первая кровь:</label>
-                    <input type="checkbox" name="first_victim[]" value="1" class="h-10 w-6">
+                    <div class="flex items-center gap-2 border rounded py-2 px-3">
+                        <label class="ml-2">Первая кровь:</label>
+                        <input type="checkbox" name="first_victim[]" value="1" class="h-6 w-6">
+                    </div>
 
-                    <!-- Дополнительный балл -->
-                    <label class="ml-2">Доп:</label>
-                    <input type="checkbox" name="additional_score[]" value="1" class="h-10 w-6">
+                    <div class="flex items-center gap-2 border rounded py-2 px-3">
+                        <label class="ml-2">Доп:</label>
+                        <input type="checkbox" name="additional_score[]" value="1" class="h-6 w-6">
+                    </div>
 
                     <!-- Баллы от ведущего (уменьшенное поле) -->
                     <input type="number" name="leader_scores[]" placeholder="Баллы" class="border rounded py-2 px-2 ml-2 w-24 h-10">
@@ -112,7 +116,7 @@
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
         var newRow = document.createElement('div');
-        newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2', 'w-full');
+        newRow.classList.add('player-row', 'mb-1', 'flex', 'items-center', 'gap-2', 'w-full');
         newRow.innerHTML = `
             <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10">
                 @foreach($players as $player)
@@ -124,12 +128,18 @@
                     <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
             </select>
-            <label class="ml-2">Лучший:</label>
-            <input type="checkbox" name="best_player[]" value="1" class="h-10 w-6">
-            <label class="ml-2">Первая кровь:</label>
-            <input type="checkbox" name="first_victim[]" value="1" class="h-10 w-6">
-            <label class="ml-2">Доп:</label>
-            <input type="checkbox" name="additional_score[]" value="1" class="h-10 w-6">
+            <div class="flex items-center gap-2 border rounded py-2 px-3">
+                <label class="ml-2">Лучший:</label>
+                <input type="checkbox" name="best_player[]" value="1" class="h-6 w-6">
+            </div>
+            <div class="flex items-center gap-2 border rounded py-2 px-3">
+                <label class="ml-2">Первая кровь:</label>
+                <input type="checkbox" name="first_victim[]" value="1" class="h-6 w-6">
+            </div>
+            <div class="flex items-center gap-2 border rounded py-2 px-3">
+                <label class="ml-2">Доп:</label>
+                <input type="checkbox" name="additional_score[]" value="1" class="h-6 w-6">
+            </div>
             <input type="number" name="leader_scores[]" placeholder="Баллы" class="border rounded py-2 px-2 ml-2 w-24 h-10">
             <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1 h-10">
             <button type="button" class="remove-player-row bg-red-500 text-white py-2 px-3 rounded ml-2 h-10">Удалить</button>
