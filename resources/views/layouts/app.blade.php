@@ -12,7 +12,7 @@
     @include('layouts.navigation')
 
     <!-- Основной контент страницы -->
-    <div class="flex-grow container mx-auto p-4">
+    <div class="flex flex-col items-center justify-center flex-grow container mx-auto p-4">
         @yield('content')
     </div>
 
