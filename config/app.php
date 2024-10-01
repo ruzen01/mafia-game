@@ -125,6 +125,7 @@ return [
 
     'providers' => [
         App\Providers\AuthServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
     ],
 
 ];
