@@ -10,8 +10,8 @@ class PlayerController extends Controller
 {
     public function index()
     {
-        // Загружаем игроков вместе с их играми
-        $players = Player::with('games')->get();
+    // Загружаем игроков вместе с их играми и делаем пагинацию на 10 игроков
+    $players = Player::with('games')->paginate(15);
 
         return view('players.index', compact('players'));
     }
