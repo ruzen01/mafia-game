@@ -110,14 +110,14 @@
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
         var newRow = document.createElement('div');
-        newRow.classList.add('player-row', 'flex', 'flex-wrap', 'gap-4', 'mb-2');
+        newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2');
         newRow.innerHTML = `
-            <select name="players[]" class="border rounded py-2 px-3 flex-2">
+            <select name="players[]" class="border rounded py-2 px-3 flex-1">
                 @foreach($allPlayers as $availablePlayer)
                     <option value="{{ $availablePlayer->id }}">{{ $availablePlayer->name }}</option>
                 @endforeach
             </select>
-            <select name="roles[]" class="border rounded py-2 px-3 ml-2 flex-2">
+            <select name="roles[]" class="border rounded py-2 px-3 ml-2 flex-1">
                 @foreach($roles as $role)
                     <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
