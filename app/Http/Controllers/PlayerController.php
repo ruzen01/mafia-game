@@ -55,8 +55,14 @@ class PlayerController extends Controller
 
     public function destroy(Player $player)
     {
+        // Проверяем, есть ли игры у данного игрока
+        if ($player->games()->exists()) {
+            return redirect()->route('players.index')->with('error', 'Игрок не может быть удален, так как он участвует в одной или более играх');
+        }
+    
+        // Если игр нет, удаляем игрока
         $player->delete();
-
+    
         return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
     }
 }
