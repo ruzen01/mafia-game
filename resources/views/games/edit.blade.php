@@ -106,6 +106,7 @@
     </form>
 </div>
 
+<!-- Скрипт для добавления и удаления игроков -->
 <script>
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
@@ -113,8 +114,8 @@
         newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2');
         newRow.innerHTML = `
             <select name="players[]" class="border rounded py-2 px-3 flex-1">
-                @foreach($allPlayers as $availablePlayer)
-                    <option value="{{ $availablePlayer->id }}">{{ $availablePlayer->name }}</option>
+                @foreach($players as $player)
+                    <option value="{{ $player->id }}">{{ $player->name }}</option>
                 @endforeach
             </select>
             <select name="roles[]" class="border rounded py-2 px-3 ml-2 flex-1">
@@ -122,14 +123,14 @@
                     <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->category }})</option>
                 @endforeach
             </select>
-            <label class="ml-2">Лучший игрок:</label>
+            <label class="ml-2">Лучший:</label>
             <input type="checkbox" name="best_player[]" value="1">
-            <label class="ml-2">Первая жертва:</label>
+            <label class="ml-2">Первая кровь:</label>
             <input type="checkbox" name="first_victim[]" value="1">
-            <label class="ml-2">Дополнительный балл:</label>
+            <label class="ml-2">Доп:</label>
             <input type="checkbox" name="additional_score[]" value="1">
             <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2 flex-1">
-            <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-2">
+            <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1">
             <button type="button" class="remove-player-row text-red-500 ml-2">Удалить</button>
         `;
         playersList.appendChild(newRow);
