@@ -8,6 +8,7 @@
         @csrf
         @method('PUT')
 
+        <!-- Название игры, Сезон, Дата игры и Номер игры на одной строке -->
         <div class="flex flex-wrap gap-4 mb-4 w-full">
             <div class="flex-1">
                 <label for="name" class="block text-sm font-medium">Название игры:</label>
@@ -35,6 +36,22 @@
             </div>
         </div>
 
+        <!-- Ведущий и Кто победил на одной строке -->
+        <div class="flex gap-4 mb-4 w-full">
+            <div class="flex-1">
+                <label for="host_name" class="block text-sm font-medium">Ведущий:</label>
+                <input type="text" name="host_name" id="host_name" value="{{ $game->host_name }}" class="border rounded w-full py-2 px-3 h-10" required>
+            </div>
+            <div class="flex-1">
+                <label for="winner" class="block text-sm font-medium">Кто победил:</label>
+                <select name="winner" id="winner" class="border rounded py-2 px-3 w-full h-10" required>
+                    <option value="Мафия" {{ $game->winner == 'Мафия' ? 'selected' : '' }}>Мафия</option>
+                    <option value="Мирные жители" {{ $game->winner == 'Мирные жители' ? 'selected' : '' }}>Мирные жители</option>
+                    <option value="Третья сторона" {{ $game->winner == 'Третья сторона' ? 'selected' : '' }}>Третья сторона</option>
+                </select>
+            </div>
+        </div>
+
         <!-- Разделительная линия -->
         <hr class="border-t-2 border-gray-300 mb-4">
 
@@ -43,10 +60,12 @@
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
             <div id="players-list">
                 @foreach($game->players as $player)
-                    <div class="player-row flex flex-wrap gap-2 mb-1">
+                    <div class="player-row flex flex-wrap gap-2 mb-2">
                         <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10">
                             @foreach($allPlayers as $availablePlayer)
-                                <option value="{{ $availablePlayer->id }}" {{ $player->id == $availablePlayer->id ? 'selected' : '' }}>{{ $availablePlayer->name }}</option>
+                                <option value="{{ $availablePlayer->id }}" {{ $player->id == $availablePlayer->id ? 'selected' : '' }}>
+                                    {{ $availablePlayer->name }}
+                                </option>
                             @endforeach
                         </select>
                         <select name="roles[]" class="border rounded py-2 px-3 ml-2 flex-1 h-10">
@@ -57,17 +76,18 @@
                             @endforeach
                         </select>
 
+                        <!-- Лучший игрок, Первая кровь и Доп в одинаковых рамках -->
                         <div class="flex items-center gap-2 border rounded py-2 px-3">
                             <label class="ml-2">Лучший:</label>
-                            <input type="checkbox" name="best_player[]" value="{{ $player->id }}" {{ $player->pivot->best_player ? 'checked' : '' }}>
+                            <input type="checkbox" name="best_player[]" value="{{ $player->id }}" {{ $player->pivot->best_player ? 'checked' : '' }} class="h-6 w-6">
                         </div>
                         <div class="flex items-center gap-2 border rounded py-2 px-3">
                             <label class="ml-2">Первая кровь:</label>
-                            <input type="checkbox" name="first_victim[]" value="{{ $player->id }}" {{ $player->pivot->first_victim ? 'checked' : '' }}>
+                            <input type="checkbox" name="first_victim[]" value="{{ $player->id }}" {{ $player->pivot->first_victim ? 'checked' : '' }} class="h-6 w-6">
                         </div>
                         <div class="flex items-center gap-2 border rounded py-2 px-3">
                             <label class="ml-2">Доп:</label>
-                            <input type="checkbox" name="additional_score[]" value="{{ $player->id }}" {{ $player->pivot->additional_score ? 'checked' : '' }}>
+                            <input type="checkbox" name="additional_score[]" value="{{ $player->id }}" {{ $player->pivot->additional_score ? 'checked' : '' }} class="h-6 w-6">
                         </div>
 
                         <input type="number" name="leader_scores[]" value="{{ $player->pivot->leader_score }}" placeholder="Баллы" class="border rounded py-2 px-2 ml-2 w-24 h-10">
@@ -84,12 +104,11 @@
     </form>
 </div>
 
-<!-- Скрипт для добавления и удаления игроков -->
 <script>
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
         var newRow = document.createElement('div');
-        newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2', 'w-full');
+        newRow.classList.add('player-row', 'mb-1', 'flex', 'items-center', 'gap-2', 'w-full');
         newRow.innerHTML = `
             <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10">
                 @foreach($allPlayers as $availablePlayer)
