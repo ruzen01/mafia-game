@@ -123,4 +123,14 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+    // Другие провайдеры...
+
+    /*
+     * Application Service Providers...
+     */
+    App\Providers\AuthServiceProvider::class,
+    // Остальные сервис-провайдеры
+],
+
 ];
