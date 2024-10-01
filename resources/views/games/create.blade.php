@@ -88,8 +88,8 @@
                     <label class="ml-2">Доп:</label>
                     <input type="checkbox" name="additional_score[]" value="1" class="h-10 w-6">
 
-                    <!-- Баллы от ведущего -->
-                    <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2 flex-1 h-10">
+                    <!-- Баллы от ведущего (уменьшенное поле) -->
+                    <input type="number" name="leader_scores[]" placeholder="Баллы" class="border rounded py-2 px-2 ml-2 w-24 h-10">
 
                     <!-- Комментарий -->
                     <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1 h-10">
@@ -130,7 +130,7 @@
             <input type="checkbox" name="first_victim[]" value="1" class="h-10 w-6">
             <label class="ml-2">Доп:</label>
             <input type="checkbox" name="additional_score[]" value="1" class="h-10 w-6">
-            <input type="number" name="leader_scores[]" placeholder="Баллы от ведущего" class="border rounded py-2 px-3 ml-2 flex-1 h-10">
+            <input type="number" name="leader_scores[]" placeholder="Баллы" class="border rounded py-2 px-2 ml-2 w-24 h-10">
             <input type="text" name="comments[]" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1 h-10">
             <button type="button" class="remove-player-row bg-red-500 text-white py-2 px-3 rounded ml-2 h-10">Удалить</button>
         `;
