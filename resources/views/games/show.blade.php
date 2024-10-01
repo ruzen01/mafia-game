@@ -50,7 +50,7 @@
                 </thead>
                 <tbody>
     @foreach($game->players as $player)
-    <tr class="hover:bg-gray-500">
+    <tr class="hover:bg-gray-100">
         <td class="border border-gray-300 px-4 py-2">{{ $player->name }}</td>
         <td class="border border-gray-300 px-4 py-2">
     {{ $roles[$player->pivot->role_id] ?? 'Не назначена' }}
