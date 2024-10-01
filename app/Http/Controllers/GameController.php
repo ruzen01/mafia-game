@@ -85,9 +85,12 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Game $game)
-    {
-        return view('games.show', compact('game'));
+    public function show(Game $game) 
+    { 
+        // Загрузка игроков с их ролями через связь
+        $game->load('players.role');
+    
+        return view('games.show', compact('game')); 
     }
 
     /**

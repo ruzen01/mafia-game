@@ -26,6 +26,14 @@ class Player extends Model
     }
 
     /**
+     * Связь для получения роли игрока
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'pivot_role_id', 'id');
+    }
+
+    /**
      * Получить общее количество игр игрока
      */
     public function getTotalGamesAttribute()
