@@ -63,8 +63,8 @@
         <!-- Поле для добавления игроков, их ролей и баллов -->
         <div class="mb-4">
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
-            <div id="players-list">
-                <div class="player-row mb-2 flex items-center gap-2">
+            <div id="players-list" class="flex flex-wrap gap-4">
+                <div class="player-row mb-2 flex items-center gap-2 w-full">
                     <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10">
                         @foreach($players as $player)
                             <option value="{{ $player->id }}">{{ $player->name }}</option>
@@ -112,7 +112,7 @@
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
         var newRow = document.createElement('div');
-        newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2');
+        newRow.classList.add('player-row', 'mb-2', 'flex', 'items-center', 'gap-2', 'w-full');
         newRow.innerHTML = `
             <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10">
                 @foreach($players as $player)
