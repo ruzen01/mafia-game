@@ -4,7 +4,7 @@
 <div class="container mx-auto py-6">
     <h1 class="text-3xl font-bold mb-6 text-center">Рейтинг игроков</h1>
 
-    <table class="table-auto border-collapse border border-gray-500 w-full">
+    <table class="table-auto shadow-lg rounded-lg overflow-hidden border-collapse border border-gray-500 w-full">
         <thead class="bg-gray-700 text-white">
             <tr>
                 <th class="border border-gray-400 px-4 py-2">Игрок</th>
