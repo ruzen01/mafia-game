@@ -20,17 +20,17 @@
     <table class="table-auto border-collapse border border-gray-500 w-3/4 mx-auto">
         <thead class="text-left">
             <tr>
-                <th class="border border-gray-400 px-4 py-2">Имя</th>
-                <th class="border border-gray-400 px-4 py-2">Игры</th>
-                <th class="border border-gray-400 px-4 py-2">Дата создания</th>
-                <th class="border border-gray-400 px-4 py-2">Действия</th>
+                <th class="border border-gray-400 px-4 py-1">Имя</th>
+                <th class="border border-gray-400 px-4 py-1">Игры</th>
+                <th class="border border-gray-400 px-4 py-1">Дата создания</th>
+                <th class="border border-gray-400 px-4 py-1">Действия</th>
             </tr>
         </thead>
         <tbody>
             @foreach($players as $player)
             <tr>
-                <td class="border border-gray-400 px-4 py-2">{{ $player->name }}</td>
-                <td class="border border-gray-400 px-4 py-2">
+                <td class="border border-gray-400 px-4 py-1">{{ $player->name }}</td>
+                <td class="border border-gray-400 px-4 py-1">
                     @if($player->games->isEmpty())
                     Нет игр
                     @else
@@ -52,8 +52,8 @@
                     </div>
                     @endif
                 </td>
-                <td class="border border-gray-400 px-4 py-2">{{ \Carbon\Carbon::parse($player->date)->format('d.m.Y') }}</td>
-                <td class="border border-gray-400 px-4 py-2">
+                <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($player->date)->format('d.m.Y') }}</td>
+                <td class="border border-gray-400 px-4 py-1">
                     <!-- Синяя ссылка "Изменить" -->
                     <a href="{{ route('players.edit', $player) }}" style="color: yellow; margin-right: 20px;">Изменить</a>
 
