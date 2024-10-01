@@ -171,6 +171,15 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        try {
+            // Попытка удалить игру
+            $game->delete();
+    
+            // Передаем сообщение об успехе в сессию
+            return redirect()->route('games.index')->with('success', 'Игра успешно удалена.');
+        } catch (\Exception $e) {
+            // В случае ошибки передаем сообщение об ошибке
+            return redirect()->route('games.index')->with('error', 'Ошибка при удалении игры: ' . $e->getMessage());
+        }
     }
 }
