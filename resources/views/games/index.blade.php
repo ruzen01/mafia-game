@@ -2,6 +2,17 @@
 
 @section('content')
 <div class="container mx-auto py-6">
+    @if(session('error'))
+        <div class="bg-red-500 text-white p-3 rounded mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="bg-green-500 text-white p-3 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
     <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
 
     <!-- Ссылка на создание новой игры -->
@@ -50,6 +61,14 @@
                         <a href="{{ route('games.edit', $game->id) }}" class="bg-yellow-500 text-white py-1 px-2 rounded">
                             Изменить
                         </a>
+                        <!-- Кнопка Удалить -->
+                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
+                                Удалить
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
