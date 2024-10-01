@@ -24,15 +24,6 @@ class Player extends Model
                     ->withPivot('role_id', 'score', 'best_player', 'first_victim', 'leader_score', 'additional_score', 'comment')
                     ->withTimestamps();
     }
-
-    // /**
-    //  * Связь для получения роли игрока
-    //  */
-    // public function role()
-    // {
-    //     return $this->belongsTo(Role::class, 'pivot_role_id', 'id');
-    // }
-
     /**
      * Получить общее количество игр игрока
      */

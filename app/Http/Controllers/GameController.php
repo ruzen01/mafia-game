@@ -87,10 +87,13 @@ class GameController extends Controller
      */
     public function show(Game $game) 
     { 
-        // Загрузка игроков с их ролями через связь
-        $game->load('players.role');
+        // Загрузка игры вместе с игроками и их ролями
+        $game->load('players');
     
-        return view('games.show', compact('game')); 
+        // Загрузка всех ролей в виде коллекции, где ключ - это role_id
+        $roles = Role::all()->pluck('name', 'id');
+    
+        return view('games.show', compact('game', 'roles')); 
     }
 
     /**
