@@ -109,7 +109,7 @@ class GameController extends Controller
     public function update(Request $request, $id)
     {
         $game = Game::findOrFail($id);
-
+    
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
@@ -124,9 +124,18 @@ class GameController extends Controller
             'comments' => 'array',
             'additional_score' => 'array', // Новое поле
         ]);
-
+    
+        // Удаление игроков, которые были помечены для удаления
+        if ($request->has('players_to_delete')) {
+            foreach ($request->players_to_delete as $playerId) {
+                $game->players()->detach($playerId);
+            }
+        }
+    
+        // Обновляем данные игры
         $game->update($validated);
-
+    
+        // Синхронизация игроков
         $syncData = [];
         foreach ($validated['players'] as $index => $playerId) {
             $roleId = $validated['roles'][$index];
@@ -135,28 +144,26 @@ class GameController extends Controller
             $leaderScore = $validated['leader_scores'][$index] ?? 0;
             $comment = $validated['comments'][$index] ?? null;
             $additionalScore = in_array($playerId, $validated['additional_score'] ?? []) ? 1 : 0;
-
-            // Определение баллов в зависимости от победившей категории
+    
             $roleCategory = Role::find($roleId)->category;
             $score = $roleCategory === $validated['winner'] ? 2 : 0;
-
-            // Итоговый расчет баллов
+    
             $totalScore = $score + ($isBestPlayer ? 2 : 0) + ($isFirstVictim ? 1 : 0) + $leaderScore + $additionalScore;
-
-            // Формируем данные для синхронизации
+    
             $syncData[$playerId] = [
                 'role_id' => $roleId,
                 'score' => $totalScore,
                 'best_player' => $isBestPlayer,
                 'first_victim' => $isFirstVictim,
                 'leader_score' => $leaderScore,
-                'additional_score' => $additionalScore, // Добавляем новое поле
+                'additional_score' => $additionalScore,
                 'comment' => $comment,
             ];
         }
-
+    
+        // Синхронизируем игроков
         $game->players()->sync($syncData);
-
+    
         return redirect()->route('games.index')->with('success', 'Игра успешно обновлена');
     }
     /**

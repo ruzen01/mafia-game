@@ -60,7 +60,7 @@
             <h2 class="block text-sm font-medium">Игроки, их роли и баллы:</h2>
             <div id="players-list">
                 @foreach($game->players as $player)
-                    <div class="player-row flex flex-wrap gap-2 mb-2">
+                    <div class="player-row flex flex-wrap gap-2 mb-2" data-player-id="{{ $player->id }}">
                         <select name="players[]" class="border rounded py-2 px-3 flex-1 h-10 bg-gray-800">
                             @foreach($allPlayers as $availablePlayer)
                                 <option value="{{ $availablePlayer->id }}" {{ $player->id == $availablePlayer->id ? 'selected' : '' }}>
@@ -91,7 +91,9 @@
 
                         <input type="number" name="leader_scores[]" value="{{ $player->pivot->leader_score }}" placeholder="Баллы" class="border rounded py-2 px-2 ml-2 w-24 h-10 bg-gray-800">
                         <input type="text" name="comments[]" value="{{ $player->pivot->comment }}" placeholder="Комментарий" class="border rounded py-2 px-3 ml-2 flex-1 h-10 bg-gray-800">
-                        <button type="button" class="remove-player-row bg-red-500 text-white py-2 px-3 rounded ml-2 h-10">Удалить</button>
+
+                        <!-- Кнопка для удаления игрока -->
+                        <button type="button" class="remove-player-row bg-red-500 text-white py-2 px-3 rounded ml-2 h-10" data-player-id="{{ $player->id }}">Удалить</button>
                     </div>
                 @endforeach
             </div>
@@ -103,6 +105,7 @@
     </form>
 </div>
 
+<!-- Скрипт для добавления и удаления игроков -->
 <script>
     document.getElementById('add-player-row').addEventListener('click', function() {
         var playersList = document.getElementById('players-list');
@@ -138,6 +141,24 @@
         playersList.appendChild(newRow);
         newRow.querySelector('.remove-player-row').addEventListener('click', function() {
             this.parentNode.remove();
+        });
+    });
+
+    document.querySelectorAll('.remove-player-row').forEach(button => {
+        button.addEventListener('click', function() {
+            const playerId = this.getAttribute('data-player-id');
+
+            // Если игрок уже существует в базе данных, добавляем его в список для удаления
+            if (playerId) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'players_to_delete[]';
+                input.value = playerId;
+                document.querySelector('form').appendChild(input);
+            }
+
+            // Удаляем строку игрока из DOM
+            this.closest('.player-row').remove();
         });
     });
 </script>
