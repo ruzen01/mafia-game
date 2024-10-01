@@ -26,5 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // Вы можете добавить дополнительные правила авторизации через Gate здесь
+        Gate::define('access-dashboard', function ($user) {
+            return $user->hasRole('admin');
+        });
     }
 }
