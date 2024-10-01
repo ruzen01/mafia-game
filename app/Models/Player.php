@@ -25,13 +25,13 @@ class Player extends Model
                     ->withTimestamps();
     }
 
-    /**
-     * Связь для получения роли игрока
-     */
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'pivot_role_id', 'id');
-    }
+    // /**
+    //  * Связь для получения роли игрока
+    //  */
+    // public function role()
+    // {
+    //     return $this->belongsTo(Role::class, 'pivot_role_id', 'id');
+    // }
 
     /**
      * Получить общее количество игр игрока
