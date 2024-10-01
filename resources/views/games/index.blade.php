@@ -15,14 +15,14 @@
     @endif
     <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
 
-    @can('create', App\Models\Game::class)
+    <!-- Ссылка на создание новой игры -->
     <div class="flex justify-center mb-6">
         <a href="{{ route('games.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-4 rounded">
             Создать новую игру
         </a>
     </div>
-    @endcan
 
+    <!-- Таблица со списком игр -->
     <div class="overflow-x-auto">
         <table class="table-auto border-collapse border border-gray-500 w-full">
             <thead class="text-left">
@@ -40,33 +40,39 @@
             <tbody>
                 @foreach($games as $game)
                 <tr>
-                    <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="border border-gray-400 px-4 py-1">
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis">
                         <a href="{{ route('games.show', $game->id) }}" class="text-white hover:text-blue-500">
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->game_number }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->host_name }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->season }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->winner }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->players->pluck('name')->implode(', ') }}</td>
-                    <td class="border border-gray-400 px-4 py-1 text-center">
-                        @can('update', $game)
-                        <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
-                            <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded">Изменить</button>
-                        </form>
-                        @endcan
+                    <td class="border border-gray-400 px-4 py-1 text-left w-20 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->game_number }}</td>
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->host_name }}</td>
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->season }}</td>
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ $game->winner }}</td>
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden text-ellipsis max-w-xs">
+                        @if ($game->players)
+                            {{ $game->players->pluck('name')->implode(', ') }}
+                        @else
+                            Игроки не указаны
+                        @endif
+                    </td>
+                    <td class="border border-gray-400 px-4 py-1 text-center whitespace-nowrap overflow-hidden text-ellipsis">
+    <!-- Кнопка Изменить -->
+    <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
+        <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded">
+            Изменить
+        </button>
+    </form>
 
-                        @can('delete', $game)
-                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
-                                Удалить
-                            </button>
-                        </form>
-                        @endcan
+    <!-- Кнопка Удалить -->
+    <form action="{{ route('games.destroy', $game->id) }}" method="POST" style="display:inline-block;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
+            Удалить
+        </button>
+    </form>
                     </td>
                 </tr>
                 @endforeach
