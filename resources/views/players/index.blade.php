@@ -53,21 +53,21 @@
                     @endif
                 </td>
                 <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($player->date)->format('d.m.Y') }}</td>
-                <td class="border border-gray-400 px-4 py-1">
-                    <!-- Синяя ссылка "Изменить" -->
-                    <a href="{{ route('players.edit', $player) }}" style="color: yellow; margin-right: 20px;">Изменить</a>
+                <td class="border border-gray-400 px-4 py-1 text-center">
+                    <!-- Кнопка Изменить -->
+                    <form action="{{ route('players.edit', $player->id) }}" method="GET" style="display:inline-block;">
+                        <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded">
+                            Изменить
+                        </button>
+                    </form>
 
-                    <!-- Красная ссылка "Удалить" -->
-                    <a href="#"
-                        style="color: red; cursor: pointer; margin-right: 20px;"
-                        onclick="event.preventDefault(); if(confirm('Вы уверены, что хотите удалить?')){document.getElementById('delete-player-{{ $player->id }}').submit();}">
-                        Удалить
-                    </a>
-
-                    <!-- Форма для удаления, которая отправляется при клике на "Удалить" -->
-                    <form id="delete-player-{{ $player->id }}" action="{{ route('players.destroy', $player) }}" method="POST" style="display:none;">
+                    <!-- Кнопка Удалить -->
+                    <form action="{{ route('players.destroy', $player->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded" onclick="return confirm('Вы уверены, что хотите удалить этого игрока?')">
+                            Удалить
+                        </button>
                     </form>
                 </td>
             </tr>
