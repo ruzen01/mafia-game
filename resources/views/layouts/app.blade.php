@@ -7,7 +7,7 @@
     @vite('resources/css/app.css') <!-- Подключение стилей через Vite -->
 </head>
 
-<body class="bg-gray-900 flex flex-col min-h-screen text-gray-300">
+<body class="bg-gray-900 flex flex-col min-h-screen text-white">
     <!-- Включаем навигацию -->
     @include('layouts.navigation')
 
