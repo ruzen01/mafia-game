@@ -76,4 +76,9 @@ class PlayerController extends Controller
         // Отправляем данные на представление
         return view('players.ranking', compact('players'));
     }
+
+    public function show(Player $player)
+    {
+    return view('players.show', compact('player'));
+    }
 }
