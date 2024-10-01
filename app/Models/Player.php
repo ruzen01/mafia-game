@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    
-        // Добавьте поле 'name' в fillable
-        protected $fillable = [
-            'name', 
-            'email', // или другие поля, если они есть
-            // Добавляйте сюда другие поля, которые вы хотите разрешить для массового присвоения
-        ];
-     
+    // Добавьте поле 'name' в fillable
+    protected $fillable = [
+        'name',  
+        'email', // или другие поля, если они есть
+        // Добавляйте сюда другие поля, которые вы хотите разрешить для массового присвоения
+    ];
+
     protected $table = 'players';
 
     /**
@@ -27,11 +26,44 @@ class Player extends Model
     }
 
     /**
+     * Получить общее количество игр игрока
+     */
+    public function getTotalGamesAttribute()
+    {
+        return $this->games()->count();
+    }
+
+    /**
+     * Получить количество побед игрока
+     */
+    public function getTotalWinsAttribute()
+    {
+        // Победа определяется, если игрок набрал больше 0 баллов (измените логику по необходимости)
+        return $this->games()->wherePivot('score', '>', 0)->count();
+    }
+
+    /**
+     * Получить количество поражений игрока
+     */
+    public function getTotalLossesAttribute()
+    {
+        // Поражение определяется, если игрок набрал 0 или меньше баллов
+        return $this->games()->wherePivot('score', '<=', 0)->count();
+    }
+
+    /**
+     * Получить количество званий "Лучший игрок"
+     */
+    public function getBestPlayerPointsAttribute()
+    {
+        return $this->games()->wherePivot('best_player', 1)->count();
+    }
+
+    /**
      * Получить общие баллы игрока
      */
     public function getTotalPointsAttribute()
     {
-        // Подсчет общих баллов, суммируя все поля: leader_score, score, additional_score, best_player, first_victim
         return $this->games()->sum('score')
              + $this->games()->wherePivot('best_player', 1)->sum('leader_score')
              + $this->games()->wherePivot('first_victim', 1)->count()
@@ -43,7 +75,6 @@ class Player extends Model
      */
     public function getLeaderScorePointsAttribute()
     {
-        // Суммирование всех баллов leader_score для игрока, который был выбран как лучший игрок (best_player = 1)
         return $this->games()->wherePivot('best_player', 1)->sum('leader_score');
     }
 
@@ -52,7 +83,6 @@ class Player extends Model
      */
     public function getAdditionalPointsAttribute()
     {
-        // Суммирование дополнительных баллов (additional_score) для всех игр
         return $this->games()->sum('additional_score');
     }
 
@@ -61,7 +91,6 @@ class Player extends Model
      */
     public function getFirstVictimPointsAttribute()
     {
-        // Подсчет количества раз, когда игрок был первой жертвой, умноженного на 1 (или другой весовой коэффициент, если он должен быть больше)
         return $this->games()->wherePivot('first_victim', 1)->count();
     }
 }
