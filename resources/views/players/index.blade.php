@@ -2,6 +2,17 @@
 
 @section('content')
 <div class="container">
+    @if(session('error'))
+        <div class="bg-red-500 text-white p-3 rounded mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="bg-green-500 text-white p-3 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
     <h1 class="text-center text-3xl font-bold mb-6">Список игроков</h1>
     <div class="flex justify-center mb-4">
         <a href="{{ route('players.create') }}" class="bg-blue-500 text-white py-2 px-4 rounded">Создать нового игрока</a>
