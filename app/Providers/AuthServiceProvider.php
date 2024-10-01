@@ -2,22 +2,20 @@
 
 namespace App\Providers;
 
-use App\Models\Game;
-use App\Models\Player;
-use App\Policies\GamePolicy;
-use App\Policies\PlayerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.
      *
-     * @var array<class-string, class-string>
+     * @var array
      */
     protected $policies = [
-        Game::class => GamePolicy::class,
-        Player::class => PlayerPolicy::class,
+        // Здесь вы можете привязать свои модели к их политикам
+        \App\Models\Game::class => \App\Policies\GamePolicy::class,
+        \App\Models\Player::class => \App\Policies\PlayerPolicy::class,
     ];
 
     /**
@@ -26,5 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        // Вы можете добавить дополнительные правила авторизации через Gate здесь
     }
 }
