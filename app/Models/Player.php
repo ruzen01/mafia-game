@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
+    
+        // Добавьте поле 'name' в fillable
+        protected $fillable = [
+            'name', 
+            'email', // или другие поля, если они есть
+            // Добавляйте сюда другие поля, которые вы хотите разрешить для массового присвоения
+        ];
+     
     protected $table = 'players';
 
     /**
