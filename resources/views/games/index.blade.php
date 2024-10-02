@@ -52,23 +52,36 @@
                     <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->host_name }}</td>
                     <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->season }}</td>
                     <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->winner }}</td>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->players->pluck('name')->implode(', ') }}</td>
-                    @can('update', [$game])
+                    
                     <td class="border border-gray-400 px-4 py-1">
-    <div class="flex items-center space-x-2 overflow-x-auto">
-        @foreach($game->players as $player)
-            <div class="relative group">
-                <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
-                     alt="{{ $player->name }}" 
-                     class="w-8 h-8 rounded-full object-cover"
-                     title="{{ $player->name }}">
-                <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    {{ $player->name }}
-                </span>
-            </div>
-        @endforeach
-    </div>
-</td>
+                        <div class="flex items-center space-x-2 overflow-x-auto">
+                            @foreach($game->players as $player)
+                                <div class="relative group">
+                                    <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
+                                        alt="{{ $player->name }}" 
+                                        class="w-8 h-8 rounded-full object-cover"
+                                        title="{{ $player->name }}">
+                                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                                        {{ $player->name }}
+                                    </span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </td>
+
+                    @can('update', [$game])
+                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap">
+                        <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
+                            <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded">Изменить</button>
+                        </form>
+                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>
                     @endcan
                 </tr>
                 @endforeach
