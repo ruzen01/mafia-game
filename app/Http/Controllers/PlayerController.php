@@ -10,7 +10,6 @@ class PlayerController extends Controller
 {
     public function index()
     {
-        $this->authorize('viewAny', Player::class);
         $players = Player::with('games')->paginate(15);
         return view('players.index', compact('players'));
     }
