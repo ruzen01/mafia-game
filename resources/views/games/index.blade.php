@@ -42,8 +42,8 @@
             <tbody>
                 @foreach($games as $game)
                 <tr>
-                    <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="border border-gray-400 px-4 py-1">
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">
                         <a href="{{ route('games.show', $game->id) }}" class="text-white hover:text-blue-500">
                             {{ $game->name }}
                         </a>
