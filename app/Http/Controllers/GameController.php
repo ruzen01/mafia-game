@@ -74,7 +74,6 @@ class GameController extends Controller
 
     public function show(Game $game)
     {
-        $this->authorize('view', $game);
         $game->load('players');
         $roles = Role::all()->pluck('name', 'id');
 

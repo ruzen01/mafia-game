@@ -27,7 +27,9 @@
                 <th class="border border-gray-400 px-4 py-1">Имя</th>
                 <th class="border border-gray-400 px-4 py-1">Игры</th>
                 <th class="border border-gray-400 px-4 py-1">Дата создания</th>
+                @can('update', App\Models\Player::class)
                 <th class="border border-gray-400 px-4 py-1">Действия</th>
+                @endcan
             </tr>
         </thead>
         <tbody>
@@ -53,6 +55,7 @@
                     @endif
                 </td>
                 <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($player->created_at)->format('d.m.Y') }}</td>
+                @can('update', $player)
                 <td class="border border-gray-400 px-4 py-1 text-center">
                     @can('update', $player)
                         <form action="{{ route('players.edit', $player->id) }}" method="GET" style="display:inline-block;">
@@ -68,6 +71,7 @@
                         </form>
                     @endcan
                 </td>
+                @endcan
             </tr>
             @endforeach
         </tbody>
