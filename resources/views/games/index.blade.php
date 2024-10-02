@@ -53,7 +53,7 @@
                     <td class="border border-gray-400 px-4 py-1">{{ $game->season }}</td>
                     <td class="border border-gray-400 px-4 py-1">{{ $game->winner }}</td>
                     <td class="border border-gray-400 px-4 py-1">{{ $game->players->pluck('name')->implode(', ') }}</td>
-                    @can('update', $game)
+                    @can('update', [$game])
                     <td class="border border-gray-400 px-4 py-1 text-center">
                         <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
                             <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded">Изменить</button>

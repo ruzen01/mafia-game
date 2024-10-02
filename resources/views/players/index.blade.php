@@ -55,7 +55,7 @@
                     @endif
                 </td>
                 <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($player->created_at)->format('d.m.Y') }}</td>
-                @can('update', $player)
+                @can('update', [$player])
                 <td class="border border-gray-400 px-4 py-1 text-center">
                     @can('update', $player)
                         <form action="{{ route('players.edit', $player->id) }}" method="GET" style="display:inline-block;">
@@ -63,7 +63,7 @@
                         </form>
                     @endcan
 
-                    @can('delete', $player)
+                    @can('delete', [$player])
                         <form action="{{ route('players.destroy', $player->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
