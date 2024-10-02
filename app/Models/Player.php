@@ -92,4 +92,9 @@ class Player extends Model
     {
         return $this->games()->wherePivot('first_victim', 1)->count();
     }
+
+    public function getAvatarUrlAttribute()
+{
+    return $this->avatar ? asset('storage/' . $this->avatar) : asset('images/default-avatar.png');
+}
 }
