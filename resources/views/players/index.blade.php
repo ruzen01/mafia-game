@@ -35,8 +35,8 @@
         <tbody>
             @foreach($players as $player)
             <tr>
-                <td class="border border-gray-400 px-4 py-1">{{ $player->name }}</td>
-                <td class="border border-gray-400 px-4 py-1">
+                <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $player->name }}</td>
+                <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">
                     @if($player->games->isEmpty())
                         Нет игр
                     @else
@@ -54,7 +54,7 @@
                         </div>
                     @endif
                 </td>
-                <td class="border border-gray-400 px-4 py-1">{{ \Carbon\Carbon::parse($player->created_at)->format('d.m.Y') }}</td>
+                <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ \Carbon\Carbon::parse($player->created_at)->format('d.m.Y') }}</td>
                 @can('update', [$player])
                 <td class="border border-gray-400 px-4 py-1 text-center">
                     @can('update', $player)
