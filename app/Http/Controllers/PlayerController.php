@@ -10,40 +10,39 @@ class PlayerController extends Controller
 {
     public function index()
     {
-    // Загружаем игроков вместе с их играми и делаем пагинацию на 10 игроков
-    $players = Player::with('games')->paginate(15);
-
+        $players = Player::with('games')->paginate(15);
         return view('players.index', compact('players'));
     }
 
     public function create()
     {
-        $games = Game::all(); // Получаем все игры для выбора
+        $this->authorize('create', Player::class);
+        $games = Game::all();
         return view('players.create', compact('games'));
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Player::class);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        // Создаем игрока без привязки к игре
-        $player = Player::create([
-            'name' => $validated['name'],
-        ]);
+        Player::create($validated);
 
         return redirect()->route('players.index')->with('success', 'Игрок успешно создан');
     }
 
     public function edit(Player $player)
     {
-        $games = Game::all(); // Получаем все игры для выбора
+        $this->authorize('update', $player);
+        $games = Game::all();
         return view('players.edit', compact('player', 'games'));
     }
 
     public function update(Request $request, Player $player)
     {
+        $this->authorize('update', $player);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -55,14 +54,13 @@ class PlayerController extends Controller
 
     public function destroy(Player $player)
     {
-        // Проверяем, есть ли игры у данного игрока
+        $this->authorize('delete', $player);
         if ($player->games()->exists()) {
             return redirect()->route('players.index')->with('error', 'Игрок не может быть удален, так как он участвует в одной или более играх');
         }
-    
-        // Если игр нет, удаляем игрока
+
         $player->delete();
-    
+
         return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
     }
 
