@@ -19,7 +19,7 @@ class GamePolicy
     /**
      * Определите, может ли пользователь обновлять игру.
      */
-    public function update(User $user, Game $game)
+    public function update(User $user, Game $game = null)
     {
         return $user->user_type === 'admin';
     }
