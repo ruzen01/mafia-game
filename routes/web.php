@@ -28,7 +28,6 @@ Route::get('/rules', [RulesController::class, 'index'])->name('rules');
 // Маршрут для редактирования профиля
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::resource('games', GameController::class);
