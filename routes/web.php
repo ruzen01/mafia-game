@@ -25,11 +25,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/rules', [RulesController::class, 'index'])->name('rules');
 
-// Маршрут для редактирования профиля
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-});
-
 Route::resource('games', GameController::class);
 
 Route::get('/players/ranking', [PlayerController::class, 'ranking'])->name('players.ranking');
