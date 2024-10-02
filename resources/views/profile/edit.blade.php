@@ -18,7 +18,6 @@
 
     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PATCH')
 
         <div class="mb-4">
             <label for="name" class="block text-xl">Имя</label>
