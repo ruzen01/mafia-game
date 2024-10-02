@@ -10,6 +10,7 @@ class PlayerController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', Player::class);
         $players = Player::with('games')->paginate(15);
         return view('players.index', compact('players'));
     }
@@ -62,5 +63,21 @@ class PlayerController extends Controller
         $player->delete();
 
         return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
+    }
+
+    public function ranking()
+    {
+        // Получаем всех игроков с их данными, отсортированными по общему количеству баллов
+        $players = Player::with('games')
+            ->get()
+            ->sortByDesc('total_points');
+    
+        // Отправляем данные на представление
+        return view('players.ranking', compact('players'));
+    }
+
+    public function show(Player $player)
+    {
+    return view('players.show', compact('player'));
     }
 }
