@@ -18,7 +18,7 @@ class PlayerPolicy
     /**
      * Определите, может ли пользователь обновлять игрока.
      */
-    public function update(User $user, Player $player)
+    public function update(User $user, Player $player = null)
     {
         return $user->user_type === 'admin';
     }
