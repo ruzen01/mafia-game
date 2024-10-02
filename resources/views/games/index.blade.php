@@ -52,7 +52,7 @@
                     <td class="border border-gray-400 px-4 py-1">{{ $game->host_name }}</td>
                     <td class="border border-gray-400 px-4 py-1">{{ $game->season }}</td>
                     <td class="border border-gray-400 px-4 py-1">{{ $game->winner }}</td>
-                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap overflow-hidden overflow-ellipsis">{{ $game->players->pluck('name')->implode(', ') }}</td>
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->players->pluck('name')->implode(', ') }}</td>
                     @can('update', [$game])
                     <td class="border border-gray-400 px-4 py-1 whitespace-nowrap">
                         <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
