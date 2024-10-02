@@ -48,10 +48,10 @@
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->game_number }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->host_name }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->season }}</td>
-                    <td class="border border-gray-400 px-4 py-1">{{ $game->winner }}</td>
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->game_number }}</td>
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->host_name }}</td>
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->season }}</td>
+                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->winner }}</td>
                     <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->players->pluck('name')->implode(', ') }}</td>
                     @can('update', [$game])
                     <td class="border border-gray-400 px-4 py-1 whitespace-nowrap">
