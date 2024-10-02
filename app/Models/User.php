@@ -20,6 +20,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_type', // Добавляем 'user_type'
+        'avatar',
     ];
 
     /**

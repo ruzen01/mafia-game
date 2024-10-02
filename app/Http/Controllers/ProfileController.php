@@ -13,22 +13,23 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
-        $user = Auth::user();
-
-        // Валидация данных
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-        ]);
-
-        // Обновление профиля пользователя
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Профиль обновлён');
+        $request->user()->fill($request->validated());
+    
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+    
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('avatars', $filename, 'public');
+            $request->user()->avatar = 'avatars/' . $filename;
+        }
+    
+        $request->user()->save();
+    
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 }
