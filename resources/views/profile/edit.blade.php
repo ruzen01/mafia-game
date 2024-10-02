@@ -18,7 +18,8 @@
 
     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+        <input type="hidden" name="_method" value="PATCH">
+        
         <div class="mb-4">
             <label for="name" class="block text-xl">Имя</label>
             <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="w-full p-2 rounded">
