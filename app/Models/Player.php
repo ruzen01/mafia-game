@@ -32,22 +32,42 @@ class Player extends Model
         return $this->games()->count();
     }
 
-    /**
-     * Получить количество побед игрока
-     */
-    public function getTotalWinsAttribute()
+    // Связь с ролями
+    public function roles()
     {
-        // Победа определяется, если игрок набрал больше 0 баллов (измените логику по необходимости)
-        return $this->games()->wherePivot('score', '>', 0)->count();
+        return $this->belongsToMany(Role::class, 'game_player', 'player_id', 'role_id');
     }
 
-    /**
-     * Получить количество поражений игрока
-     */
+    // Метод для подсчета количества побед по категориям ролей
+    public function countWinsByCategory($category)
+    {
+        return $this->games()
+            ->whereHas('roles', function($query) use ($category) {
+                $query->where('category', $category);  // Условие по категории
+            })
+            ->where('winner', $this->roles->first()->category)  // Победившая категория должна совпадать
+            ->count();
+    }
+
+    // Метод для подсчета количества поражений по категориям ролей
+    public function countLossesByCategory($category)
+    {
+        return $this->games()
+            ->whereHas('roles', function($query) use ($category) {
+                $query->where('category', $category);
+            })
+            ->where('winner', '!=', $this->roles->first()->category)  // Победившая категория не должна совпадать
+            ->count();
+    }
+
+    public function getTotalWinsAttribute()
+    {
+        return $this->countWinsByCategory('Мафия') + $this->countWinsByCategory('Мирный житель') + $this->countWinsByCategory('Третья сторона');
+    }
+
     public function getTotalLossesAttribute()
     {
-        // Поражение определяется, если игрок набрал 0 или меньше баллов
-        return $this->games()->wherePivot('score', '<=', 0)->count();
+        return $this->countLossesByCategory('Мафия') + $this->countLossesByCategory('Мирный житель') + $this->countLossesByCategory('Третья сторона');
     }
 
     /**

@@ -23,8 +23,14 @@
                 <td class="border border-gray-400 px-4 py-2">{{ $player->name }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->total_points }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->total_games }}</td>
+
+                <!-- Общее количество побед -->
                 <td class="border border-gray-400 px-4 py-2">{{ $player->total_wins }}</td>
+
+                <!-- Общее количество поражений -->
                 <td class="border border-gray-400 px-4 py-2">{{ $player->total_losses }}</td>
+
+                <!-- Дополнительные баллы -->
                 <td class="border border-gray-400 px-4 py-2">{{ $player->best_player_points }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->first_victim_points }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->additional_points }}</td>
