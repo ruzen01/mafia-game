@@ -19,7 +19,7 @@
         <tbody>
             @foreach($players as $player)
             <tr>
-                <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->name }}</td>
+                <td class="border border-gray-400 px-4 py-2 text-left">{{ $player->name }}</td>
                 <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->games->sum('pivot.score') }}</td>
                 <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->total_games }}</td>
                 <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->games->where('pivot.score', '>=', 2)->count() }}</td>
