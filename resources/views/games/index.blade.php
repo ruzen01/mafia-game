@@ -53,25 +53,25 @@
                     <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->season }}</td>
                     <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->winner }}</td>
                     <td class="truncate w-2/16 px-4 py-1 text-center"> 
-    <div class="flex items-center justify-center -space-x-2 overflow-hidden"> <!-- Отрицательный отступ для перекрытия -->
-        @foreach($game->players->take(5) as $player) 
-            <div class="relative group flex-shrink-0"> 
-                <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
-                     alt="{{ $player->name }}" 
-                     class="w-8 h-8 rounded-full object-cover ring-2 ring-white" <!-- Обводка белым для лучшей видимости на темном фоне -->
-                     title="{{ $player->name }}"> 
-                <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"> 
-                    {{ $player->name }} 
-                </span> 
-            </div> 
-        @endforeach 
-        @if($game->players->count() > 5) 
-            <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-500 text-white text-xs font-bold"> 
-                +{{ $game->players->count() - 5 }} 
-            </div> 
-        @endif 
-    </div> 
-</td>
+                        <div class="flex items-center justify-center -space-x-2 overflow-hidden">
+                            @foreach($game->players->take(5) as $player) 
+                                <div class="relative group flex-shrink-0"> 
+                                    <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
+                                        alt="{{ $player->name }}" 
+                                        class="w-8 h-8 rounded-full object-cover ring-2 ring-white" 
+                                        title="{{ $player->name }}"> <!-- Обводка белым для лучшей видимости на темном фоне -->
+                                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"> 
+                                        {{ $player->name }} 
+                                    </span> 
+                                </div> 
+                            @endforeach 
+                            @if($game->players->count() > 5) 
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-500 text-white text-xs font-bold"> 
+                                    +{{ $game->players->count() - 5 }} 
+                                </div> 
+                            @endif 
+                        </div> 
+                    </td>
 
                     @can('update', [$game])
                     <td class="w-2/16 px-4 py-1 text-center whitespace-nowrap">
