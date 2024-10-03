@@ -55,7 +55,7 @@
                     <td class="truncate w-2/16 px-4 py-1 text-center">
                         <div class="flex items-center justify-center space-x-2 overflow-hidden">
                             @foreach($game->players->take(5) as $player)
-                                <div class="relative group flex-shrink-0">
+                                <div class="relative group flex-shrink-0 -ml-2">
                                     <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}"
                                         alt="{{ $player->name }}"
                                         class="w-8 h-8 rounded-full object-cover"
