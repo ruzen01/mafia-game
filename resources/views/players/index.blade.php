@@ -1,39 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-@if(session('error'))
-    <div id="error-message" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white p-3 rounded mb-4 opacity-0 transition-opacity duration-500">
-        {{ session('error') }}
-    </div>
-@endif
+<div class="container mx-auto py-6">
 
-@if(session('success'))
-    <div id="success-message" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white p-3 rounded mb-4 opacity-0 transition-opacity duration-500">
-        {{ session('success') }}
-    </div>
-@endif
+    @if(session('error'))
+        <div class="bg-red-500 text-white p-3 rounded mb-4 max-w-md mx-auto lg:mx-0"> <!-- Сообщение об ошибке слева -->
+            {{ session('error') }}
+        </div>
+    @endif
 
-<script>
-    // Плавное появление сообщения
-    window.addEventListener('load', function () {
-        const errorMessage = document.getElementById('error-message');
-        const successMessage = document.getElementById('success-message');
-
-        if (errorMessage) {
-            errorMessage.classList.add('opacity-100');
-            setTimeout(() => {
-                errorMessage.classList.remove('opacity-100');
-            }, 3000); // Сообщение исчезает через 3 секунды
-        }
-
-        if (successMessage) {
-            successMessage.classList.add('opacity-100');
-            setTimeout(() => {
-                successMessage.classList.remove('opacity-100');
-            }, 3000); // Сообщение исчезает через 3 секунды
-        }
-    });
-</script>
+    @if(session('success'))
+        <div class="bg-green-500 text-white p-3 rounded mb-4 max-w-md mx-auto lg:mx-0"> <!-- Сообщение об успехе слева -->
+            {{ session('success') }}
+        </div>
+    @endif
 
     <h1 class="text-center text-3xl font-bold mb-6">Список игроков</h1>
 
