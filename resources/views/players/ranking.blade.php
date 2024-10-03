@@ -7,7 +7,7 @@
     <!-- Контейнер с фиксированной высотой и вертикальной прокруткой -->
     <div class="overflow-y-auto max-h-96">
         <table class="table-auto shadow-lg rounded-lg overflow-hidden border-collapse border border-gray-500 w-full">
-            <thead class="bg-gray-700 text-white">
+            <thead class="sticky top-0 bg-gray-700 text-white">
                 <tr>
                     <th class="sticky top-0 border border-gray-400 px-4 py-2 bg-yellow-200 text-center">Игрок</th>
                     <th class="sticky top-0 border border-gray-400 px-4 py-2 bg-pink-200 text-center">Σ Баллов</th>
