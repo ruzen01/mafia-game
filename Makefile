@@ -37,10 +37,10 @@ deploy:
 	git push heroku
 
 lint:
-	composer phpcs
+	./vendor/bin/phpcs --standard=PSR12 app public resources routes tests
 
 lint-fix:
-	composer phpcbf
+	./vendor/bin/phpcbf --standard=PSR12 app public resources routes tests
 
 compose:
 	docker-compose up

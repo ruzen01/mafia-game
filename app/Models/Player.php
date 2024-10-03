@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Player extends Model
 {
     protected $fillable = [
-        'name',  
-        'email', 
+        'name',
+        'email',
     ];
 
     protected $table = 'players';
@@ -33,10 +33,10 @@ class Player extends Model
     public function countWinsByCategory($category)
     {
         return $this->games()
-            ->whereHas('roles', function($query) use ($category) {
+            ->whereHas('roles', function ($query) use ($category) {
                 $query->where('category', $category);
             })
-            ->whereHas('roles', function($query) {
+            ->whereHas('roles', function ($query) {
                 $query->whereColumn('category', 'winner');
             })
             ->count();
@@ -45,10 +45,10 @@ class Player extends Model
     public function countLossesByCategory($category)
     {
         return $this->games()
-            ->whereHas('roles', function($query) use ($category) {
+            ->whereHas('roles', function ($query) use ($category) {
                 $query->where('category', $category);
             })
-            ->whereDoesntHave('roles', function($query) {
+            ->whereDoesntHave('roles', function ($query) {
                 $query->whereColumn('category', 'winner');
             })
             ->count();

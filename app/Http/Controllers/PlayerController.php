@@ -70,13 +70,13 @@ class PlayerController extends Controller
         $players = Player::with('games')
             ->get()
             ->sortByDesc('total_points');
-    
+
         // Отправляем данные на представление
         return view('players.ranking', compact('players'));
     }
 
     public function show(Player $player)
     {
-    return view('players.show', compact('player'));
+        return view('players.show', compact('player'));
     }
 }

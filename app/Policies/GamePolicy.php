@@ -7,7 +7,6 @@ use App\Models\Game;
 
 class GamePolicy
 {
-
     /**
      * Определите, может ли пользователь создавать игры.
      */

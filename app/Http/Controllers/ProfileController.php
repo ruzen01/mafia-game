@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Support\Facades\Redirect; // Импорт Redirect
+use Illuminate\Support\Facades\Redirect;
+
+// Импорт Redirect
 
 class ProfileController extends Controller
 {

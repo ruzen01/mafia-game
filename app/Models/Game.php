@@ -20,5 +20,5 @@ class Game extends Model
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'game_player', 'game_id', 'role_id');
-}
+    }
 }
