@@ -5,7 +5,7 @@
     <h1 class="text-3xl font-bold mb-6 text-center">Рейтинг игроков</h1>
 
     <!-- Контейнер с фиксированной высотой и вертикальной прокруткой -->
-    <div class="overflow-y-scroll max-h-[500px] border border-gray-400">
+    <div class="overflow-y-scroll border border-gray-400">
         <table class="min-w-full table-auto shadow-lg rounded-lg border-collapse border border-gray-500">
             <thead class="bg-gray-700 text-white">
                 <tr>
