@@ -21,3 +21,4 @@ class Game extends Model
     {
         return $this->belongsToMany(Role::class, 'game_player', 'game_id', 'role_id');
 }
+}
