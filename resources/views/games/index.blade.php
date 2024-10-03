@@ -23,38 +23,37 @@
     </div>
     @endcan
 
-    <div class="overflow-x-auto">
-        <table class="table-auto border-collapse border border-gray-500 w-full">
-            <thead class="text-left">
+    <div class="overflow-x-auto rounded-lg shadow-lg">
+        <table class="table-fixed w-full">
+            <thead class="bg-gray-700 text-white sticky top-0 z-10">
                 <tr>
-                    <th class="border border-gray-400 px-4 py-1">Дата</th>
-                    <th class="border border-gray-400 px-4 py-1">Имя</th>
-                    <th class="border border-gray-400 px-4 py-1 w-20">№</th>
-                    <th class="border border-gray-400 px-4 py-1">Ведущий</th>
-                    <th class="border border-gray-400 px-4 py-1">Сезон</th>
-                    <th class="border border-gray-400 px-4 py-1">Победитель</th>
-                    <th class="border border-gray-400 px-4 py-1">Игроки</th>
+                    <th class="truncate w-1/16 px-4 py-2 text-center">Дата</th>
+                    <th class="truncate w-4/16 px-4 py-2 text-center">Имя</th>
+                    <th class="truncate w-1/16 px-4 py-2 text-center">№</th>
+                    <th class="truncate w-2/16 px-4 py-2 text-center">Ведущий</th>
+                    <th class="truncate w-2/16 px-4 py-2 text-center">Сезон</th>
+                    <th class="truncate w-2/16 px-4 py-2 text-center">Победитель</th>
+                    <th class="truncate w-2/16 px-4 py-2 text-center">Игроки</th>
                     @can('update', App\Models\Game::class)
-                    <th class="border border-gray-400 px-4 py-1">Действия</th>
+                    <th class="truncate w-2/16 px-4 py-2 text-center">Действия</th>
                     @endcan
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-gray-800 text-white">
                 @foreach($games as $game)
-                <tr>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">
+                <tr class="odd:bg-gray-800 even:bg-gray-900">
+                    <td class="truncate w-1/16 px-4 py-1 text-center">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="truncate w-4/16 px-4 py-1 text-center">
                         <a href="{{ route('games.show', $game->id) }}" class="text-white hover:text-blue-500">
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->game_number }}</td>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->host_name }}</td>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->season }}</td>
-                    <td class="border border-gray-400 px-4 py-1 truncate max-w-xs">{{ $game->winner }}</td>
-                    
-                    <td class="border border-gray-400 px-4 py-1">
-                        <div class="flex items-center space-x-2 overflow-hidden">
+                    <td class="truncate w-1/16 px-4 py-1 text-center">{{ $game->game_number }}</td>
+                    <td class="truncate w-2/16 py-2 text-center">{{ $game->host_name }}</td>
+                    <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->season }}</td>
+                    <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->winner }}</td>
+                    <td class="truncate w-2/16 px-4 py-1 text-center">
+                        <div class="flex items-center justify-center space-x-2 overflow-hidden">
                             @foreach($game->players->take(5) as $player)
                                 <div class="relative group flex-shrink-0">
                                     <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}"
@@ -75,7 +74,7 @@
                     </td>
 
                     @can('update', [$game])
-                    <td class="border border-gray-400 px-4 py-1 whitespace-nowrap">
+                    <td class="w-2/16 px-4 py-1 text-center whitespace-nowrap">
                         <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
                             <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded">Изменить</button>
                         </form>
