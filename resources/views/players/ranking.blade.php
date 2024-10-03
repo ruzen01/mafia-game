@@ -6,9 +6,10 @@
 
     <!-- Контейнер с фиксированной высотой и вертикальной прокруткой -->
     <div class="overflow-y-scroll max-h-[500px] border border-gray-400">
-        <table class="min-w-full table-auto shadow-lg rounded-lg border-collapse border border-gray-500">
+        <table class="min-w-full table-auto shadow-lg rounded-lg overflow-hidden border-collapse border border-gray-500">
             <thead class="bg-gray-700 text-white">
                 <tr>
+                    <th class="sticky top-0 z-10 border border-gray-400 px-4 py-2 bg-gray-300 text-center">#</th> <!-- Новый столбец для номера -->
                     <th class="sticky top-0 z-10 border border-gray-400 px-4 py-2 bg-yellow-200 text-center">Игрок</th>
                     <th class="sticky top-0 z-10 border border-gray-400 px-4 py-2 bg-pink-200 text-center">Σ Баллов</th>
                     <th class="sticky top-0 z-10 border border-gray-400 px-4 py-2 bg-blue-200 text-center">Σ Игр</th>
@@ -21,6 +22,7 @@
             <tbody>
                 @foreach($players as $player)
                 <tr>
+                    <td class="border border-gray-400 px-4 py-2 text-center">{{ $loop->iteration }}</td> <!-- Порядковый номер -->
                     <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->name }}</td>
                     <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->games->sum('pivot.score') }}</td>
                     <td class="border border-gray-400 px-4 py-2 text-center">{{ $player->total_games }}</td>
