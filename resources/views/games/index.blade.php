@@ -17,7 +17,7 @@
 
     @can('create', App\Models\Game::class)
     <div class="flex justify-center mb-6">
-        <a href="{{ route('games.create') }}" class="bg-cyan-500 shadow-lg shadow-cyan-500/5 hover:bg-cyan-700 text-white py-1 px-4 rounded">
+        <a href="{{ route('games.create') }}" class="bg-cyan-500 shadow-lg shadow-cyan-500/5 hover:bg-cyan-700 text-white py-4 px-4 rounded">
             Создать новую игру
         </a>
     </div>
