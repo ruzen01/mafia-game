@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @foreach($players as $player)
-                <tr class="bg-white">
+                <tr>
                     <td class="px-4 py-2 text-center">{{ $loop->iteration }}</td>
                     <td class="px-4 py-2 text-center">{{ $player->name }}</td>
                     <td class="px-4 py-2 text-center">{{ $player->games->sum('pivot.score') }}</td>
