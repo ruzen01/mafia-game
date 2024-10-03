@@ -4,13 +4,13 @@
 <div class="container mx-auto py-6">
 
     @if(session('error'))
-        <div class="bg-red-500 text-white p-3 rounded mb-4 max-w-md mx-auto lg:mx-0"> <!-- Сообщение об ошибке слева -->
+        <div class="absolute left-0 bg-red-500 text-white p-3 rounded mb-4" style="top: 100px;">
             {{ session('error') }}
         </div>
     @endif
 
     @if(session('success'))
-        <div class="bg-green-500 text-white p-3 rounded mb-4 max-w-md mx-auto lg:mx-0"> <!-- Сообщение об успехе слева -->
+        <div class="absolute left-0 bg-green-500 text-white p-3 rounded mb-4" style="top: 100px;">
             {{ session('success') }}
         </div>
     @endif
