@@ -21,19 +21,13 @@
             @foreach($players as $player)
             <tr>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->name }}</td>
-                <td class="border border-gray-400 px-4 py-2">{{ $player->total_points }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->games->sum('pivot.score') }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $player->total_games }}</td>
-
-                <!-- Общее количество побед -->
-                <td class="border border-gray-400 px-4 py-2">{{ $player->total_wins }}</td>
-
-                <!-- Общее количество поражений -->
-                <td class="border border-gray-400 px-4 py-2">{{ $player->total_losses }}</td>
-
-                <!-- Дополнительные баллы -->
-                <td class="border border-gray-400 px-4 py-2">{{ $player->best_player_points }}</td>
-                <td class="border border-gray-400 px-4 py-2">{{ $player->first_victim_points }}</td>
-                <td class="border border-gray-400 px-4 py-2">{{ $player->additional_points }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->games->where('pivot.score', '>=', 2)->count() }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->games->where('pivot.score', '<', 2)->count() }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->games->where('pivot.best_player', 1)->count() }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->games->where('pivot.first_victim', 1)->count() }}</td>
+                <td class="border border-gray-400 px-4 py-2">{{ $player->games->sum('pivot.additional_score') }}</td>
             </tr>
             @endforeach
         </tbody>
