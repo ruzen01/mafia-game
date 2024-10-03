@@ -7,13 +7,13 @@
     <table class="table-auto shadow-lg rounded-lg overflow-hidden border-collapse border border-gray-500 w-full">
         <thead class="bg-gray-700 text-white">
             <tr>
-                <th class="border border-gray-400 px-4 py-2 bg-yellow-200 text-center">Игрок</th>
-                <th class="border border-gray-400 px-4 py-2 bg-pink-200 text-center">Σ Баллов</th>
-                <th class="border border-gray-400 px-4 py-2 bg-blue-200 text-center">Σ Игр</th>
-                <th class="border border-gray-400 px-4 py-2 bg-green-200 text-center">Σ Побед</th>
-                <th class="border border-gray-400 px-4 py-2 bg-orange-200 text-center">Σ Лучших</th>
-                <th class="border border-gray-400 px-4 py-2 bg-purple-200 text-center">Σ Первых жертв</th>
-                <th class="border border-gray-400 px-4 py-2 bg-red-200 text-center">Σ Доп. баллов</th>
+                <th class="border border-gray-400 px-4 py-2 bg-yellow-500">Игрок</th>
+                <th class="border border-gray-400 px-4 py-2 bg-pink-500 text-center">Σ Баллов</th>
+                <th class="border border-gray-400 px-4 py-2 bg-blue-500 text-center">Σ Игр</th>
+                <th class="border border-gray-400 px-4 py-2 bg-green-500 text-center">Σ Побед</th>
+                <th class="border border-gray-400 px-4 py-2 bg-orange-500 text-center">Σ Лучших</th>
+                <th class="border border-gray-400 px-4 py-2 bg-purple-500 text-center">Σ Первых жертв</th>
+                <th class="border border-gray-400 px-4 py-2 bg-red-500 text-center">Σ Доп. баллов</th>
             </tr>
         </thead>
         <tbody>
