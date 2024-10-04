@@ -29,13 +29,13 @@
         <table class="table-fixed w-full">
             <thead class="bg-gray-700 text-white sticky top-0 z-10">
                 <tr>
-                    <th class="truncate w-1/16 px-4 py-2 text-left">Дата</th>
-                    <th class="truncate w-4/16 px-4 py-2 text-left">Имя</th>
-                    <th class="truncate w-1/16 px-4 py-2 text-left">№</th>
-                    <th class="truncate w-2/16 px-4 py-2 text-left">Ведущий</th>
-                    <th class="truncate w-2/16 px-4 py-2 text-left">Сезон</th>
-                    <th class="truncate w-2/16 px-4 py-2 text-left">Победитель</th>
-                    <th class="truncate w-2/16 px-4 py-2 text-left">Игроки</th>
+                    <th class="truncate px-4 py-2 text-left">Дата</th>
+                    <th class="truncate px-4 py-2 text-left">Имя</th>
+                    <th class="truncate px-4 py-2 text-left">№</th>
+                    <th class="truncate px-4 py-2 text-left">Ведущий</th>
+                    <th class="truncate px-4 py-2 text-left">Сезон</th>
+                    <th class="truncate px-4 py-2 text-left">Победитель</th>
+                    <th class="truncate px-4 py-2 text-left">Игроки</th>
                     @can('update', App\Models\Game::class)
                     <th class="truncate w-2/16 px-4 py-2 text-left">Действия</th>
                     @endcan
@@ -44,18 +44,18 @@
             <tbody class="bg-gray-800 text-white">
                 @foreach($games as $game)
                 <tr class="odd:bg-gray-800 even:bg-gray-900">
-                    <td class="truncate w-1/16 px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="truncate w-4/16 px-4 py-1">
+                    <td class="truncate px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="truncate px-4 py-1">
                         <a href="{{ route('games.show', $game->id) }}" class="text-white hover:text-blue-500">
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="truncate w-1/16 px-4 py-1">{{ $game->game_number }}</td>
-                    <td class="truncate w-2/16 py-2 py-1">{{ $game->host_name }}</td>
-                    <td class="truncate w-2/16 px-4 py-1">{{ $game->season }}</td>
-                    <td class="truncate w-2/16 px-4 py-1">{{ $game->winner }}</td>
-                    <td class="truncate w-2/16 px-4 py-1"> 
-    <div class="flex items-center justify-center -space-x-2 overflow-visible">
+                    <td class="truncate px-4 py-1">{{ $game->game_number }}</td>
+                    <td class="truncate py-2 py-1">{{ $game->host_name }}</td>
+                    <td class="truncate px-4 py-1">{{ $game->season }}</td>
+                    <td class="truncate px-4 py-1">{{ $game->winner }}</td>
+                    <td class="truncate px-4 py-1"> 
+    <div class="flex -space-x-2 overflow-visible">
         @foreach($game->players->take(5) as $player) 
             <div class="relative group flex-shrink-0"> 
                 <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
