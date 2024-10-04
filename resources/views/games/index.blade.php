@@ -67,8 +67,8 @@
         @endforeach 
 
         @if($game->players->count() > 5) 
-            <!-- Убираем flex и делаем текстовым элементом -->
-            <span class="text-white text-xs font-bold ml-6"> 
+            <!-- Увеличиваем отступ с помощью ml-8 -->
+            <span class="text-white text-xs font-bold ml-8"> 
                 +{{ $game->players->count() - 5 }} 
             </span> 
         @endif 
