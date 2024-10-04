@@ -58,7 +58,7 @@
                                 <div class="relative group flex-shrink-0"> 
                                     <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
                                         alt="{{ $player->name }}" 
-                                        class="w-8 h-8 rounded-full object-cover ring-2 ring-gray" 
+                                        class="w-8 h-8 rounded-full object-cover ring-2 ring-gray-200" 
                                         title="{{ $player->name }}"> <!-- Обводка белым для лучшей видимости на темном фоне -->
                                     <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"> 
                                         {{ $player->name }} 
