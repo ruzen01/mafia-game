@@ -36,25 +36,37 @@
 </div>
 
 <style>
-    /* Золотой перелив для первого места */
+    /* Анимация перелива текста слева направо для первого места (золотой) */
     .first-place {
         font-size: 1.25rem;
         font-weight: bold;
-        animation: gold-shift 3s infinite alternate;
+        background: linear-gradient(90deg, #FFD700, #FFB700, #FFD700);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gold-wave 3s infinite alternate;
     }
 
-    /* Серебряный перелив для второго места */
+    /* Анимация перелива текста слева направо для второго места (серебряный) */
     .second-place {
         font-size: 1.25rem;
         font-weight: bold;
-        animation: silver-shift 3s infinite alternate;
+        background: linear-gradient(90deg, #C0C0C0, #B0B0B0, #C0C0C0);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: silver-wave 3s infinite alternate;
     }
 
-    /* Бронзовый перелив для третьего места */
+    /* Анимация перелива текста слева направо для третьего места (бронзовый) */
     .third-place {
         font-size: 1.25rem;
         font-weight: bold;
-        animation: bronze-shift 3s infinite alternate;
+        background: linear-gradient(90deg, #CD7F32, #D2691E, #CD7F32);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: bronze-wave 3s infinite alternate;
     }
 
     /* Эффект увеличения при наведении для всех строк */
@@ -63,33 +75,33 @@
         transition: transform 0.3s ease-in-out;
     }
 
-    /* Анимация для золотого текста */
-    @keyframes gold-shift {
+    /* Анимация для золотой волны */
+    @keyframes gold-wave {
         0% {
-            color: #FFD700; /* Золотой */
+            background-position: 200% 0;
         }
         100% {
-            color: #FFB700; /* Яркий золотой */
+            background-position: 0 0;
         }
     }
 
-    /* Анимация для серебряного текста */
-    @keyframes silver-shift {
+    /* Анимация для серебряной волны */
+    @keyframes silver-wave {
         0% {
-            color: #C0C0C0; /* Серебряный */
+            background-position: 200% 0;
         }
         100% {
-            color: #B0B0B0; /* Яркий серебряный */
+            background-position: 0 0;
         }
     }
 
-    /* Анимация для бронзового текста */
-    @keyframes bronze-shift {
+    /* Анимация для бронзовой волны */
+    @keyframes bronze-wave {
         0% {
-            color: #CD7F32; /* Бронзовый */
+            background-position: 200% 0;
         }
         100% {
-            color: #D2691E; /* Яркий бронзовый */
+            background-position: 0 0;
         }
     }
 </style>
