@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($players as $player)
-                <tr class="odd:bg-gray-800 even:bg-gray-900 @if($loop->iteration <= 3) highlight-row @endif hover-row">
+                <tr class="odd:bg-gray-800 even:bg-gray-900 @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif hover-row">
                     <td class="w-1/12 px-4 py-1 text-center">{{ $loop->iteration }}</td>
                     <td class="truncate w-2/6 px-4 py-1 text-left">{{ $player->name }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->sum('pivot.score') }}</td>
@@ -36,30 +36,61 @@
 </div>
 
 <style>
-    /* Шрифт больше и жирнее для первых трех строк */
-    .highlight-row {
-        font-size: 1.25rem; /* Увеличенный размер шрифта */
-        font-weight: bold; /* Жирный шрифт */
-        animation: color-shift 3s infinite alternate; /* Анимация изменения цвета текста */
+    /* Золотой перелив для первого места */
+    .first-place {
+        font-size: 1.25rem;
+        font-weight: bold;
+        animation: gold-shift 3s infinite alternate;
     }
 
-    /* Переливающийся цвет текста для первых трёх строк */
-    @keyframes color-shift {
+    /* Серебряный перелив для второго места */
+    .second-place {
+        font-size: 1.25rem;
+        font-weight: bold;
+        animation: silver-shift 3s infinite alternate;
+    }
+
+    /* Бронзовый перелив для третьего места */
+    .third-place {
+        font-size: 1.25rem;
+        font-weight: bold;
+        animation: bronze-shift 3s infinite alternate;
+    }
+
+    /* Эффект увеличения при наведении для всех строк */
+    .hover-row:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Анимация для золотого текста */
+    @keyframes gold-shift {
         0% {
             color: #FFD700; /* Золотой */
         }
-        50% {
-            color: #C0C0C0; /* Серебряный */
-        }
         100% {
-            color: #CD7F32; /* Бронзовый */
+            color: #FFB700; /* Яркий золотой */
         }
     }
 
-    /* Эффект увеличения при наведении */
-    .hover-row:hover {
-        transform: scale(1.05); /* Увеличение */
-        transition: transform 0.3s ease-in-out;
+    /* Анимация для серебряного текста */
+    @keyframes silver-shift {
+        0% {
+            color: #C0C0C0; /* Серебряный */
+        }
+        100% {
+            color: #B0B0B0; /* Яркий серебряный */
+        }
+    }
+
+    /* Анимация для бронзового текста */
+    @keyframes bronze-shift {
+        0% {
+            color: #CD7F32; /* Бронзовый */
+        }
+        100% {
+            color: #D2691E; /* Яркий бронзовый */
+        }
     }
 </style>
 @endsection
