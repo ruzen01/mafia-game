@@ -60,7 +60,9 @@
     /* Эффект увеличения при наведении для всех строк */
     .hover-row:hover {
         transform: scale(1.05);
+        transform-origin: center; /* Увеличение происходит из центра */
         transition: transform 0.3s ease-in-out;
+        overflow: hidden; /* Предотвращение появления горизонтальной прокрутки */
     }
 
     /* Анимация для золотого текста */
