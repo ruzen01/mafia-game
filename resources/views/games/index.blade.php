@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container mx-auto py-6">
+    
     @if(session('error'))
         <div class="bg-red-500 text-white p-3 rounded mb-4">
             {{ session('error') }}
@@ -13,6 +14,7 @@
             {{ session('success') }}
         </div>
     @endif
+
     <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
 
     @can('create', App\Models\Game::class)
@@ -25,7 +27,7 @@
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
         <table class="table-fixed w-full">
-            <thead class="bg-gray-700 text-white sticky top-0 z-10">
+            <thead class="bg-gray-700 text-white text-left sticky top-0 z-10">
                 <tr>
                     <th class="truncate w-1/16 px-4 py-2 text-center">Дата</th>
                     <th class="truncate w-4/16 px-4 py-2 text-center">Имя</th>
