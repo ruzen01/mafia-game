@@ -53,7 +53,7 @@
                     <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->season }}</td>
                     <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->winner }}</td>
                     <td class="truncate w-2/16 px-4 py-1 text-center"> 
-                        <div class="flex items-center justify-center -space-x-2 overflow-hidden">
+                        <div class="flex items-center justify-center -space-x-2 overflow-visible">
                             @foreach($game->players->take(5) as $player) 
                                 <div class="relative group flex-shrink-0"> 
                                     <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
