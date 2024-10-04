@@ -25,7 +25,7 @@
     </div>
     @endcan
 
-    <div class="overflow-x-auto rounded-lg shadow-lg">
+    <div class="overflow-x-auto rounded-lg">
         <table class="table-auto w-full">
             <thead class="bg-gray-700 text-white sticky top-0 z-10">
                 <tr>
