@@ -53,23 +53,24 @@
                     <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->season }}</td>
                     <td class="truncate w-2/16 px-4 py-1 text-center">{{ $game->winner }}</td>
                     <td class="truncate w-2/16 px-4 py-1 text-center"> 
-    <div class="flex items-center justify-center -space-x-2 overflow-visible"> <!-- Убедитесь, что это значение не переопределяется родителями -->
+    <div class="flex items-center justify-center -space-x-2 overflow-visible">
         @foreach($game->players->take(5) as $player) 
             <div class="relative group flex-shrink-0"> 
                 <img src="{{ $player->avatar_url ?? asset('images/default-avatar.png') }}" 
                      alt="{{ $player->name }}" 
                      class="w-6 h-6 rounded-full object-cover ring-2 ring-gray-500" 
                      title="{{ $player->name }}">
-                <!-- Отображение всплывающего текста при наведении -->
                 <span class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"> 
                     {{ $player->name }} 
                 </span> 
             </div> 
         @endforeach 
+
         @if($game->players->count() > 5) 
-            <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ml-10"> 
+            <!-- Убираем flex и делаем текстовым элементом -->
+            <span class="text-white text-xs font-bold ml-6"> 
                 +{{ $game->players->count() - 5 }} 
-            </div> 
+            </span> 
         @endif 
     </div> 
 </td>
