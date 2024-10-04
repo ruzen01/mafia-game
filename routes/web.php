@@ -28,4 +28,5 @@ Route::get('/rules', [RulesController::class, 'index'])->name('rules');
 Route::resource('games', GameController::class);
 
 Route::get('/players/ranking', [PlayerController::class, 'ranking'])->name('players.ranking');
+Route::get('/players/{player}', [PlayerController::class, 'show'])->name('players.show');
 Route::resource('players', PlayerController::class);

@@ -40,24 +40,13 @@
             <tbody class="bg-gray-800 text-white">
                 @foreach($players as $player)
                 <tr class="odd:bg-gray-800 even:bg-gray-900">
-                    <td class="w-1/4 px-4 py-1 truncate">{{ $player->name }}</td>
-                    <td class="w-1/3 px-4 py-1">
-                        @if($player->games->isEmpty())
-                            Нет игр
-                        @else
-                            <div class="game-list" id="game-list-{{ $player->id }}">
-                                @php
-                                    $games = $player->games->pluck('name')->toArray();
-                                    $shownGames = array_slice($games, 0, 3);
-                                    $remainingGames = array_slice($games, 3);
-                                @endphp
-                                <span>{{ implode(', ', $shownGames) }}</span>
-                                @if(count($remainingGames) > 0)
-                                    <span class="more-dots" onclick="showFullList({{ $player->id }})" style="color: blue; cursor: pointer;">... ещё</span>
-                                    <span class="full-list" style="display: none;">{{ implode(', ', $remainingGames) }}</span>
-                                @endif
-                            </div>
-                        @endif
+                    <td class="w-1/4 px-4 py-1 truncate">
+                        <a href="{{ route('players.show', $player->id) }}" class="text-blue-500 hover:underline">
+                            {{ $player->name }}
+                        </a>
+                    </td>
+                    <td class="w-1/3 px-4 py-1 truncate">
+                        {{ implode(', ', $player->games->pluck('name')->toArray()) }}
                     </td>
                     <td class="w-1/4 px-4 py-1 text-center">{{ \Carbon\Carbon::parse($player->created_at)->format('d.m.Y') }}</td>
                     @can('update', [$player])
@@ -81,19 +70,4 @@
 
     <div class="mt-4">{{ $players->links() }}</div>
 </div>
-
-<script>
-    function showFullList(playerId) {
-        const dots = document.querySelector(`#game-list-${playerId} .more-dots`);
-        const fullList = document.querySelector(`#game-list-${playerId} .full-list`);
-
-        if (dots.style.display === "none") {
-            dots.style.display = "inline";
-            fullList.style.display = "none";
-        } else {
-            dots.style.display = "none";
-            fullList.style.display = "inline";
-        }
-    }
-</script>
 @endsection
