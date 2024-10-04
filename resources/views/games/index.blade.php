@@ -44,17 +44,17 @@
             <tbody class="bg-gray-800 text-white">
                 @foreach($games as $game)
                 <tr class="odd:bg-gray-800 even:bg-gray-900">
-                    <td class="truncate px-4 py-1 whitespace-nowrap">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="truncate px-4 py-1 whitespace-nowrap">
+                    <td class="truncate px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <td class="truncate px-4 py-1">
                         <a href="{{ route('games.show', $game->id) }}" class="text-white hover:text-blue-500">
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="truncate px-4 py-1 whitespace-nowrap">{{ $game->game_number }}</td>
-                    <td class="truncate py-2 py-1 whitespace-nowrap">{{ $game->host_name }}</td>
-                    <td class="truncate px-4 py-1 whitespace-nowrap">{{ $game->season }}</td>
-                    <td class="truncate px-4 py-1 whitespace-nowrap">{{ $game->winner }}</td>
-                    <td class="truncate px-4 py-1 whitespace-nowrap"> 
+                    <td class="truncate px-4 py-1">{{ $game->game_number }}</td>
+                    <td class="truncate py-2 py-1">{{ $game->host_name }}</td>
+                    <td class="truncate px-4 py-1">{{ $game->season }}</td>
+                    <td class="truncate px-4 py-1">{{ $game->winner }}</td>
+                    <td class="truncate px-4 py-1"> 
     <div class="flex -space-x-2 overflow-visible">
         @foreach($game->players->take(5) as $player) 
             <div class="relative group flex-shrink-0"> 
