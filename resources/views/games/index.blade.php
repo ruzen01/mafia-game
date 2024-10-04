@@ -66,7 +66,7 @@
                                 </div> 
                             @endforeach 
                             @if($game->players->count() > 5) 
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-500 text-white text-xs font-bold"> 
+                                <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"> 
                                     +{{ $game->players->count() - 5 }} 
                                 </div> 
                             @endif 
