@@ -19,9 +19,9 @@
             </thead>
             <tbody>
                 @foreach($players as $player)
-                <tr class="odd:bg-gray-800 even:bg-gray-900">
-                    <td class="w-1/12 px-4 py-1 text-center @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif">{{ $loop->iteration }}</td>
-                    <td class="truncate w-2/6 px-4 py-1 text-left @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif">{{ $player->name }}</td>
+                <tr class="odd:bg-gray-800 even:bg-gray-900 @if($loop->iteration <= 3) highlight-row @endif hover-row">
+                    <td class="w-1/12 px-4 py-1 text-center">{{ $loop->iteration }}</td>
+                    <td class="truncate w-2/6 px-4 py-1 text-left">{{ $player->name }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->sum('pivot.score') }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->total_games }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->where('pivot.score', '>=', 2)->count() }}</td>
@@ -36,52 +36,30 @@
 </div>
 
 <style>
-    /* Плавная анимация для первого места (золотой цвет) */
-    .first-place {
-        background: linear-gradient(90deg, rgba(255,215,0,0.1), rgba(255,215,0,0.5));
-        animation: gold-glow 3s ease-in-out infinite alternate;
+    /* Шрифт больше и жирнее для первых трех строк */
+    .highlight-row {
+        font-size: 1.25rem; /* Увеличенный размер шрифта */
+        font-weight: bold; /* Жирный шрифт */
+        animation: color-shift 3s infinite alternate; /* Анимация изменения цвета текста */
     }
 
-    /* Плавная анимация для второго места (серебряный цвет) */
-    .second-place {
-        background: linear-gradient(90deg, rgba(192,192,192,0.1), rgba(192,192,192,0.5));
-        animation: silver-glow 3s ease-in-out infinite alternate;
-    }
-
-    /* Плавная анимация для третьего места (бронзовый цвет) */
-    .third-place {
-        background: linear-gradient(90deg, rgba(205,127,50,0.1), rgba(205,127,50,0.5));
-        animation: bronze-glow 3s ease-in-out infinite alternate;
-    }
-
-    /* Анимация для золотого */
-    @keyframes gold-glow {
+    /* Переливающийся цвет текста для первых трёх строк */
+    @keyframes color-shift {
         0% {
-            background-color: rgba(255,215,0,0.1);
+            color: #FFD700; /* Золотой */
+        }
+        50% {
+            color: #C0C0C0; /* Серебряный */
         }
         100% {
-            background-color: rgba(255,215,0,0.5);
+            color: #CD7F32; /* Бронзовый */
         }
     }
 
-    /* Анимация для серебряного */
-    @keyframes silver-glow {
-        0% {
-            background-color: rgba(192,192,192,0.1);
-        }
-        100% {
-            background-color: rgba(192,192,192,0.5);
-        }
-    }
-
-    /* Анимация для бронзового */
-    @keyframes bronze-glow {
-        0% {
-            background-color: rgba(205,127,50,0.1);
-        }
-        100% {
-            background-color: rgba(205,127,50,0.5);
-        }
+    /* Эффект увеличения при наведении */
+    .hover-row:hover {
+        transform: scale(1.05); /* Увеличение */
+        transition: transform 0.3s ease-in-out;
     }
 </style>
 @endsection
