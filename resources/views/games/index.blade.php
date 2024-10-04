@@ -68,7 +68,7 @@
 
         @if($game->players->count() > 5) 
             <!-- Увеличиваем отступ с помощью ml-8 -->
-            <span class="text-white text-xs font-bold ml-20"> 
+            <span class="text-white text-xs font-bold space-x-2"> 
                 +{{ $game->players->count() - 5 }} 
             </span> 
         @endif 
