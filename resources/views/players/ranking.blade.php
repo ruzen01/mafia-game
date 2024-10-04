@@ -19,9 +19,9 @@
             </thead>
             <tbody>
                 @foreach($players as $player)
-                <tr class="odd:bg-gray-800 even:bg-gray-900 @if($loop->iteration <= 3) highlight-player @endif">
-                    <td class="w-1/12 px-4 py-1 text-center">{{ $loop->iteration }}</td>
-                    <td class="truncate w-2/6 px-4 py-1 text-left">{{ $player->name }}</td>
+                <tr class="odd:bg-gray-800 even:bg-gray-900">
+                    <td class="w-1/12 px-4 py-1 text-center @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif">{{ $loop->iteration }}</td>
+                    <td class="truncate w-2/6 px-4 py-1 text-left @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif">{{ $player->name }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->sum('pivot.score') }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->total_games }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->where('pivot.score', '>=', 2)->count() }}</td>
@@ -36,26 +36,51 @@
 </div>
 
 <style>
-    /* Плавная анимация изменения фона для первых трёх игроков */
-    .highlight-player {
-        background: linear-gradient(90deg, rgba(255,215,0,0.1), rgba(255,223,0,0.3));
-        animation: glow 3s ease-in-out infinite alternate;
+    /* Плавная анимация для первого места (золотой цвет) */
+    .first-place {
+        background: linear-gradient(90deg, rgba(255,215,0,0.1), rgba(255,215,0,0.5));
+        animation: gold-glow 3s ease-in-out infinite alternate;
     }
 
-    /* Добавление эффекта увеличения и тени при наведении */
-    .highlight-player:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(255, 223, 0, 0.7);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Плавная анимация для второго места (серебряный цвет) */
+    .second-place {
+        background: linear-gradient(90deg, rgba(192,192,192,0.1), rgba(192,192,192,0.5));
+        animation: silver-glow 3s ease-in-out infinite alternate;
     }
 
-    /* Анимация плавного "свечения" */
-    @keyframes glow {
+    /* Плавная анимация для третьего места (бронзовый цвет) */
+    .third-place {
+        background: linear-gradient(90deg, rgba(205,127,50,0.1), rgba(205,127,50,0.5));
+        animation: bronze-glow 3s ease-in-out infinite alternate;
+    }
+
+    /* Анимация для золотого */
+    @keyframes gold-glow {
         0% {
-            background-color: rgba(255, 223, 0, 0.1);
+            background-color: rgba(255,215,0,0.1);
         }
         100% {
-            background-color: rgba(255, 223, 0, 0.3);
+            background-color: rgba(255,215,0,0.5);
+        }
+    }
+
+    /* Анимация для серебряного */
+    @keyframes silver-glow {
+        0% {
+            background-color: rgba(192,192,192,0.1);
+        }
+        100% {
+            background-color: rgba(192,192,192,0.5);
+        }
+    }
+
+    /* Анимация для бронзового */
+    @keyframes bronze-glow {
+        0% {
+            background-color: rgba(205,127,50,0.1);
+        }
+        100% {
+            background-color: rgba(205,127,50,0.5);
         }
     }
 </style>
