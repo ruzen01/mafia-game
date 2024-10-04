@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <h1 class="text-left text-3xl font-bold mb-6">Список игр</h1>
+    <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
 
     @can('create', App\Models\Game::class)
     <div class="flex justify-center mb-6">
