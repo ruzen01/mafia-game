@@ -27,7 +27,7 @@
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
         <table class="table-fixed w-full">
-            <thead class="bg-gray-700 text-white text-left sticky top-0 z-10">
+            <thead class="bg-gray-700 text-white sticky top-0 z-10">
                 <tr>
                     <th class="truncate w-1/16 px-4 py-2 text-center">Дата</th>
                     <th class="truncate w-4/16 px-4 py-2 text-center">Имя</th>
@@ -41,7 +41,7 @@
                     @endcan
                 </tr>
             </thead>
-            <tbody class="bg-gray-800 text-white">
+            <tbody class="bg-gray-800 text-white text-left">
                 @foreach($games as $game)
                 <tr class="odd:bg-gray-800 even:bg-gray-900">
                     <td class="truncate w-1/16 px-4 py-1 text-center">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
