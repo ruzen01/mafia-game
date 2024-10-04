@@ -57,22 +57,10 @@
         animation: bronze-shift 3s infinite alternate;
     }
 
-    /* Эффект увеличения при наведении для всех строк */
+    /* Подсветка строки при наведении */
     .hover-row:hover {
-        transform: scale(1.02, 1); /* Увеличение только по высоте */
-        transform-origin: center; /* Увеличение происходит из центра */
-        transition: transform 0.3s ease-in-out;
-    }
-
-    /* Фиксируем ширину строк, чтобы не было прокрутки */
-    table {
-        table-layout: fixed; /* Фиксированная ширина столбцов */
-    }
-
-    td, th {
-        white-space: nowrap; /* Запрещаем перенос текста на новую строку */
-        overflow: hidden; /* Обрезка длинного текста */
-        text-overflow: ellipsis; /* Троеточие для длинного текста */
+        background-color: #444444; /* Цвет подсветки строки */
+        transition: background-color 0.3s ease-in-out;
     }
 
     /* Анимация для золотого текста */
