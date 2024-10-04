@@ -26,7 +26,7 @@
     @endcan
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
-        <table class="w-full">
+        <table class="table-auto w-full">
             <thead class="bg-gray-700 text-white sticky top-0 z-10">
                 <tr>
                     <th class="truncate px-4 py-2 text-left">Дата</th>
