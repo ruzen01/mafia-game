@@ -3,15 +3,15 @@
 @section('content')
 <div class="container mx-auto py-6">
     @if(session('error'))
-        <div class="bg-red-500 text-white p-3 rounded mb-4">
-            {{ session('error') }}
-        </div>
+    <div class="bg-red-500 text-white p-3 rounded mb-4">
+        {{ session('error') }}
+    </div>
     @endif
 
     @if(session('success'))
-        <div class="bg-green-500 text-white p-3 rounded mb-4">
-            {{ session('success') }}
-        </div>
+    <div class="bg-green-500 text-white p-3 rounded mb-4">
+        {{ session('success') }}
+    </div>
     @endif
 
     <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
@@ -56,25 +56,25 @@
                     <td class="truncate px-4 py-1">
                         <div class="flex -space-x-2">
                             @foreach($game->players->take(5) as $player)
-                                @php
-                                    // Получение инициалов
-                                    $initials = strtoupper(substr($player->name, 0, 1));
-                                    if (str_contains($player->name, ' ')) {
-                                        $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
-                                    }
-                                @endphp
-                                <div class="relative group flex items-center justify-center bg-gray-500 text-white rounded-full w-6 h-6 font-bold ring-2 ring-gray-500">
-                                    {{ $initials }}
-                                    <span class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        {{ $player->name }}
-                                    </span>
-                                </div>
+                            @php
+                            // Получение инициалов
+                            $initials = strtoupper(substr($player->name, 0, 1));
+                            if (str_contains($player->name, ' ')) {
+                            $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
+                            }
+                            @endphp
+                            <div class="relative group flex items-center justify-center text-white font-bold w-6 h-6">
+                                {{ $initials }}
+                                <span class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {{ $player->name }}
+                                </span>
+                            </div>
                             @endforeach
 
                             @if($game->players->count() > 5)
-                                <span class="text-white text-xs font-bold ml-4">
-                                    +{{ $game->players->count() - 5 }}
-                                </span>
+                            <span class="text-white text-xs font-bold ml-4">
+                                +{{ $game->players->count() - 5 }}
+                            </span>
                             @endif
                         </div>
                     </td>
