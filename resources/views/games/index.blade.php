@@ -42,10 +42,10 @@
             </thead>
             <tbody>
                 @foreach($games as $game)
-                <tr>
+                <tr class="odd:bg-gray-100 even:bg-gray-200">
                     <td class="truncate px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
                     <td class="truncate max-w-xs px-4 py-1">
-                        <a href="{{ route('games.show', $game->id) }}" class="text-white hover:text-blue-500">
+                        <a href="{{ route('games.show', $game->id) }}" class="hover:text-blue-500">
                             {{ $game->name }}
                         </a>
                     </td>
