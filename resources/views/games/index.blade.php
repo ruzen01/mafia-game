@@ -17,7 +17,7 @@
     <h1 class="text-center text-3xl font-bold mb-6">Список игр</h1>
 
     @can('create', App\Models\Game::class)
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-right mb-6">
         <a href="{{ route('games.create') }}" class="bg-blue-500 shadow-lg shadow-blue-500/5 hover:bg-blue-300 text-white py-2 px-4 rounded">
             Создать новую игру
         </a>
@@ -26,7 +26,7 @@
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
         <table class="table-auto w-full">
-            <thead class="bg-gray-700 text-white sticky top-0 z-10">
+            <thead class="sticky top-0 z-10">
                 <tr>
                     <th class="truncate px-4 py-2 text-left">Дата</th>
                     <th class="truncate px-4 py-2 text-left">Имя</th>
@@ -40,7 +40,7 @@
                     @endcan
                 </tr>
             </thead>
-            <tbody class="bg-gray-800 text-white">
+            <tbody>
                 @foreach($games as $game)
                 <tr class="odd:bg-gray-800 even:bg-gray-900">
                     <td class="truncate px-4 py-1">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
