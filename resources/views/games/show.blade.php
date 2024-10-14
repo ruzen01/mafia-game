@@ -6,7 +6,7 @@
     <h1 class="text-center text-3xl font-bold mb-6">Подробная информация об игре: {{ $game->name }}</h1>
 
     <!-- Основная информация об игре в таблице -->
-    <div class="shadow-md rounded-lg p-6 mb-6">
+    <div class="shadow-md rounded-lg bg-gray-200 p-6 mb-6">
         <table class="table-auto border-collapse border border-gray-300 w-full mb-6">
             <tbody>
                 <tr>
