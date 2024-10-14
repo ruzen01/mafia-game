@@ -39,9 +39,9 @@
             </thead>
             <tbody class="bg-gray-800 text-white">
                 @foreach($players as $player)
-                <tr class="odd:bg-gray-800 even:bg-gray-900">
+                <tr class="odd:bg-gray-100 even:bg-gray-200">
                     <td class="w-1/4 px-4 py-1 truncate">
-                        <a href="{{ route('players.show', $player->id) }}" class="text-blue-500 hover:underline">
+                        <a href="{{ route('players.show', $player->id) }}" class="hover:text-blue-500">
                             {{ $player->name }}
                         </a>
                     </td>
