@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($players as $player)
-                <tr class="odd:bg-gray-100 even:bg-gray-200 @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif hover-row">
+                <tr class="odd:bg-gray-100 even:bg-gray-200 @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif hover-row hover:bg-gray-300">
                     <td class="w-1/12 px-4 py-1 text-center">{{ $loop->iteration }}</td>
 
                     <!-- Имя игрока обернуто в ссылку -->
