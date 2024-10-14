@@ -43,8 +43,8 @@
                         <th class="border border-gray-300 px-4 py-2 text-center">Баллы</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Лучший игрок</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Первая жертва</th>
-                        <th class="border border-gray-300 px-4 py-2 text-center">Баллы от ведущего</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Доп. балл</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Баллы от ведущего</th>
                         <th class="border border-gray-300 px-4 py-2 text-left">Комментарий</th>
                     </tr>
                 </thead>
@@ -58,8 +58,8 @@
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->score }}</td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->best_player ? 'Да' : 'Нет' }}</td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->first_victim ? 'Да' : 'Нет' }}</td>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->leader_score }}</td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->additional_score ? 'Да' : 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->leader_score }}</td>
         <td class="border border-gray-300 px-4 py-2">{{ $player->pivot->comment ?? 'Нет' }}</td>
     </tr>
     @endforeach
