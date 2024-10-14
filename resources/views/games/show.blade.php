@@ -36,7 +36,7 @@
         <h3 class="text-xl font-semibold mb-4">Игроки и их баллы:</h3>
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse border border-gray-300 w-full text-sm">
-                <thead>
+                <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-left">Имя игрока</th>
                         <th class="border border-gray-300 px-4 py-2 text-left">Роль</th>
@@ -48,7 +48,7 @@
                         <th class="border border-gray-300 px-4 py-2 text-left">Комментарий</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-gray-100">
     @foreach($game->players as $player)
     <tr class="hover:bg-gray-700">
         <td class="border border-gray-300 px-4 py-2">{{ $player->name }}</td>
