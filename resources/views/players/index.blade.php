@@ -27,7 +27,7 @@
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
         <table class="table-fixed w-full">
-            <thead class="bg-gray-700 sticky top-0 z-10">
+            <thead class="bg-gray-300 sticky top-0 z-10">
                 <tr>
                     <th class="w-1/4 px-4 py-2 text-center">Имя</th>
                     <th class="w-1/3 px-4 py-2 text-center">Игры</th>
