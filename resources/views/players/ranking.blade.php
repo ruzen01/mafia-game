@@ -21,7 +21,14 @@
                 @foreach($players as $player)
                 <tr class="odd:bg-gray-100 even:bg-gray-200 @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif hover-row">
                     <td class="w-1/12 px-4 py-1 text-center">{{ $loop->iteration }}</td>
-                    <td class="truncate w-2/6 px-4 py-1 text-left">{{ $player->name }}</td>
+
+                    <!-- Имя игрока обернуто в ссылку -->
+                    <td class="truncate w-2/6 px-4 py-1 text-left">
+                        <a href="{{ route('players.show', $player->id) }}" class="hover:text-blue">
+                            {{ $player->name }}
+                        </a>
+                    </td>
+
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->sum('pivot.score') }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->total_games }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->where('pivot.score', '>=', 2)->count() }}</td>
