@@ -8,26 +8,26 @@
     <!-- Основная информация об игре в таблице -->
     <div class="shadow-md rounded-lg bg-gray-200 p-6 mb-6">
         <table class="table-auto border-collapse border border-gray-400 w-full mb-6">
-            <tbody>
+            <tbody class="bg-gray-100">
                 <tr>
-                    <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Дата игры:</th>
-                    <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Дата игры:</th>
+                    <td class="border border-gray-300 px-4 py-2">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
                 </tr>
                 <tr>
-                    <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Номер игры:</th>
-                    <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ $game->game_number }}</td>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Номер игры:</th>
+                    <td class="border border-gray-300 px-4 py-2">{{ $game->game_number }}</td>
                 </tr>
                 <tr>
-                    <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Ведущий:</th>
-                    <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ $game->host_name }}</td>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Ведущий:</th>
+                    <td class="border border-gray-300 px-4 py-2">{{ $game->host_name }}</td>
                 </tr>
                 <tr>
-                    <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Сезон:</th>
-                    <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ $game->season }}</td>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Сезон:</th>
+                    <td class="border border-gray-300 px-4 py-2">{{ $game->season }}</td>
                 </tr>
                 <tr>
-                    <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Победитель:</th>
-                    <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ $game->winner }}</td>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Победитель:</th>
+                    <td class="border border-gray-300 px-4 py-2">{{ $game->winner }}</td>
                 </tr>
             </tbody>
         </table>
@@ -35,32 +35,32 @@
         <!-- Таблица игроков и их результатов -->
         <h3 class="text-xl font-semibold mb-4">Игроки и их баллы:</h3>
         <div class="overflow-x-auto">
-            <table class="table-auto border-collapse border border-gray-300 bg-gray-50 w-full text-sm">
+            <table class="table-auto border-collapse border border-gray-300 w-full text-sm">
                 <thead>
                     <tr>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Имя игрока</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Роль</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">Баллы</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">Лучший игрок</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">Первая жертва</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">Баллы от ведущего</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">Доп. балл</th>
-                        <th class="border border-gray-300 bg-gray-50 px-4 py-2 text-left">Комментарий</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Имя игрока</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Роль</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Баллы</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Лучший игрок</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Первая жертва</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Баллы от ведущего</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Доп. балл</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Комментарий</th>
                     </tr>
                 </thead>
                 <tbody>
     @foreach($game->players as $player)
     <tr class="hover:bg-gray-700">
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ $player->name }}</td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2">
+        <td class="border border-gray-300 px-4 py-2">{{ $player->name }}</td>
+        <td class="border border-gray-300 px-4 py-2">
     {{ $roles[$player->pivot->role_id] ?? 'Не назначена' }}
 </td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">{{ $player->pivot->score }}</td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">{{ $player->pivot->best_player ? 'Да' : 'Нет' }}</td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">{{ $player->pivot->first_victim ? 'Да' : 'Нет' }}</td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">{{ $player->pivot->leader_score }}</td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2 text-center">{{ $player->pivot->additional_score ? 'Да' : 'Нет' }}</td>
-        <td class="border border-gray-300 bg-gray-50 px-4 py-2">{{ $player->pivot->comment ?? 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->score }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->best_player ? 'Да' : 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->first_victim ? 'Да' : 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->leader_score }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->additional_score ? 'Да' : 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ $player->pivot->comment ?? 'Нет' }}</td>
     </tr>
     @endforeach
 </tbody>
