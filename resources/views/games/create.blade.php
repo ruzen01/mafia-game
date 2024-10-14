@@ -69,15 +69,15 @@
                     </select>
 
                     <!-- Лучший игрок, Первая кровь и Доп в одинаковых рамках -->
-                    <div class="flex items-center gap-2 border rounded py-2 px-3">
+                    <div class="flex items-center gap-2 border border-gray-600 rounded py-2 px-3">
                         <label class="ml-2">Лучший:</label>
                         <input type="checkbox" name="best_player[]" value="1" class="h-6 w-6">
                     </div>
-                    <div class="flex items-center gap-2 border rounded py-2 px-3">
+                    <div class="flex items-center gap-2 border border-gray-600 rounded py-2 px-3">
                         <label class="ml-2">Первая кровь:</label>
                         <input type="checkbox" name="first_victim[]" value="1" class="h-6 w-6">
                     </div>
-                    <div class="flex items-center gap-2 border rounded py-2 px-3">
+                    <div class="flex items-center gap-2 border border-gray-600 rounded py-2 px-3">
                         <label class="ml-2">Доп:</label>
                         <input type="checkbox" name="additional_score[]" value="1" class="h-6 w-6">
                     </div>
