@@ -5,7 +5,7 @@
     <h1 class="text-3xl font-bold mb-6 text-center">Рейтинг игроков</h1>
     <div class="overflow-auto rounded-lg shadow-lg">
         <table class="table-fixed w-full">
-            <thead class="bg-gray-700 text-white sticky top-0 z-10">
+            <thead class="bg-gray-300 text-white sticky top-0 z-10">
                 <tr>
                     <th class="w-1/12 px-4 py-2 text-gray-500 text-center">#</th>
                     <th class="truncate w-2/6 px-4 py-2 text-yellow-500 text-center">Игрок</th>
