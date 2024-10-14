@@ -40,7 +40,7 @@
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-left">Имя игрока</th>
                         <th class="border border-gray-300 px-4 py-2 text-left">Роль</th>
-                        <th class="border border-gray-300 px-4 py-2 text-center">Баллы</th>
+                        <th class="border border-gray-300 px-4 py-2 text-center">Баллы итого</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Лучший игрок</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Первая жертва</th>
                         <th class="border border-gray-300 px-4 py-2 text-center">Доп. балл</th>
@@ -56,11 +56,11 @@
     {{ $roles[$player->pivot->role_id] ?? 'Не назначена' }}
 </td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->score }}</td>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->best_player ? 'Да' : 'Нет' }}</td>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->first_victim ? 'Да' : 'Нет' }}</td>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->additional_score ? 'Да' : 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->best_player ? 'Да' : '' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->first_victim ? 'Да' : '' }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->additional_score ? 'Да' : '' }}</td>
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $player->pivot->leader_score }}</td>
-        <td class="border border-gray-300 px-4 py-2">{{ $player->pivot->comment ?? 'Нет' }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ $player->pivot->comment ?? '' }}</td>
     </tr>
     @endforeach
 </tbody>
