@@ -24,7 +24,7 @@
 
                     <!-- Имя игрока обернуто в ссылку -->
                     <td class="truncate w-2/6 px-4 py-1 text-left">
-                        <a href="{{ route('players.show', $player->id) }}" class="hover:text-blue">
+                        <a href="{{ route('players.show', $player->id) }}" class="hover:text-blue-500">
                             {{ $player->name }}
                         </a>
                     </td>
