@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($players as $player)
-                <tr class="odd:bg-gray-800 even:bg-gray-900 @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif hover-row">
+                <tr class="odd:bg-gray-100 even:bg-gray-200 @if($loop->iteration == 1) first-place @elseif($loop->iteration == 2) second-place @elseif($loop->iteration == 3) third-place @endif hover-row">
                     <td class="w-1/12 px-4 py-1 text-center">{{ $loop->iteration }}</td>
                     <td class="truncate w-2/6 px-4 py-1 text-left">{{ $player->name }}</td>
                     <td class="w-1/6 px-4 py-1 text-center">{{ $player->games->sum('pivot.score') }}</td>
