@@ -7,20 +7,20 @@
 
         <!-- Центральная часть: Кнопки "Рейтинг", "Игры", "Игроки" и "Дашборд" -->
         <div class="flex-1 text-center space-x-4">
-            <a href="{{ route('games.index') }}" class="px-4 py-2 rounded hover:bg-gray-700">Игры</a>
-            <a href="{{ route('players.index') }}" class="px-4 py-2 rounded hover:bg-gray-700">Игроки</a>
             <!-- Добавляем новую ссылку для перехода на страницу рейтинга -->
-            <a href="{{ route('players.ranking') }}" class="px-4 py-2 rounded hover:bg-gray-700">Рейтинг</a>
+            <a href="{{ route('players.ranking') }}" class="px-4 py-2 rounded hover:bg-gray-500">Рейтинг</a>
+            <a href="{{ route('games.index') }}" class="px-4 py-2 rounded hover:bg-gray-500">Игры</a>
+            <a href="{{ route('players.index') }}" class="px-4 py-2 rounded hover:bg-gray-500">Игроки</a>
             @auth
-                <a href="{{ route('dashboard') }}" class="px-4 py-2 rounded hover:bg-gray-700">Дашборд</a>
+                <a href="{{ route('dashboard') }}" class="px-4 py-2 rounded hover:bg-gray-500">Дашборд</a>
             @endauth
         </div>
 
         <!-- Правая часть: Вход, Регистрация, Выход -->
         <div class="flex space-x-4">
             @guest
-                <a href="{{ route('login') }}" class="px-4 py-2 hover:bg-gray-700">Вход</a>
-                <a href="{{ route('register') }}" class="px-4 py-2 bg-red-600 rounded hover:bg-red-700">Регистрация</a>
+                <a href="{{ route('login') }}" class="px-4 py-2 hover:bg-gray-500">Вход</a>
+                <a href="{{ route('register') }}" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Регистрация</a>
             @endguest
 
             @auth
