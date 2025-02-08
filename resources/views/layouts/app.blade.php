@@ -18,7 +18,7 @@
 
     <!-- Футер -->
     <footer class="text-center p-4 bg-gray-200 mt-auto"> <!-- Изменили цвет фона футера -->
-        © 2024 Zen
+        © 2025 Zen
     </footer>
 </body>
 
