@@ -31,3 +31,11 @@ Route::get('/players/ranking', [PlayerController::class, 'ranking'])->name('play
 
 Route::resource('players', PlayerController::class);
 Route::get('/players/{player}', [PlayerController::class, 'show'])->name('players.show');
+
+Route::get('/rules', function () {
+    return view('rules');
+})->name('rules');
+
+Route::get('/roles', function () {
+    return view('roles');
+})->name('roles');
