@@ -15,7 +15,7 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <!-- Карточка Адвоката -->
-                <div class="swiper-slide relative flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-4">Адвокат</h3>
                         <p class="text-gray-700 text-sm">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <!-- Карточка Мафии -->
-                <div class="swiper-slide relative flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-4">Мафия</h3>
                         <p class="text-gray-700 text-sm">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <!-- Карточка Доктора -->
-                <div class="swiper-slide relative flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-4">Доктор</h3>
                         <p class="text-gray-700 text-sm">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <!-- Карточка Шерифа -->
-                <div class="swiper-slide relative flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-4">Шериф</h3>
                         <p class="text-gray-700 text-sm">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <!-- Карточка Маньяка -->
-                <div class="swiper-slide relative flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-4">Маньяк</h3>
                         <p class="text-gray-700 text-sm">
@@ -70,7 +70,7 @@
     <!-- Скрипт для Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1, // По умолчанию показываем одну карточку
+            slidesPerView: 1, // Показываем одну карточку по умолчанию
             spaceBetween: 20,
             loop: true,
             pagination: {
@@ -84,12 +84,15 @@
             breakpoints: {
                 640: {
                     slidesPerView: 1, // Для экранов шириной до 640px (мобильные)
+                    spaceBetween: 10, // Уменьшаем отступы
                 },
                 768: {
                     slidesPerView: 2, // Для планшетов
+                    spaceBetween: 20,
                 },
                 1024: {
                     slidesPerView: 3, // Для десктопов
+                    spaceBetween: 30,
                 },
             },
         });
