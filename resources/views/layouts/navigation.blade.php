@@ -1,4 +1,4 @@
-<nav class="bg-gray-200 p-6 shadow-lg">
+<nav class="bg-gray-200 p-6 shadow-lg relative z-50">
     <div class="container mx-auto flex items-center justify-between">
         <!-- Левая часть: Логотип или название -->
         <div class="text-xl font-bold">
@@ -13,54 +13,12 @@
                 </svg>
             </button>
         </div>
-
-        <!-- Центральная часть: Кнопки "Рейтинг", "Игры", "Игроки" и "Дашборд" -->
-        <div id="menu" class="hidden sm:flex space-x-4">
-            <a href="{{ route('rules') }}" class="px-4 py-2 rounded hover:bg-gray-500">Правила</a>
-            <a href="{{ route('roles') }}" class="px-4 py-2 rounded hover:bg-gray-500">Роли</a>
-            <a href="{{ route('players.ranking') }}" class="px-4 py-2 rounded hover:bg-gray-500">Рейтинг</a>
-            <a href="{{ route('games.index') }}" class="px-4 py-2 rounded hover:bg-gray-500">Игры</a>
-            <a href="{{ route('players.index') }}" class="px-4 py-2 rounded hover:bg-gray-500">Игроки</a>
-            @auth
-                <a href="{{ route('dashboard') }}" class="px-4 py-2 rounded hover:bg-gray-500">Дашборд</a>
-            @endauth
-        </div>
-
-        <!-- Правая часть: Вход, Регистрация, Выход -->
-        <div class="hidden sm:flex space-x-4">
-            @guest
-                <a href="{{ route('login') }}" class="px-4 py-2 hover:bg-gray-500">Вход</a>
-                <a href="{{ route('register') }}" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Регистрация</a>
-            @endguest
-            @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="px-4 py-2 bg-gray-300 rounded hover:bg-red-300">
-                        Выход
-                    </button>
-                </form>
-            @endauth
-        </div>
-
-        <!-- Секция для мобильных кнопок входа/выхода -->
-        <div id="auth-buttons" class="hidden sm:hidden flex flex-col space-y-2">
-            @guest
-                <a href="{{ route('login') }}" class="px-4 py-2 hover:bg-gray-500">Вход</a>
-                <a href="{{ route('register') }}" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Регистрация</a>
-            @endguest
-            @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="px-4 py-2 bg-gray-300 rounded hover:bg-red-300">
-                        Выход
-                    </button>
-                </form>
-            @endauth
-        </div>
     </div>
+</nav>
 
-    <!-- Мобильное выпадающее меню -->
-    <div id="mobile-menu" class="hidden sm:hidden mt-4 space-y-2">
+<!-- Сайдбар (боковое меню) -->
+<div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
+    <div class="py-6 px-4 space-y-2">
         <a href="{{ route('rules') }}" class="block px-4 py-2 hover:bg-gray-100">Правила</a>
         <a href="{{ route('roles') }}" class="block px-4 py-2 hover:bg-gray-100">Роли</a>
         <a href="{{ route('players.ranking') }}" class="block px-4 py-2 hover:bg-gray-100">Рейтинг</a>
@@ -70,14 +28,31 @@
             <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Дашборд</a>
         @endauth
     </div>
-</nav>
+</div>
+
+<!-- Основной контент -->
+<div id="content" class="ml-0 transition-transform duration-300 ease-in-out">
+    <!-- Здесь ваш основной контент -->
+    <div class="p-6">
+        <h1 class="text-2xl font-bold">Основная страница</h1>
+        <p>Это пример основного контента.</p>
+    </div>
+</div>
 
 <script>
-    // Открытие/закрытие мобильного меню
+    // Открытие/закрытие бокового меню
     document.getElementById('menu-toggle').addEventListener('click', function () {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const authButtons = document.getElementById('auth-buttons');
-        mobileMenu.classList.toggle('hidden');
-        authButtons.classList.toggle('hidden');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+
+        if (sidebar.classList.contains('-translate-x-full')) {
+            // Открываем меню
+            sidebar.classList.remove('-translate-x-full');
+            content.style.marginLeft = '16rem'; // Размер сайдбара (w-64 = 16rem)
+        } else {
+            // Закрываем меню
+            sidebar.classList.add('-translate-x-full');
+            content.style.marginLeft = '0';
+        }
     });
 </script>
