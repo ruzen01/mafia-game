@@ -1,4 +1,5 @@
-<nav class="bg-gray-200 p-6 shadow-lg relative z-50">
+<!-- Блок навигации (закрепленный наверху для широких экранов) -->
+<nav class="bg-gray-200 p-6 shadow-lg sticky top-0 z-50">
     <div class="container mx-auto flex items-center justify-between">
         <!-- Левая часть: Логотип или название -->
         <div class="text-xl font-bold">
@@ -43,7 +44,7 @@
 
 <!-- Сайдбар (боковое меню) -->
 <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
-    <div class="pt-6 px-4 space-y-2">
+    <div class="pt-16 px-4 space-y-2">
         <a href="{{ route('rules') }}" class="block px-4 py-2 hover:bg-gray-100">Правила</a>
         <a href="{{ route('roles') }}" class="block px-4 py-2 hover:bg-gray-100">Роли</a>
         <a href="{{ route('players.ranking') }}" class="block px-4 py-2 hover:bg-gray-100">Рейтинг</a>
@@ -65,15 +66,6 @@
             <a href="{{ route('login') }}" class="w-full px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded focus:outline-none">Войти</a>
             <a href="{{ route('register') }}" class="w-full px-4 py-2 bg-green-500 text-white hover:bg-green-600 rounded focus:outline-none">Регистрация</a>
         @endauth
-    </div>
-</div>
-
-<!-- Основной контент -->
-<div id="content" class="ml-0 transition-transform duration-300 ease-in-out">
-    <!-- Здесь ваш основной контент -->
-    <div class="p-6">
-        <h1 class="text-2xl font-bold">Основная страница</h1>
-        <p>Это пример основного контента.</p>
     </div>
 </div>
 
