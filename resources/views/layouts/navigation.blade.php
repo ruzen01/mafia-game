@@ -14,6 +14,13 @@
             <a href="{{ route('players.index') }}" class="hover:text-gray-700">Игроки</a>
             @auth
                 <a href="{{ route('dashboard') }}" class="hover:text-gray-700">Дашборд</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="hover:text-red-500">Выйти</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="hover:text-blue-500">Войти</a>
+                <a href="{{ route('register') }}" class="hover:text-green-500">Регистрация</a>
             @endauth
         </div>
 
@@ -38,7 +45,23 @@
         <a href="{{ route('players.index') }}" class="block px-4 py-2 hover:bg-gray-100">Игроки</a>
         @auth
             <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Дашборд</a>
+            <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-100">
+                @csrf
+                <button type="submit">Выйти</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="block px-4 py-2 hover:bg-gray-100">Войти</a>
+            <a href="{{ route('register') }}" class="block px-4 py-2 hover:bg-gray-100">Регистрация</a>
         @endauth
+    </div>
+</div>
+
+<!-- Основной контент -->
+<div id="content" class="ml-0 transition-transform duration-300 ease-in-out">
+    <!-- Здесь ваш основной контент -->
+    <div class="p-6">
+        <h1 class="text-2xl font-bold">Основная страница</h1>
+        <p>Это пример основного контента.</p>
     </div>
 </div>
 
