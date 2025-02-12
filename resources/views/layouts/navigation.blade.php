@@ -1,5 +1,5 @@
 <!-- Блок навигации (закрепленный наверху для широких экранов) -->
-<nav class="bg-gray-200 p-6 shadow-lg sticky top-0 z-50">
+<nav class="bg-gray-200 p-6 shadow-lg sticky top-0 z-50" id="navbar">
     <div class="container mx-auto flex items-center justify-between">
         <!-- Левая часть: Логотип или название -->
         <div class="text-xl font-bold">
@@ -43,9 +43,8 @@
 </nav>
 
 <!-- Сайдбар (боковое меню) -->
-<div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
-    <div class="pt-16 px-4 space-y-2">
-        <!-- Добавляем обратно ссылки "Правила" и "Роли" -->
+<div id="sidebar" class="fixed left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 top-[64px] bottom-0 overflow-y-auto">
+    <div class="pt-4 px-4 space-y-2">
         <a href="{{ route('rules') }}" class="block px-4 py-2 hover:bg-gray-100">Правила</a>
         <a href="{{ route('roles') }}" class="block px-4 py-2 hover:bg-gray-100">Роли</a>
         <a href="{{ route('players.ranking') }}" class="block px-4 py-2 hover:bg-gray-100">Рейтинг</a>
@@ -71,7 +70,7 @@
 </div>
 
 <!-- Основной контент -->
-<div id="content" class="ml-0 transition-transform duration-300 ease-in-out">
+<div id="content" class="ml-0 mt-[64px] transition-transform duration-300 ease-in-out">
     <!-- Здесь ваш основной контент -->
     <div class="p-6">
         <h1 class="text-2xl font-bold">Основная страница</h1>
