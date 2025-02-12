@@ -223,16 +223,23 @@
             <!-- Пагинация -->
             <div class="swiper-pagination"></div>
         </div>
-    </div>
-    <!-- Скрипт для Swiper -->
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1, // Всегда показываем одну карточку
-            spaceBetween: 20, // Отступ между карточками
-            loop: true, // Бесконечная карусель
-            pagination: false,
-            navigation: false,
-        });
-    </script>
+
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true, // Динамические буллеты
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
 </div>
 @endsection
