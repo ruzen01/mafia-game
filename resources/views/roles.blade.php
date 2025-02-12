@@ -231,16 +231,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Карточка Маньяка -->
-                <div class="swiper-slide">
-                    <img src="{{ asset('images/roles/mafiya.jpg') }}" alt="Мафия">
-                    <h3>Мафия</h3>
-                    <p>
-                            Маньяк убивает самостоятельно, не координируясь с другими.
-                        </p>
-                    </div>
-                </div>
             </div>
             <!-- Навигация -->
             <div class="swiper-button-next"></div>
