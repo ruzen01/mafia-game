@@ -6,7 +6,7 @@
         </div>
 
         <!-- Горизонтальное меню для десктопа -->
-        <div class="hidden sm:flex space-x-4">
+        <div class="hidden sm:flex flex-grow justify-center space-x-4">
             <a href="{{ route('rules') }}" class="hover:text-gray-700">Правила</a>
             <a href="{{ route('roles') }}" class="hover:text-gray-700">Роли</a>
             <a href="{{ route('players.ranking') }}" class="hover:text-gray-700">Рейтинг</a>
@@ -14,13 +14,19 @@
             <a href="{{ route('players.index') }}" class="hover:text-gray-700">Игроки</a>
             @auth
                 <a href="{{ route('dashboard') }}" class="hover:text-gray-700">Дашборд</a>
+            @endauth
+        </div>
+
+        <!-- Кнопки авторизации для десктопа -->
+        <div class="hidden sm:flex items-center space-x-4">
+            @auth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="hover:text-red-500">Выйти</button>
+                    <button type="submit" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded focus:outline-none">Выйти</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="hover:text-blue-500">Войти</a>
-                <a href="{{ route('register') }}" class="hover:text-green-500">Регистрация</a>
+                <a href="{{ route('login') }}" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded focus:outline-none">Войти</a>
+                <a href="{{ route('register') }}" class="px-4 py-2 bg-green-500 text-white hover:bg-green-600 rounded focus:outline-none">Регистрация</a>
             @endauth
         </div>
 
@@ -45,13 +51,19 @@
         <a href="{{ route('players.index') }}" class="block px-4 py-2 hover:bg-gray-100">Игроки</a>
         @auth
             <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Дашборд</a>
-            <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-100">
+        @endauth
+    </div>
+
+    <!-- Кнопки авторизации для мобильных -->
+    <div class="absolute bottom-0 w-full border-t border-gray-200 py-4 px-4 space-y-2">
+        @auth
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit">Выйти</button>
+                <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded focus:outline-none">Выйти</button>
             </form>
         @else
-            <a href="{{ route('login') }}" class="block px-4 py-2 hover:bg-gray-100">Войти</a>
-            <a href="{{ route('register') }}" class="block px-4 py-2 hover:bg-gray-100">Регистрация</a>
+            <a href="{{ route('login') }}" class="w-full px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded focus:outline-none">Войти</a>
+            <a href="{{ route('register') }}" class="w-full px-4 py-2 bg-green-500 text-white hover:bg-green-600 rounded focus:outline-none">Регистрация</a>
         @endauth
     </div>
 </div>
