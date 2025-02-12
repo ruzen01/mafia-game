@@ -43,7 +43,7 @@
 
 <!-- Сайдбар (боковое меню) -->
 <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
-    <div class="py-6 px-4 space-y-2">
+    <div class="pt-6 px-4 space-y-2">
         <a href="{{ route('rules') }}" class="block px-4 py-2 hover:bg-gray-100">Правила</a>
         <a href="{{ route('roles') }}" class="block px-4 py-2 hover:bg-gray-100">Роли</a>
         <a href="{{ route('players.ranking') }}" class="block px-4 py-2 hover:bg-gray-100">Рейтинг</a>
@@ -68,17 +68,36 @@
     </div>
 </div>
 
+<!-- Основной контент -->
+<div id="content" class="ml-0 transition-transform duration-300 ease-in-out">
+    <!-- Здесь ваш основной контент -->
+    <div class="p-6">
+        <h1 class="text-2xl font-bold">Основная страница</h1>
+        <p>Это пример основного контента.</p>
+    </div>
+</div>
+
 <script>
     // Открытие/закрытие бокового меню
-    document.getElementById('menu-toggle').addEventListener('click', function () {
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+
+    menuToggle.addEventListener('click', function () {
         if (sidebar.classList.contains('-translate-x-full')) {
             // Открываем меню
             sidebar.classList.remove('-translate-x-full');
             content.style.marginLeft = '16rem'; // Размер сайдбара (w-64 = 16rem)
         } else {
             // Закрываем меню
+            sidebar.classList.add('-translate-x-full');
+            content.style.marginLeft = '0';
+        }
+    });
+
+    // Автоматическое закрытие меню при изменении ориентации или размера окна
+    window.addEventListener('resize', function () {
+        if (!sidebar.classList.contains('-translate-x-full')) {
             sidebar.classList.add('-translate-x-full');
             content.style.marginLeft = '0';
         }
