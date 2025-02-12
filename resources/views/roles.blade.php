@@ -70,30 +70,16 @@
     <!-- Скрипт для Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1, // Показываем одну карточку по умолчанию
-            spaceBetween: 20,
-            loop: true,
+            slidesPerView: 1, // Всегда показываем одну карточку
+            spaceBetween: 20, // Отступ между карточками
+            loop: true, // Бесконечная карусель
             pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
+                el: ".swiper-pagination", // Пагинация (точки)
+                clickable: true, // Возможность переключать слайды по клику на точки
             },
             navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 1, // Для экранов шириной до 640px (мобильные)
-                    spaceBetween: 10, // Уменьшаем отступы
-                },
-                768: {
-                    slidesPerView: 2, // Для планшетов
-                    spaceBetween: 20,
-                },
-                1024: {
-                    slidesPerView: 3, // Для десктопов
-                    spaceBetween: 30,
-                },
+                nextEl: ".swiper-button-next", // Кнопка "Вперед"
+                prevEl: ".swiper-button-prev", // Кнопка "Назад"
             },
         });
     </script>
