@@ -42,15 +42,6 @@
     </div>
 </div>
 
-<!-- Основной контент -->
-<div id="content" class="ml-0 transition-transform duration-300 ease-in-out">
-    <!-- Здесь ваш основной контент -->
-    <div class="p-6">
-        <h1 class="text-2xl font-bold">Основная страница</h1>
-        <p>Это пример основного контента.</p>
-    </div>
-</div>
-
 <script>
     // Открытие/закрытие бокового меню
     document.getElementById('menu-toggle').addEventListener('click', function () {
