@@ -32,7 +32,22 @@
                 <a href="{{ route('login') }}" class="px-4 py-2 hover:bg-gray-500">Вход</a>
                 <a href="{{ route('register') }}" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Регистрация</a>
             @endguest
+            @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="px-4 py-2 bg-gray-300 rounded hover:bg-red-300">
+                        Выход
+                    </button>
+                </form>
+            @endauth
+        </div>
 
+        <!-- Секция для мобильных кнопок входа/выхода -->
+        <div id="auth-buttons" class="hidden sm:hidden flex flex-col space-y-2">
+            @guest
+                <a href="{{ route('login') }}" class="px-4 py-2 hover:bg-gray-500">Вход</a>
+                <a href="{{ route('register') }}" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Регистрация</a>
+            @endguest
             @auth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -46,8 +61,10 @@
 </nav>
 
 <script>
-    document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('menu-toggle').addEventListener('click', function () {
         const menu = document.getElementById('menu');
+        const authButtons = document.getElementById('auth-buttons');
         menu.classList.toggle('hidden');
+        authButtons.classList.toggle('hidden');
     });
 </script>
