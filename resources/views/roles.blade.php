@@ -48,6 +48,7 @@
                 <!-- Карточка Брокера -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
+                    <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-56 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Брокер</h3>
                         <p class="text-gray-700 text-sm">
                             Брокер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет как обычный Мирный Житель. Если в него ночью будут стрелять, он проснётся и сделает выстрел сам. Если в него будут стрелять второй раз, он погибнет. Если Брокера выгонят на дневном голосовании, с ним уйдёт тот, кто первый в него проголосовал (на первом голосовании).
