@@ -16,7 +16,7 @@
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/advokat.jpg') }}" alt="Адвокат" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-56 object-cover mb-3 rounded-lg">
 
                         <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
                         <p class="text-gray-700 text-sm">
@@ -38,7 +38,7 @@
                 <!-- Карточка Бессмертного -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/bessmertnyi.png') }}" alt="Бессмертный" class="w-full h-56 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Бессмертный</h3>
                         <p class="text-gray-700 text-sm">
                             Бессмертный (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если в него будут стрелять ночью, то на утро ведущий скажет, что никто не погиб. Его нельзя убить ночью, можно выгнать только на дневном голосовании.
