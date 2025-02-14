@@ -56,7 +56,7 @@
                     <td class="px-4 py-2">
     <div class="relative inline-block text-left">
         <!-- Кнопка для открытия списка -->
-        <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="players-dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>
             Игроки
             <!-- Иконка стрелки -->
             <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -65,7 +65,7 @@
         </button>
 
         <!-- Выпадающий список -->
-        <div class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="players-dropdown">
+        <div class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="players-dropdown" data-dropdown>
             <div class="py-1" role="none">
                 @foreach($game->players as $player)
                 <div class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
@@ -90,22 +90,32 @@
 </td>
 
 <script>
-    // Добавляем интерактивность для выпадающего списка
-    document.getElementById('players-dropdown').addEventListener('click', function() {
-        const dropdown = this.nextElementSibling;
-        dropdown.classList.toggle('hidden');
-        this.setAttribute('aria-expanded', !dropdown.classList.contains('hidden'));
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Добавляем обработчики для всех кнопок "Игроки"
+        document.querySelectorAll('[data-dropdown-toggle]').forEach(button => {
+            const dropdown = button.nextElementSibling;
 
-    // Закрытие списка при клике вне элемента
-    document.addEventListener('click', function(event) {
-        const dropdown = document.querySelector('.relative .hidden');
-        if (!event.target.closest('.relative')) {
-            if (dropdown && !dropdown.classList.contains('hidden')) {
-                dropdown.classList.add('hidden');
-                document.getElementById('players-dropdown').setAttribute('aria-expanded', 'false');
-            }
-        }
+            // Открываем/закрываем выпадающий список
+            button.addEventListener('click', function (event) {
+                event.stopPropagation(); // Предотвращаем распространение события
+                dropdown.classList.toggle('hidden'); // Переключаем видимость списка
+                button.setAttribute('aria-expanded', !dropdown.classList.contains('hidden')); // Обновляем атрибут aria-expanded
+            });
+        });
+
+        // Закрытие списка при клике вне элемента
+        document.addEventListener('click', function (event) {
+            document.querySelectorAll('[data-dropdown]').forEach(dropdown => {
+                const toggleButton = dropdown.previousElementSibling;
+
+                if (!dropdown.contains(event.target) && !toggleButton.contains(event.target)) {
+                    if (!dropdown.classList.contains('hidden')) {
+                        dropdown.classList.add('hidden'); // Скрываем список
+                        toggleButton.setAttribute('aria-expanded', 'false'); // Обновляем атрибут aria-expanded
+                    }
+                }
+            });
+        });
     });
 </script>
                     @can('update', [$game])
