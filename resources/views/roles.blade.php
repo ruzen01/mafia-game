@@ -157,6 +157,7 @@
                 <!-- Карточка Лузера -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
+                    <img src="{{ asset('images/roles/looser.png') }}" alt="Лузер" class="w-full h-56 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Лузер</h3>
                         <p class="text-gray-700 text-sm">
                             Лузер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если к Лузеру пойдёт проверяющая карта, ведущий скажет, что он мафия. Если в него будут стрелять и лечить, он всё равно погибнет.
