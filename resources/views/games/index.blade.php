@@ -53,31 +53,61 @@
                     <td class="truncate px-4 py-2">{{ $game->host_name }}</td>
                     <td class="truncate px-4 py-2">{{ $game->season }}</td>
                     <td class="truncate px-4 py-2">{{ $game->winner }}</td>
-                    <td class="truncate px-4 py-2">
-                        <div class="flex -space-x-2">
-                            @foreach($game->players->take(5) as $player)
-                            @php
-                            // Получение инициалов
-                            $initials = strtoupper(substr($player->name, 0, 1));
-                            if (str_contains($player->name, ' ')) {
-                            $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
-                            }
-                            @endphp
-                            <div class="relative group flex items-center justify-center text-white font-bold w-6 h-6 rounded-full bg-blue-500">
-                                {{ $initials }}
-                                <span class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    {{ $player->name }}
-                                </span>
-                            </div>
-                            @endforeach
+                    <td class="px-4 py-2">
+    <div class="relative inline-block text-left">
+        <!-- Кнопка для открытия списка -->
+        <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="players-dropdown" aria-haspopup="true" aria-expanded="false">
+            Игроки
+            <!-- Иконка стрелки -->
+            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
 
-                            @if($game->players->count() > 5)
-                            <span class="text-gray-700 text-xs font-bold ml-4">
-                                +{{ $game->players->count() - 5 }}
-                            </span>
-                            @endif
-                        </div>
-                    </td>
+        <!-- Выпадающий список -->
+        <div class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="players-dropdown">
+            <div class="py-1" role="none">
+                @foreach($game->players as $player)
+                <div class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                    <!-- Аватар или инициалы игрока -->
+                    <div class="flex-shrink-0 flex items-center justify-center w-6 h-6 mr-2 rounded-full bg-blue-500 text-white font-bold">
+                        @php
+                        // Получение инициалов
+                        $initials = strtoupper(substr($player->name, 0, 1));
+                        if (str_contains($player->name, ' ')) {
+                            $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
+                        }
+                        @endphp
+                        {{ $initials }}
+                    </div>
+                    <!-- Имя игрока -->
+                    {{ $player->name }}
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</td>
+
+<script>
+    // Добавляем интерактивность для выпадающего списка
+    document.getElementById('players-dropdown').addEventListener('click', function() {
+        const dropdown = this.nextElementSibling;
+        dropdown.classList.toggle('hidden');
+        this.setAttribute('aria-expanded', !dropdown.classList.contains('hidden'));
+    });
+
+    // Закрытие списка при клике вне элемента
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.relative .hidden');
+        if (!event.target.closest('.relative')) {
+            if (dropdown && !dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+                document.getElementById('players-dropdown').setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
+</script>
                     @can('update', [$game])
                     <td class="truncate px-4 py-2">
                         <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
