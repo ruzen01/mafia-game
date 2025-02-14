@@ -16,7 +16,7 @@
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="-skew-6 w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="-skew-x-6 w-full h-56 object-cover mb-3 rounded-lg">
 
                         <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
                         <p class="text-gray-700 text-sm">
