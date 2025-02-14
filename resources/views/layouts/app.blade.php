@@ -16,7 +16,7 @@
     </div>
 
     <footer class="w-full text-center p-4 bg-gray-200 mt-auto sm:p-6 md:p-8">
-        © 2025 Mafia-vdk
+    © 2025 Mafia-vdk
     </footer>
 </body>
 
