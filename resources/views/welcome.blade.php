@@ -8,7 +8,7 @@
             <a href="{{ route('rules') }}" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-64 mx-auto">
                 Правила
             </a>
-            <a href="{{ route('roles') }}" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-64 mx-auto">
+            <a href="{{ route('roles') }}" class="animate-pulse bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-64 mx-auto">
                 Роли
             </a>
         </div>
