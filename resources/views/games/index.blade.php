@@ -55,73 +55,47 @@
                     <td class="truncate px-4 py-2">{{ $game->winner }}</td>
                     <td class="px-4 py-2">
     <div class="relative inline-block text-left">
-        <!-- Кнопка для открытия списка -->
-        <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>
-            Игроки
-            <!-- Иконка стрелки -->
-            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-        </button>
+        <!-- Начало details -->
+        <details class="group">
+            <!-- Summary - кнопка для открытия списка -->
+            <summary class="inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer">
+                Игроки
+                <!-- Иконка стрелки -->
+                <svg class="ml-2 h-5 w-5 transition-transform group-open:-rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </summary>
 
-        <!-- Выпадающий список -->
-        <div class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="players-dropdown" data-dropdown>
-            <div class="py-1" role="none">
-                @foreach($game->players as $player)
-                <div class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                    <!-- Аватар или инициалы игрока -->
-                    <div class="flex-shrink-0 flex items-center justify-center w-6 h-6 mr-2 rounded-full bg-blue-500 text-white font-bold">
-                        @php
-                        // Получение инициалов
-                        $initials = strtoupper(substr($player->name, 0, 1));
-                        if (str_contains($player->name, ' ')) {
-                            $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
-                        }
-                        @endphp
-                        {{ $initials }}
-                    </div>
-                    <!-- Имя игрока -->
-                    {{ $player->name }}
+            <!-- Выпадающий список -->
+            <div class="origin-top-right absolute right-0 z-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="players-dropdown">
+                    @if ($game->players->count() > 0)
+                        @foreach($game->players as $player)
+                            <div class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                <!-- Аватар или инициалы игрока -->
+                                <div class="flex-shrink-0 flex items-center justify-center w-6 h-6 mr-2 rounded-full bg-blue-500 text-white font-bold">
+                                    @php
+                                    // Получение инициалов
+                                    $initials = strtoupper(substr($player->name, 0, 1));
+                                    if (str_contains($player->name, ' ')) {
+                                        $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
+                                    }
+                                    @endphp
+                                    {{ $initials }}
+                                </div>
+                                <!-- Имя игрока -->
+                                {{ $player->name }}
+                            </div>
+                        @endforeach
+                    @else
+                        <!-- Если игроков нет -->
+                        <div class="px-4 py-2 text-sm text-gray-500">Нет игроков</div>
+                    @endif
                 </div>
-                @endforeach
             </div>
-        </div>
+        </details>
     </div>
 </td>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Добавляем обработчики для всех кнопок "Игроки"
-        document.querySelectorAll('[data-dropdown-toggle]').forEach(button => {
-            const dropdown = button.nextElementSibling;
-
-            // Открываем/закрываем выпадающий список
-            button.addEventListener('click', function (event) {
-                event.stopPropagation(); // Предотвращаем распространение события
-                if (dropdown) {
-                    dropdown.classList.toggle('hidden'); // Переключаем видимость списка
-                    button.setAttribute('aria-expanded', !dropdown.classList.contains('hidden')); // Обновляем атрибут aria-expanded
-                }
-            });
-        });
-
-        // Закрытие списка при клике вне элемента
-        document.addEventListener('click', function (event) {
-            document.querySelectorAll('[data-dropdown]').forEach(dropdown => {
-                const toggleButton = dropdown.previousElementSibling;
-
-                if (!dropdown.contains(event.target) && !toggleButton.contains(event.target)) {
-                    if (!dropdown.classList.contains('hidden')) {
-                        dropdown.classList.add('hidden'); // Скрываем список
-                        if (toggleButton) {
-                            toggleButton.setAttribute('aria-expanded', 'false'); // Обновляем атрибут aria-expanded
-                        }
-                    }
-                }
-            });
-        });
-    });
-</script>
                     @can('update', [$game])
                     <td class="truncate px-4 py-2">
                         <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
