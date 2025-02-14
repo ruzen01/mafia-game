@@ -98,8 +98,10 @@
             // Открываем/закрываем выпадающий список
             button.addEventListener('click', function (event) {
                 event.stopPropagation(); // Предотвращаем распространение события
-                dropdown.classList.toggle('hidden'); // Переключаем видимость списка
-                button.setAttribute('aria-expanded', !dropdown.classList.contains('hidden')); // Обновляем атрибут aria-expanded
+                if (dropdown) {
+                    dropdown.classList.toggle('hidden'); // Переключаем видимость списка
+                    button.setAttribute('aria-expanded', !dropdown.classList.contains('hidden')); // Обновляем атрибут aria-expanded
+                }
             });
         });
 
@@ -111,7 +113,9 @@
                 if (!dropdown.contains(event.target) && !toggleButton.contains(event.target)) {
                     if (!dropdown.classList.contains('hidden')) {
                         dropdown.classList.add('hidden'); // Скрываем список
-                        toggleButton.setAttribute('aria-expanded', 'false'); // Обновляем атрибут aria-expanded
+                        if (toggleButton) {
+                            toggleButton.setAttribute('aria-expanded', 'false'); // Обновляем атрибут aria-expanded
+                        }
                     }
                 }
             });
