@@ -6,8 +6,6 @@
 <!-- Подключение Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<div class="container mx-auto px-4 py-8">
-
     <!-- Карусель -->
     <div class="relative max-w-6xl mx-auto">
         <!-- Контейнер для Swiper -->
@@ -15,13 +13,14 @@
             <div class="swiper-wrapper">
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-6">
-                    <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-3 rounded-lg">
-
-                        <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
-                        <p class="text-gray-700 text-sm">
-                            Адвокат (играет за мафию) - Знает мафию, мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим. Мафия обозначает себя поднятием руки, и Адвокат выбирает, кого он будет защищать. Если этого человека выгоняют на голосовании, ведущий говорит, что это мафия, которая защищена Адвокатом, и он в игре будет до тех пор, пока не найдут Адвоката. Для проверяющих карт, Адвокат является Мирным Жителем.
-                        </p>
+                    <div class="p-6 flex flex-col md:flex-row md:items-start">
+                        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-3 rounded-lg md:w-1/3 md:mr-6 md:mb-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-4 text-center md:text-left">Адвокат</h3>
+                            <p class="text-gray-700 text-sm">
+                                Адвокат (играет за мафию) - Знает мафию, мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим. Мафия обозначает себя поднятием руки, и Адвокат выбирает, кого он будет защищать. Если этого человека выгоняют на голосовании, ведущий говорит, что это мафия, которая защищена Адвокатом, и он в игре будет до тех пор, пока не найдут Адвоката. Для проверяющих карт, Адвокат является Мирным Жителем.
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <!-- Карточка Актёра -->
