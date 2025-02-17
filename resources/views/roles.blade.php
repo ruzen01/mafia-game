@@ -16,7 +16,7 @@
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-3 rounded-lg">
 
                         <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
                         <p class="text-gray-700 text-sm">
@@ -27,7 +27,7 @@
                 <!-- Карточка Актёра -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/actor.png') }}" alt="Актер" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/actor.png') }}" alt="Актер" class="w-full h-70 object-cover mb-3 rounded-lg">
 
                         <h3 class="text-xl font-bold mb-4 text-center">Актёр</h3>
                         <p class="text-gray-700 text-sm">
@@ -38,7 +38,7 @@
                 <!-- Карточка Бессмертного -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-70 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Бессмертный</h3>
                         <p class="text-gray-700 text-sm">
                             Бессмертный (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если в него будут стрелять ночью, то на утро ведущий скажет, что никто не погиб. Его нельзя убить ночью, можно выгнать только на дневном голосовании.
@@ -48,7 +48,7 @@
                 <!-- Карточка Брокера -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-70 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Брокер</h3>
                         <p class="text-gray-700 text-sm">
                             Брокер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет как обычный Мирный Житель. Если в него ночью будут стрелять, он проснётся и сделает выстрел сам. Если в него будут стрелять второй раз, он погибнет. Если Брокера выгонят на дневном голосовании, с ним уйдёт тот, кто первый в него проголосовал (на первом голосовании).
@@ -157,7 +157,7 @@
                 <!-- Карточка Лузера -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/looser.png') }}" alt="Лузер" class="w-full h-56 object-cover mb-3 rounded-lg">
+                    <img src="{{ asset('images/roles/looser.png') }}" alt="Лузер" class="w-full h-70 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Лузер</h3>
                         <p class="text-gray-700 text-sm">
                             Лузер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если к Лузеру пойдёт проверяющая карта, ведущий скажет, что он мафия. Если в него будут стрелять и лечить, он всё равно погибнет.
