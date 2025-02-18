@@ -17,7 +17,7 @@
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
     <div class="p-6">
         <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-3 rounded-lg">
-        <h3 class="text-xl font-bold text-white bg-gray-900 px-3 py-1 inline-block">Адвокат</h3>
+        <h3 class="text-xl font-bold text-white textr-center bg-gray-900 px-1 py-1 inline-block">Адвокат</h3>
         <p class="text-gray-700 text-sm">
             <!-- Сторона -->
             <span class="flex items-start mb-2">
