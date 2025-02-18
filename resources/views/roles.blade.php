@@ -13,76 +13,117 @@
         <!-- Контейнер для Swiper -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
+
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-    <div class="p-6">
-        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover rounded-lg">
-        <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
-        <p class="text-gray-700 text-sm">
-            <!-- Сторона -->
-            <span class="flex items-start">
-                <strong class="w-24 block">Сторона:</strong>
-                <span>Мафия</span>
-            </span>
+                    <div class="p-6 flex flex-col md:flex-row items-center">
+                        <!-- Картинка -->
+                        <div class="w-full md:w-1/2 h-70 md:h-auto">
+                            <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <!-- Текст -->
+                        <div class="w-full md:w-1/2 md:pl-8 text-left">
+                            <h3 class="text-xl font-bold mb-4">Адвокат</h3>
+                            <p class="text-gray-700 text-sm">
+                                <!-- Сторона -->
+                                <span class="block">
+                                    <strong class="font-bold">Сторона:</strong> Мафия
+                                </span>
+                                <!-- Проверка -->
+                                <span class="block">
+                                    <strong class="font-bold">Проверка:</strong> <span class="text-red-500">Мирный житель</span>
+                                </span>
+                                <!-- Описание роли -->
+                                <strong class="block font-bold mt-4">Описание роли:</strong>
+                                <span class="block">
+                                    Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
+                                    Мафия обозначает себя поднятием руки и Адвокат выбирает, кого он будет защищать.<br>
+                                    Если этого игрока выгоняют на голосовании, то ведущий говорит, что это мафия, которая защищена Адвокатом. И этот игрок останется в игре до тех пор,
+                                    пока не найдут Адвоката. Для проверяющих карт Адвокат является Мирным Жителем.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Проверка -->
-            <span class="flex items-start">
-                <strong class="w-24 block">Проверка:</strong>
-                <span class="text-red-500">Мирный житель</span>
-            </span>
-
-            <!-- Описание роли -->
-            <strong class="block font-bold">Описание роли:</strong>
-            <span class="block">
-                Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
-                Мафия обозначает себя поднятием руки и Адвокат выбирает, кого он будет защищать.<br>
-                Если этого игрока выгоняют на голосовании, то ведущий говорит, что это мафия, которая защищена Адвокатом. И этот игрок останется в игре до тех пор,
-                пока не найдут Адвоката. Для проверяющих карт Адвокат является Мирным Жителем.
-            </span>
-        </p>
-    </div>
-</div>
                 <!-- Карточка Актёра -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-6">
-                    <img src="{{ asset('images/roles/actor.png') }}" alt="Актер" class="w-full h-70 object-cover mb-3 rounded-lg">
-
-                        <h3 class="text-xl font-bold mb-4 text-center">Актёр</h3>
-                        <p class="text-gray-700 text-sm">
-                            Актёр (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. В случае гибели любой активноролевой карты, мафии, ведущий предлагает актёру забрать роль погибшего. Снятая маска принимается за согласие. Забрав роль персонажа, играет ей до конца игры.
-                        </p>
+                    <div class="p-6 flex flex-col md:flex-row items-center">
+                        <!-- Картинка -->
+                        <div class="w-full md:w-1/2 h-70 md:h-auto">
+                            <img src="{{ asset('images/roles/actor.png') }}" alt="Актёр" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <!-- Текст -->
+                        <div class="w-full md:w-1/2 md:pl-8 text-left">
+                            <h3 class="text-xl font-bold mb-4">Актёр</h3>
+                            <p class="text-gray-700 text-sm">
+                                <strong>Сторона:</strong> Мирные<br>
+                                <strong>Описание роли:</strong><br>
+                                Актёр (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. В случае гибели любой активноролевой карты, мафии, ведущий предлагает актёру забрать роль погибшего. Снятая маска принимается за согласие. Забрав роль персонажа, играет ей до конца игры.
+                            </p>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Карточка Бессмертного -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-6">
-                    <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-70 object-cover mb-3 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4 text-center">Бессмертный</h3>
-                        <p class="text-gray-700 text-sm">
-                            Бессмертный (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если в него будут стрелять ночью, то на утро ведущий скажет, что никто не погиб. Его нельзя убить ночью, можно выгнать только на дневном голосовании.
-                        </p>
+                    <div class="p-6 flex flex-col md:flex-row items-center">
+                        <!-- Картинка -->
+                        <div class="w-full md:w-1/2 h-70 md:h-auto">
+                            <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <!-- Текст -->
+                        <div class="w-full md:w-1/2 md:pl-8 text-left">
+                            <h3 class="text-xl font-bold mb-4">Бессмертный</h3>
+                            <p class="text-gray-700 text-sm">
+                                <strong>Сторона:</strong> Мирные<br>
+                                <strong>Описание роли:</strong><br>
+                                Бессмертный (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если в него будут стрелять ночью, то на утро ведущий скажет, что никто не погиб. Его нельзя убить ночью, можно выгнать только на дневном голосовании.
+                            </p>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Карточка Брокера -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-6">
-                    <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-70 object-cover mb-3 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4 text-center">Брокер</h3>
-                        <p class="text-gray-700 text-sm">
-                            Брокер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет как обычный Мирный Житель. Если в него ночью будут стрелять, он проснётся и сделает выстрел сам. Если в него будут стрелять второй раз, он погибнет. Если Брокера выгонят на дневном голосовании, с ним уйдёт тот, кто первый в него проголосовал (на первом голосовании).
-                        </p>
+                    <div class="p-6 flex flex-col md:flex-row items-center">
+                        <!-- Картинка -->
+                        <div class="w-full md:w-1/2 h-70 md:h-auto">
+                            <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <!-- Текст -->
+                        <div class="w-full md:w-1/2 md:pl-8 text-left">
+                            <h3 class="text-xl font-bold mb-4">Брокер</h3>
+                            <p class="text-gray-700 text-sm">
+                                <strong>Сторона:</strong> Мирные<br>
+                                <strong>Описание роли:</strong><br>
+                                Брокер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет как обычный Мирный Житель. Если в него ночью будут стрелять, он проснётся и сделает выстрел сам. Если в него будут стрелять второй раз, он погибнет. Если Брокера выгонят на дневном голосовании, с ним уйдёт тот, кто первый в него проголосовал (на первом голосовании).
+                            </p>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Карточка Взломщика -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-6">
-                    <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-70 object-cover mb-3 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4 text-center">Взломщик</h3>
-                        <p class="text-gray-700 text-sm">
-                            Взломщик (играет за мирных) - Своей ролью за игру может воспользоваться один раз. Ведущий предлагает ему проснуться каждую ночь, снятая маска принимается за согласие. Человек, на которого укажет Взломщик, на утро ведущий озвучивает его роль. Выполнив свою функцию, Взломщик становится мирным жителем.
-                        </p>
+                    <div class="p-6 flex flex-col md:flex-row items-center">
+                        <!-- Картинка -->
+                        <div class="w-full md:w-1/2 h-70 md:h-auto">
+                            <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <!-- Текст -->
+                        <div class="w-full md:w-1/2 md:pl-8 text-left">
+                            <h3 class="text-xl font-bold mb-4">Взломщик</h3>
+                            <p class="text-gray-700 text-sm">
+                                <strong>Сторона:</strong> Мирные<br>
+                                <strong>Описание роли:</strong><br>
+                                Взломщик (играет за мирных) - Своей ролью за игру может воспользоваться один раз. Ведущий предлагает ему проснуться каждую ночь, снятая маска принимается за согласие. Человек, на которого укажет Взломщик, на утро ведущий озвучивает его роль. Выполнив свою функцию, Взломщик становится мирным жителем.
+                            </p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Продолжайте добавлять остальные роли аналогичным образом -->
+
                 <!-- Карточка Вора -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
@@ -176,7 +217,7 @@
                 <!-- Карточка Лузера -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
-                    <img src="{{ asset('images/roles/looser.png') }}" alt="Лузер" class="w-full h-70 object-cover mb-3 rounded-lg">
+                        <img src="{{ asset('images/roles/looser.png') }}" alt="Лузер" class="w-full h-70 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Лузер</h3>
                         <p class="text-gray-700 text-sm">
                             Лузер (играет за мирных) - Просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных. Если к Лузеру пойдёт проверяющая карта, ведущий скажет, что он мафия. Если в него будут стрелять и лечить, он всё равно погибнет.
@@ -247,21 +288,21 @@
         </div>
 
 
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-            dynamicBullets: true, // Динамические буллеты
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
-</script>
-</div>
-@endsection
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true, // Динамические буллеты
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
+    </div>
+    @endsection
