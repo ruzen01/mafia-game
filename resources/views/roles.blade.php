@@ -15,30 +15,33 @@
             <div class="swiper-wrapper">
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-6">
-                        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-3 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
-                        <p class="text-gray-700 text-sm">
-                            <span class="flex items-start mb-2">
-                                <strong class="w-24 block">Сторона:</strong>
-                                <span>Мафия</span>
-                            </span>
-                            <span class="flex items-start mb-2">
-                                <strong class="w-24 block">Проверка:</strong>
-                                <span class="text-red-500">Мирный житель</span>
-                            </span>
-                            <span class="flex items-start mb-2">
-                                <strong>Описание роли:</strong>
-                                
-                                    Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
-                                    Мафия обозначает себя поднятием руки и Адвокат выбирает, кого он будет защищать.<br>
-                                    Если этого игрока выгоняют на голосовании, то ведущий говорит, что это мафия, которая защищена Адвокатом. И этот игрок останется в игре до тех пор,
-                                    пока не найдут Адвоката. Для проверяющих карт Адвокат является Мирным Жителем.
-                                </span>
-                            </span>
-                        </p>
-                    </div>
-                </div>
+    <div class="p-6">
+        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-3 rounded-lg">
+        <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
+        <p class="text-gray-700 text-sm">
+            <!-- Сторона -->
+            <span class="flex items-start mb-2">
+                <strong class="w-24 block">Сторона:</strong>
+                <span>Мафия</span>
+            </span>
+
+            <!-- Проверка -->
+            <span class="flex items-start mb-2">
+                <strong class="w-24 block">Проверка:</strong>
+                <span class="text-red-500">Мирный житель</span>
+            </span>
+
+            <!-- Описание роли -->
+            <strong class="block font-bold mb-2">Описание роли:</strong>
+            <span class="block">
+                Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
+                Мафия обозначает себя поднятием руки и Адвокат выбирает, кого он будет защищать.<br>
+                Если этого игрока выгоняют на голосовании, то ведущий говорит, что это мафия, которая защищена Адвокатом. И этот игрок останется в игре до тех пор,
+                пока не найдут Адвоката. Для проверяющих карт Адвокат является Мирным Жителем.
+            </span>
+        </p>
+    </div>
+</div>
                 <!-- Карточка Актёра -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
