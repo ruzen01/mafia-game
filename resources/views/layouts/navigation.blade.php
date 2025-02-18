@@ -3,7 +3,7 @@
     <div class="container mx-auto flex items-center justify-between">
         <!-- Левая часть: Логотип или название -->
         <div class="text-xl font-bold">
-            <a href="{{ url('/') }}" class="hover:text-gray-700">Мафия</a>
+            <a href="{{ url('/') }}" class="hover:text-gray-700">MAFIA-VDK</a>
         </div>
 
         <!-- Горизонтальное меню для десктопа -->
