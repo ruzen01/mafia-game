@@ -27,7 +27,7 @@
                                 <strong class="w-24 block">Проверка:</strong>
                                 <span class="text-red-500">Мирный житель</span>
                             </span>
-                            <span class="flex items-start">
+                            <span class="flex items-start mb-2">
                                 <strong class="w-24 block">Описание роли:</strong>
                                 <span class="block">
                                     Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
