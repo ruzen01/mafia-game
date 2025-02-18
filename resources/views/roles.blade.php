@@ -58,6 +58,7 @@
                 <!-- Карточка Взломщика -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="p-6">
+                    <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-70 object-cover mb-3 rounded-lg">
                         <h3 class="text-xl font-bold mb-4 text-center">Взломщик</h3>
                         <p class="text-gray-700 text-sm">
                             Взломщик (играет за мирных) - Своей ролью за игру может воспользоваться один раз. Ведущий предлагает ему проснуться каждую ночь, снятая маска принимается за согласие. Человек, на которого укажет Взломщик, на утро ведущий озвучивает его роль. Выполнив свою функцию, Взломщик становится мирным жителем.
