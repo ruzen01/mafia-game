@@ -16,7 +16,7 @@
                 <!-- Карточка Адвоката -->
                 <div class="swiper-slide relative bg-white rounded-lg shadow-md overflow-hidden">
     <div class="p-6">
-        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover mb-2 rounded-lg">
+        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-70 object-cover rounded-lg">
         <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
         <p class="text-gray-700 text-sm">
             <!-- Сторона -->
@@ -26,13 +26,13 @@
             </span>
 
             <!-- Проверка -->
-            <span class="flex items-start mb-1">
+            <span class="flex items-start">
                 <strong class="w-24 block">Проверка:</strong>
                 <span class="text-red-500">Мирный житель</span>
             </span>
 
             <!-- Описание роли -->
-            <strong class="block font-bold mb-1">Описание роли:</strong>
+            <strong class="block font-bold">Описание роли:</strong>
             <span class="block">
                 Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
                 Мафия обозначает себя поднятием руки и Адвокат выбирает, кого он будет защищать.<br>
