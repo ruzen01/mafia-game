@@ -20,7 +20,7 @@
         <h3 class="text-xl font-bold mb-4 text-center">Адвокат</h3>
         <p class="text-gray-700 text-sm">
             <!-- Сторона -->
-            <span class="flex items-start mb-1">
+            <span class="flex items-start">
                 <strong class="w-24 block">Сторона:</strong>
                 <span>Мафия</span>
             </span>
