@@ -4,6 +4,10 @@
 
 <!-- Подключение Swiper CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
+<!-- Подключение Swiper JS -->
+<script type="module">
+  import Swiper from 'https://unpkg.com/swiper@9/swiper-bundle.esm.browser.min.js';
+</script>
 
 <div class="container mx-auto px-4 py-8">
     <!-- Карусель -->
