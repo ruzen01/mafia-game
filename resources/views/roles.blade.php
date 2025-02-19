@@ -19,7 +19,7 @@
                     <div class="p-6 flex flex-col md:flex-row items-center">
                         <!-- Картинка -->
                         <div class="w-full md:w-1/2 h-70 md:h-auto">
-                            <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border-5 border-gray-300">
+                            <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border-gray-300">
                         </div>
                         <!-- Текст -->
                         <div class="w-full md:w-1/2 md:pl-8 text-left">
