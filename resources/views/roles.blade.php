@@ -288,21 +288,53 @@
         </div>
 
 
-        <script>
-            var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                    dynamicBullets: true, // Динамические буллеты
-                },
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-            });
-        </script>
+        <style>
+    /* Уменьшение размера и изменение цвета кнопок */
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+        background-color: #ccc;
+        border-radius: 50%;
+        background-size: 12px 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Изменение цвета иконки */
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        color: #666;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    /* Эффект при наведении */
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        background-color: #999;
+    }
+
+    .swiper-button-next:hover::after,
+    .swiper-button-prev:hover::after {
+        color: #333;
+    }
+</style>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
     </div>
     @endsection
