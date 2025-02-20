@@ -12,7 +12,7 @@
             rotate="false"
             slideShadows="true"
             watchSlidesProgress="true"
-
+            class="max-w-full overflow-hidden" <!-- Добавьте эти классы -->
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden max-w-sm md:max-w-md lg:max-w-lg mx-auto">
@@ -94,25 +94,5 @@
         </swiper-container>
     </div>
 </div>
-
-<!-- JavaScript для обновления слайдера при изменении ориентации -->
-<script type="module">
-    import { register } from 'swiper/element/bundle';
-
-    document.addEventListener('DOMContentLoaded', () => {
-        register();
-
-        // Обновление слайдера при изменении ориентации экрана
-        window.addEventListener('orientationchange', () => {
-            const swiperContainers = document.querySelectorAll('swiper-container');
-            swiperContainers.forEach(swiperContainer => {
-                const swiperInstance = swiperContainer.swiper;
-                if (swiperInstance) {
-                    swiperInstance.update(); // Принудительное обновление слайдера
-                }
-            });
-        });
-    });
-</script>
 
 @endsection
