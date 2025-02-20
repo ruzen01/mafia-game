@@ -17,10 +17,10 @@
             pagination="true"
             class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
-            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden filter sepia">
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300 filter-none">
+                        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300 filter sepia-50">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center text-center font-bold mb-4">Адвокат</h3>
