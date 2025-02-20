@@ -23,11 +23,11 @@
             @auth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded focus:outline-none">Выйти</button>
+                    <button type="submit" class="px-4 py-2 bg-zinc-400 text-white hover:bg-zinc-500 rounded focus:outline-none">Выйти</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded focus:outline-none">Войти</a>
-                <a href="{{ route('register') }}" class="px-4 py-2 bg-green-500 text-white hover:bg-green-600 rounded focus:outline-none">Регистрация</a>
+                <a href="{{ route('login') }}" class="px-4 py-2 bg-zinc-400 text-white hover:bg-zinc-500 rounded focus:outline-none">Войти</a>
+                <a href="{{ route('register') }}" class="px-4 py-2 bg-zinc-500 text-white hover:bg-zinc-600 rounded focus:outline-none">Регистрация</a>
             @endauth
         </div>
 
@@ -60,11 +60,11 @@
         @auth
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded focus:outline-none">Выйти</button>
+                <button type="submit" class="w-full px-4 py-2 bg-zinc-400 text-white hover:bg-zinc-500 rounded focus:outline-none">Выйти</button>
             </form>
         @else
-            <a href="{{ route('login') }}" class="w-full px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded focus:outline-none">Войти</a>
-            <a href="{{ route('register') }}" class="w-full px-4 py-2 bg-green-500 text-white hover:bg-green-600 rounded focus:outline-none">Регистрация</a>
+            <a href="{{ route('login') }}" class="w-full px-4 py-2 bg-zinc-400 text-white hover:bg-zinc-500 rounded focus:outline-none">Войти</a>
+            <a href="{{ route('register') }}" class="w-full px-4 py-2 bg-zinc-500 text-white hover:bg-zinc-600 rounded focus:outline-none">Регистрация</a>
         @endauth
     </div>
 </div>
