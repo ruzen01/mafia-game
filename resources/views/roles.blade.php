@@ -13,7 +13,7 @@
             perSlideRotate="0"
             rotate="false"
             slideShadows="true"
-            watchSlidesProgress="true"
+            //watchSlidesProgress="true"
             class="max-w-full overflow-hidden"
         >
             <!-- Карточка Адвоката -->
