@@ -15,6 +15,7 @@
             pagination-dynamic-bullets="true"
             centered-slides="true"
             slide-to-clicked-slide="true"
+            watch-slides-progress="true"
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
