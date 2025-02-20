@@ -7,7 +7,7 @@
         <!-- Контейнер для Swiper -->
         <swiper-container
             effect="cards"
-            slides-per-view="1.2"
+            slides-per-view="1"
             centered-slides="true"
             perSlideOffset="8"
             perSlideRotate="0"
@@ -91,6 +91,25 @@
                     </div>
                 </div>
             </swiper-slide>
+
+                        <!-- Карточка Взломщик -->
+                        <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 h-70 md:h-auto">
+                        <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                        <h3 class="text-xl font-bold mb-4">Взломщик</h3>
+                        <p class="text-gray-700 text-sm">
+                            Сторона: Мирные<br>
+                            Проверка: <span class="text-red-500">Мирный житель</span><br>
+                            Взломщик своей ролью за игру может воспользоваться один раз. Ведущий ему предлагает проснуться каждую ночь, снятая маска принимается за согласие.
+                            Роль игрока, на которого укажет взломщик, будет объявлена ведущим утром. Выполнив свою функцию, Взломщик становится мирным жителем.
+                        </p>
+                    </div>
+                </div>
+            </swiper-slide>
+
 
             <!-- Добавьте остальные карточки здесь -->
         </swiper-container>
