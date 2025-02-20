@@ -6,13 +6,7 @@
     <div class="relative max-w-6xl mx-auto">
         <!-- Контейнер для Swiper -->
         <swiper-container
-            slides-per-view="1"
-            space-between="20"
-            loop="true"
-            navigation="false"
-            pagination="true"
-            pagination-clickable="true"
-            pagination-dynamic-bullets="true"
+
             effect="cards"
             perSlideOffset="8"
             perSlideRotate="0"
