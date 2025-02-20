@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Добавлено -->
     <title>@yield('title', 'Мафия')</title>
-    <!-- Подключение Swiper CSS и JS через Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
