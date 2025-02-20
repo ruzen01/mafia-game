@@ -129,6 +129,25 @@
                 </div>
             </swiper-slide>
 
+            <!-- Карточка Депутата -->
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 h-70 md:h-auto">
+                        <img src="{{ asset('images/roles/deputat.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                        <h3 class="text-xl text-center font-bold mb-4">Депутат</h3>
+                        <p class="text-gray-700 text-sm">
+                            Сторона: Мирные<br>
+                            Проверка: <span class="text-red-500">Мирный житель</span><br>
+                            Депутат просыпается каждую ночь и даёт иммунитет любому из участников игры. Но об этом знают только Депутат и ведущий.<br>
+                            Если игрока, которому депутат дал иммунитет, подняли на голосовании, то ведущий это объявляет. Игрок может сесть, а вместо себя поднять любого из игроков, которые в него голосовали (хоть всех).
+                        </p>
+                    </div>
+                </div>
+            </swiper-slide>
+
+
             <!-- Добавьте остальные карточки здесь -->
         </swiper-container>
     </div>
