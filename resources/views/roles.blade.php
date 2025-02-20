@@ -12,7 +12,7 @@
             rotate="false"
             slideShadows="true"
             watchSlidesProgress="true"
-            class="max-w-full overflow-hidden"
+            class="max-w-full"
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
