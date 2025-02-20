@@ -14,7 +14,10 @@
             pagination-clickable="true"
             pagination-dynamic-bullets="true"
             effect="cards"
-
+            perSlideOffset="8"
+            perSlideRotate="0"
+            rotate="false"
+            slideShadows="true"
 
         >
             <!-- Карточка Адвоката -->
