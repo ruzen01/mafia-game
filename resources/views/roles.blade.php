@@ -95,4 +95,24 @@
     </div>
 </div>
 
+<!-- JavaScript для обновления слайдера при изменении ориентации -->
+<script type="module">
+    import { register } from 'swiper/element/bundle';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        register();
+
+        // Обновление слайдера при изменении ориентации экрана
+        window.addEventListener('orientationchange', () => {
+            const swiperContainers = document.querySelectorAll('swiper-container');
+            swiperContainers.forEach(swiperContainer => {
+                const swiperInstance = swiperContainer.swiper;
+                if (swiperInstance) {
+                    swiperInstance.update(); // Принудительное обновление слайдера
+                }
+            });
+        });
+    });
+</script>
+
 @endsection
