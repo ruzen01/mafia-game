@@ -9,7 +9,7 @@
             slides-per-view="1"
             space-between="20"
             loop="true"
-            navigation="true"
+            navigation="false"
             pagination="true"
             pagination-clickable="true"
             pagination-dynamic-bullets="true"
@@ -76,7 +76,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/briker.png') }}" alt="Брокер" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl font-bold mb-4">Брокер</h3>
