@@ -2,9 +2,6 @@
 @section('title', 'Роли в игры')
 @section('content')
 
-<!-- Подключение Swiper CSS и JS через Vite -->
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-
 <div class="container mx-auto px-4 py-8">
     <div class="relative max-w-6xl mx-auto">
         <!-- Контейнер для Swiper -->
