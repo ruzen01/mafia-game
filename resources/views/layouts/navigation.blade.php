@@ -4,8 +4,7 @@
 <!-- Левая часть: Изображение логотипа + текст -->
 <div>
     <a href="{{ url('/') }}" class="flex items-center space-x-2">
-        <img src="{{ asset('images/logo.png') }}" alt="Mafia-Vdk Logo" class="h-8 w-auto">
-        <span class="text-xl font-bold text-gray-800">MAFIA-VDK</span>
+        <img src="{{ asset('images/logo.png') }}" alt="Mafia-Vdk Logo" class="h-8 sm:h-10 md:h-12 w-auto">
     </a>
 </div>
 
