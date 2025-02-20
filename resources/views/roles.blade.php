@@ -7,15 +7,14 @@
         <!-- Контейнер для Swiper -->
         <swiper-container
             effect="cards"
-            slides-per-view="1"
+            slides-per-view="1.05"
             centered-slides="true"
             perSlideOffset="8"
             perSlideRotate="0"
             rotate="false"
             slideShadows="true"
-            //watchSlidesProgress="true"
-            class="max-w-full overflow-hidden"
-        >
+
+            class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
@@ -73,7 +72,7 @@
                 </div>
             </swiper-slide>
 
-            
+
             <!-- Карточка Брокера -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
@@ -92,8 +91,8 @@
                 </div>
             </swiper-slide>
 
-                        <!-- Карточка Взломщик -->
-                        <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Карточка Взломщик -->
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-full object-cover rounded-lg border border-gray-300">
@@ -110,8 +109,8 @@
                 </div>
             </swiper-slide>
 
-           <!-- Карточка Вора -->
-           <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Карточка Вора -->
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/vor.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
