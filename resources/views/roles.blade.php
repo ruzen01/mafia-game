@@ -9,7 +9,7 @@
             slides-per-view="1"
             space-between="20"
             loop="true"
-            navigation="false"
+            navigation="true"
             pagination="false"
             pagination-clickable="false"
             pagination-dynamic-bullets="true"
