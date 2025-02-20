@@ -44,7 +44,26 @@
                         <h3 class="text-xl font-bold mb-4">Актёр</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мирные<br>
-                            Описание роли: Актёр играет за мирных. В случае гибели активноролевой карты или мафии, ведущий предлагает актёру забрать роль погибшего...
+                            Актёр просыпается в первую ночь, чтобы познакомиться с ведущим. Дальше играет за мирных.<br>
+                            В случае гибели любой активноролевой карты, мафии, ведущий предлагает актёру забрать роль погибшего. Снятая маска принимается за согласие.<br>
+                            Забрав роль персонажа, играет ей до конца игры.
+                        </p>
+                    </div>
+                </div>
+            </swiper-slide>
+
+            <!-- Карточка Бессмертного -->
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 h-70 md:h-auto">
+                        <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                        <h3 class="text-xl font-bold mb-4">Бессмертный</h3>
+                        <p class="text-gray-700 text-sm">
+                            Сторона: Мирные<br>
+                            Бессмертный просыпается в первую ночь, чтобы познакомиться с ведущим, дальше играет за мирных.<br>
+                            Если в него будут стрелять ночью, то на утро ведущий скажет, что никто не погиб. Его нельзя убить ночью, можно выгнать только на дневном голосовании.
                         </p>
                     </div>
                 </div>
