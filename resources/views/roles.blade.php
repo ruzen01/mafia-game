@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Роли в игры')
+@section('title', 'Роли в игрe')
 @section('content')
 
 <div class="container mx-auto px-4 py-8">
