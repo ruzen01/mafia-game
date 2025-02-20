@@ -11,6 +11,7 @@
             perSlideRotate="0"
             rotate="false"
             slideShadows="true"
+            watchSlidesProgress="true"
 
         >
             <!-- Карточка Адвоката -->
