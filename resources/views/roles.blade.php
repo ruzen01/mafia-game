@@ -10,8 +10,8 @@
             space-between="20"
             loop="true"
             navigation="true"
-            pagination="false"
-            pagination-clickable="false"
+            pagination="true"
+            pagination-clickable="true"
             pagination-dynamic-bullets="true"
         >
             <!-- Карточка Адвоката -->
