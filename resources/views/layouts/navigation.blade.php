@@ -3,9 +3,9 @@
     <div class="container mx-auto flex items-center justify-between">
 <!-- Левая часть: Изображение логотипа + текст -->
 <div>
-    <a href="{{ url('/') }}" class="flex items-center space-x-2">
-        <img src="{{ asset('images/logo.png') }}" alt="Mafia-Vdk Logo" class="h-8 sm:h-10 md:h-12 w-auto">
-    </a>
+<a href="{{ url('/') }}" class="flex items-center space-x-2">
+    <img src="{{ asset('images/logo.png') }}" alt="Mafia-Vdk Logo" class="h-12 sm:h-16 md:h-24 lg:h-32 w-auto">
+</a>
 </div>
 
         <!-- Горизонтальное меню для десктопа -->
