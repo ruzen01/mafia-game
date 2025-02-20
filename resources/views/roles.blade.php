@@ -13,7 +13,7 @@
             pagination="true"
             pagination-clickable="true"
             pagination-dynamic-bullets="true"
-            data-swiper-parallax="true"
+            data-swiper-parallax="-300"
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
