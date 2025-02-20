@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Роли в игре')
+@section('title', 'Роли в игры')
 @section('content')
 
-<!-- Подключение Swiper CSS -->
-<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+<!-- Подключение Swiper CSS и JS через Vite -->
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 <div class="container mx-auto px-4 py-8">
     <div class="relative max-w-6xl mx-auto">
@@ -55,6 +55,4 @@
     </div>
 </div>
 
-<!-- Подключение скрипта -->
-<script type="module" src="{{ mix('js/app.js') }}"></script>
 @endsection
