@@ -16,7 +16,7 @@
             effect="cards"
             perSlideOffset="8"
             perSlideRotate="2"
-            rotate="false"
+            rotate="true"
             slideShadows="true"
 
         >
