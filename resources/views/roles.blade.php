@@ -6,13 +6,15 @@
     <div class="relative max-w-6xl mx-auto">
         <!-- Контейнер для Swiper -->
         <swiper-container
-            slides-per-view="1"
+            slides-per-view="3"
             space-between="20"
             loop="true"
             navigation="true"
             pagination="true"
             pagination-clickable="true"
             pagination-dynamic-bullets="true"
+            centered-slides="true"
+            slide-to-clicked-slide="true"
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
