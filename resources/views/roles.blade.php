@@ -13,7 +13,12 @@
             pagination="true"
             pagination-clickable="true"
             pagination-dynamic-bullets="true"
-            effect="fade"
+            effect="cards"
+            perSlideOffset="8"
+            perSlideRotate="2"
+            rotate="false"
+            slideShadows="true"
+
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
