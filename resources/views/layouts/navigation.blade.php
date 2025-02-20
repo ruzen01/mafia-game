@@ -1,12 +1,10 @@
 <!-- Блок навигации (закрепленный наверху для широких экранов) -->
 <nav class="bg-gray-200 p-6 shadow-lg sticky top-0 z-50" id="navbar">
     <div class="container mx-auto flex items-center justify-between">
-<!-- Левая часть: Изображение логотипа + текст -->
-<div>
-<a href="{{ url('/') }}" class="flex items-center space-x-2">
-    <img src="{{ asset('images/logo.png') }}" alt="Mafia-Vdk Logo" class="h-10 sm:h-12 md:h-16 lg:h-20 w-auto">
-</a>
-</div>
+        <!-- Левая часть: Логотип или название -->
+        <div class="text-xl font-bold">
+            <a href="{{ url('/') }}" class="hover:text-gray-700">MAFIA-VDK</a>
+        </div>
 
         <!-- Горизонтальное меню для десктопа -->
         <div class="hidden sm:flex flex-grow justify-center space-x-4">
