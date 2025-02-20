@@ -7,14 +7,14 @@
         <!-- Контейнер для Swiper -->
         <swiper-container
             effect="cards"
-            slides-per-view="1.05"
+            slides-per-view="1"
             centered-slides="true"
             perSlideOffset="8"
             perSlideRotate="0"
             rotate="false"
             slideShadows="true"
             mousewheel="true"
-
+            pagination="true"
             class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
