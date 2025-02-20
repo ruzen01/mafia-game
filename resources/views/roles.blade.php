@@ -6,7 +6,7 @@
     <div class="relative max-w-6xl mx-auto">
         <!-- Контейнер для Swiper -->
         <swiper-container
-
+            loop="true"
             effect="cards"
             perSlideOffset="8"
             perSlideRotate="0"
