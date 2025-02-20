@@ -13,6 +13,7 @@
             perSlideRotate="0"
             rotate="false"
             slideShadows="true"
+            mousewheel="true"
 
             class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
@@ -22,7 +23,7 @@
                         <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
-                        <h3 class="text-xl font-bold mb-4">Адвокат</h3>
+                        <h3 class="text-xl text-center text-center font-bold mb-4">Адвокат</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мафия<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
@@ -42,7 +43,7 @@
                         <img src="{{ asset('images/roles/actor.png') }}" alt="Актёр" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
-                        <h3 class="text-xl font-bold mb-4">Актёр</h3>
+                        <h3 class="text-xl text-center font-bold mb-4">Актёр</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мирные<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
@@ -61,7 +62,7 @@
                         <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
-                        <h3 class="text-xl font-bold mb-4">Бессмертный</h3>
+                        <h3 class="text-xl text-center font-bold mb-4">Бессмертный</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мирные<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
@@ -80,7 +81,7 @@
                         <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
-                        <h3 class="text-xl font-bold mb-4">Брокер</h3>
+                        <h3 class="text-xl text-center font-bold mb-4">Брокер</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мирные<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
@@ -98,7 +99,7 @@
                         <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
-                        <h3 class="text-xl font-bold mb-4">Взломщик</h3>
+                        <h3 class="text-xl text-center font-bold mb-4">Взломщик</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мирные<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
@@ -116,7 +117,7 @@
                         <img src="{{ asset('images/roles/vor.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
-                        <h3 class="text-xl font-bold mb-4">Вор</h3>
+                        <h3 class="text-xl text-center font-bold mb-4">Вор</h3>
                         <p class="text-gray-700 text-sm">
                             Сторона: Мирные<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
