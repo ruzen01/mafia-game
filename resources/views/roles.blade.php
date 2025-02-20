@@ -13,7 +13,7 @@
             pagination="true"
             pagination-clickable="true"
             pagination-dynamic-bullets="true"
-            crossFade="true"
+            effect="fade"
         >
             <!-- Карточка Адвоката -->
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
