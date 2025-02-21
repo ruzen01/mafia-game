@@ -21,7 +21,7 @@
             <swiper-slide class="relative bg-gradient-to-br from-slate-800 to-slate-400 rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/advokat.webp') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left text-white">
                         <h3 class="text-xl text-center text-center font-bold mb-4">Адвокат</h3>
@@ -41,7 +41,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/actor.png') }}" alt="Актёр" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/actor.webp') }}" alt="Актёр" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Актёр</h3>
@@ -60,7 +60,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/bessmertniy.png') }}" alt="Бессмертный" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/bessmertniy.webp') }}" alt="Бессмертный" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Бессмертный</h3>
@@ -79,7 +79,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/broker.png') }}" alt="Брокер" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/broker.webp') }}" alt="Брокер" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Брокер</h3>
@@ -97,7 +97,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/vzlomshik.png') }}" alt="Взломщик" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/vzlomshik.webp') }}" alt="Взломщик" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Взломщик</h3>
@@ -114,7 +114,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
     <div class="p-6 flex flex-col md:flex-row items-center">
         <div class="w-full md:w-1/2 h-70 md:h-auto">
-            <img src="{{ asset('images/roles/vor.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/vor.webp') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
         </div>
         <div class="w-full md:w-1/2 md:pl-8 text-left">
             <h3 class="text-xl text-center font-bold mb-4">Вор</h3>
@@ -133,7 +133,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/deputat.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/deputat.webp') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Депутат</h3>
@@ -151,7 +151,7 @@
             <swiper-slide class="relative bg-gradient-to-br from-stone-800 to-stone-300 rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/diktator.png') }}" alt="Диктатор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/diktator.webp') }}" alt="Диктатор" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left text-white">
                         <h3 class="text-xl text-center font-bold mb-4">Диктатор</h3>
@@ -169,7 +169,7 @@
             <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
-                        <img src="{{ asset('images/roles/doctor.png') }}" alt="Доктор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                        <img src="{{ asset('images/roles/doctor.webp') }}" alt="Доктор" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Доктор</h3>
