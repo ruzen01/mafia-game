@@ -63,8 +63,8 @@
     </div>
 
     <!-- Карточки с подробной информацией -->
-    <div id="cardContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full relative">
+    <div id="cardContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full relative my-4">
             <button onclick="closeCard()" class="absolute top-2 right-2 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
                 &times;
             </button>
