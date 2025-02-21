@@ -17,7 +17,7 @@
             pagination="true"
             class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
-            <swiper-slide class="relative bg-gradient-to-r from-slate-800 to-slate-300 bg-white rounded-lg shadow-md overflow-hidden">
+            <swiper-slide class="relative bg-gradient-to-br from-slate-800 to-slate-500 bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300">
