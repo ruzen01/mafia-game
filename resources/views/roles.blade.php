@@ -25,8 +25,8 @@
                     <div class="w-full md:w-1/2 md:pl-8 text-left text-white">
                         <h3 class="text-xl text-center text-center font-bold mb-4">Адвокат</h3>
                         <p class="text-sm">
-                            Сторона: <span class="bg-black text-white px-1 rounded">Мафия</span><br>
-                            Проверка: <span class="text-red-500">Мирный житель</span><br>
+                            Сторона: <span class="bg-black text-white rounded">Мафия</span><br>
+                            Проверка: <span class="bg-gray-100 text-red-500 rounded">Мирный житель</span><br>
                             Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
                             Мафия обозначает себя поднятием руки и Адвокат выбирает, кого он будет защищать.<br>
                             Если этого игрока выгоняют на голосовании, то ведущий говорит, что это мафия, которая защищена Адвокатом. И этот игрок останется в игре до тех пор,
