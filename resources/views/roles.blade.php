@@ -147,6 +147,23 @@
                 </div>
             </swiper-slide>
 
+            <!-- Карточка Диктатор -->
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 h-70 md:h-auto">
+                        <img src="{{ asset('images/roles/deputat.png') }}" alt="Диктатор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                        <h3 class="text-xl text-center font-bold mb-4">Диктатор</h3>
+                        <p class="text-gray-700 text-sm">
+                            Сторона: Сам за себя<br>
+                            Проверка: <span class="text-red-500">?</span><br>
+                            Самое главное отличие этой роли - он никого не убивает ночью. Просыпается каждую ночь, показывает на любого участника игры, которого, по его мнению, точно НЕ выгонят днём.<br>
+                            Если Диктатора выгонят днём, то уйдёт тот игрок, на кого он указывал ночью. Каждую ночь выбирается новый игрок. Чтобы городу выгнать Диктатора, надо выгнать того игрока, которого он выбирал ночью.
+                        </p>
+                    </div>
+                </div>
+            </swiper-slide>
 
             <!-- Добавьте остальные карточки здесь -->
         </swiper-container>
