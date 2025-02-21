@@ -17,14 +17,14 @@
             pagination="true"
             class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
-            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+            <swiper-slide class="relative bg-gradient-to-br from-slate-800 to-slate-300 bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                    <div class="w-full md:w-1/2 md:pl-8 text-left text-white">
                         <h3 class="text-xl text-center text-center font-bold mb-4">Адвокат</h3>
-                        <p class="text-gray-700 text-sm">
+                        <p class="text-sm">
                             Сторона: Мафия<br>
                             Проверка: <span class="text-red-500">Мирный житель</span><br>
                             Адвокат знает мафию, но мафия не знает Адвоката. Просыпается в первую ночь, чтобы познакомиться с ведущим.<br>
@@ -147,14 +147,14 @@
             </swiper-slide>
 
             <!-- Карточка Диктатор -->
-            <swiper-slide class="relative bg-gradient-to-br from-stone-800 to-stone-300 rounded-lg shadow-md overflow-hidden text-white">
+            <swiper-slide class="relative bg-gradient-to-br from-stone-800 to-stone-300 rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/diktator.png') }}" alt="Диктатор" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                    <div class="w-full md:w-1/2 md:pl-8 text-left text-white">
                         <h3 class="text-xl text-center font-bold mb-4">Диктатор</h3>
-                        <p class="text-gray-700 text-sm">
+                        <p class="text-sm">
                             Сторона: Сам за себя<br>
                             Проверка: <span class="text-red-500">?</span><br>
                             Самое главное отличие этой роли - он никого не убивает ночью. Просыпается каждую ночь, показывает на любого участника игры, которого, по его мнению, точно НЕ выгонят днём.<br>
