@@ -7,6 +7,7 @@
         <!-- Контейнер для Swiper -->
         <swiper-container
             effect="cards"
+            lazy="true"
             slides-per-view="1"
             centered-slides="true"
             perSlideOffset="8"
