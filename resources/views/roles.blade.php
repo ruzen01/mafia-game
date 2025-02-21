@@ -45,7 +45,7 @@
                     <div class="w-full md:w-1/2 md:pl-8 text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Актёр</h3>
                         <p class="text-sm">
-                            Сторона: <span class="bg-red text-white px-1 rounded">Мирные</span><br>
+                            Сторона: <span class="bg-red-500 text-white px-1 rounded">Мирные</span><br>
                             Проверка: <span class="bg-gray-100 text-red-500 px-1 rounded">Мирный житель</span><br>
                             Актёр просыпается в первую ночь, чтобы познакомиться с ведущим. Дальше играет за мирных.<br>
                             В случае гибели любой активноролевой карты, мафии, ведущий предлагает актёру забрать роль погибшего. Снятая маска принимается за согласие.<br>
