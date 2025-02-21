@@ -148,7 +148,7 @@
 
             <!-- Карточка Диктатор -->
             <swiper-slide class="relative bg-gradient-to-br from-stone-800 to-stone-300 rounded-lg shadow-md overflow-hidden">
-                <div class="p-6 flex flex-col md:flex-row items-center text-white">
+                <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/diktator.png') }}" alt="Диктатор" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
