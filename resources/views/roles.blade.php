@@ -7,72 +7,72 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <!-- Миниатюра Адвоката -->
         <div class="cursor-pointer" onclick="openCard('advokat')">
-            <img src="{{ asset('images/roles/advokat.webp') }}" alt="Адвокат" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/advokat.webp') }}" alt="Адвокат" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Адвокат</p>
         </div>
 
         <!-- Миниатюра Актёра -->
         <div class="cursor-pointer" onclick="openCard('actor')">
-            <img src="{{ asset('images/roles/actor.webp') }}" alt="Актёр" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/actor.webp') }}" alt="Актёр" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Актёр</p>
         </div>
 
         <!-- Миниатюра Бессмертного -->
         <div class="cursor-pointer" onclick="openCard('bessmertniy')">
-            <img src="{{ asset('images/roles/bessmertniy.webp') }}" alt="Бессмертный" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/bessmertniy.webp') }}" alt="Бессмертный" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Бессмертный</p>
         </div>
 
 
         <!-- Миниатюра Брокера -->
         <div class="cursor-pointer" onclick="openCard('broker')">
-            <img src="{{ asset('images/roles/broker.webp') }}" alt="Брокер" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/broker.webp') }}" alt="Брокер" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Брокер</p>
         </div>
 
 
         <!-- Миниатюра Взломщика -->
         <div class="cursor-pointer" onclick="openCard('vzlomshik')">
-            <img src="{{ asset('images/roles/vzlomshik.webp') }}" alt="Взломщик" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/vzlomshik.webp') }}" alt="Взломщик" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Взломщик</p>
         </div>
 
         <!-- Миниатюра Вора -->
         <div class="cursor-pointer" onclick="openCard('vor')">
-            <img src="{{ asset('images/roles/vor.webp') }}" alt="Вор" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/vor.webp') }}" alt="Вор" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Вор</p>
         </div>
 
         <!-- Миниатюра Депутата -->
         <div class="cursor-pointer" onclick="openCard('deputat')">
-            <img src="{{ asset('images/roles/deputat.webp') }}" alt="Депутат" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/deputat.webp') }}" alt="Депутат" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Депутат</p>
         </div>
 
         <!-- Миниатюра Диктатор -->
         <div class="cursor-pointer" onclick="openCard('diktator')">
-            <img src="{{ asset('images/roles/diktator.webp') }}" alt="Диктатор" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/diktator.webp') }}" alt="Диктатор" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Диктатор</p>
         </div>
 
         <!-- Миниатюра Доктора -->
         <div class="cursor-pointer" onclick="openCard('doctor')">
-            <img src="{{ asset('images/roles/doctor.webp') }}" alt="Доктор" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+            <img src="{{ asset('images/roles/doctor.webp') }}" alt="Доктор" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Доктор</p>
         </div>
     </div>
 
-<!-- Карточки с подробной информацией -->
-<div id="cardContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center p-4 overflow-y-auto" style="top: 64px;">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full relative my-4">
-        <button onclick="closeCard()" class="absolute top-2 right-2 bg-gray-200 rounded-full p-2 hover:bg-gray-300">
-            &times;
-        </button>
-        <div id="cardContent" class="p-6">
-            <!-- Контент карточки будет загружен сюда -->
+    <!-- Карточки с подробной информацией -->
+    <div id="cardContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center p-4 overflow-y-auto" style="top: 64px;">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full relative my-4">
+            <button onclick="closeCard()" class="absolute top-2 right-2 bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300">
+                &times;
+            </button>
+            <div id="cardContent" class="p-6">
+                <!-- Контент карточки будет загружен сюда -->
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <script>
