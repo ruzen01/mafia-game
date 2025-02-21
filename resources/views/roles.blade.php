@@ -164,6 +164,24 @@
                 </div>
             </swiper-slide>
 
+            <!-- Карточка Доктор -->
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6 flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 h-70 md:h-auto">
+                        <img src="{{ asset('images/roles/deputat.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                        <h3 class="text-xl text-center font-bold mb-4">Депутат</h3>
+                        <p class="text-gray-700 text-sm">
+                            Сторона: <span class="bg-red-500 text-white px-1 rounded">Мирные</span><br>
+                            Проверка: <span class="bg-gray-100 text-red-500 px-1 rounded">Мирный житель</span><br>
+                            Просыпается каждую ночь и лечит игрока, в которого, по его мнению, стреляла мафия. Себя за игру доктор может лечить три раза (в том числе и подряд).<br>
+                            Всех остальных участников может лечить неограниченное количество раз, но не две ночи подряд.
+                        </p>
+                    </div>
+                </div>
+            </swiper-slide>
+
             <!-- Добавьте остальные карточки здесь -->
         </swiper-container>
     </div>
