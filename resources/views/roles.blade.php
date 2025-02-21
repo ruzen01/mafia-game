@@ -17,7 +17,7 @@
             pagination="true"
             class="max-w-full overflow-hidden">
             <!-- Карточка Адвоката -->
-            <swiper-slide class="relative bg-gradient-to-br from-slate-800 to-slate-400 bg-white rounded-lg shadow-md overflow-hidden">
+            <swiper-slide class="relative bg-gradient-to-br from-slate-800 to-slate-400 rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/advokat.png') }}" alt="Адвокат" class="w-full h-full object-cover rounded-lg border border-gray-300">
@@ -37,16 +37,16 @@
             </swiper-slide>
 
             <!-- Карточка Актёра -->
-            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+            <swiper-slide class="relative bg-gradient-to-br from-rose-800 to-slate-400 rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/actor.png') }}" alt="Актёр" class="w-full h-full object-cover rounded-lg border border-gray-300">
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-8 text-left">
+                    <div class="w-full md:w-1/2 md:pl-8 text-white text-left">
                         <h3 class="text-xl text-center font-bold mb-4">Актёр</h3>
                         <p class="text-gray-700 text-sm">
-                            Сторона: Мирные<br>
-                            Проверка: <span class="text-red-500">Мирный житель</span><br>
+                            Сторона: <span class="bg-red text-white px-1 rounded">Мирные</span><br>
+                            Проверка: <span class="bg-gray-100 text-red-500 px-1 rounded">Мирный житель</span><br>
                             Актёр просыпается в первую ночь, чтобы познакомиться с ведущим. Дальше играет за мирных.<br>
                             В случае гибели любой активноролевой карты, мафии, ведущий предлагает актёру забрать роль погибшего. Снятая маска принимается за согласие.<br>
                             Забрав роль персонажа, играет ей до конца игры.
