@@ -110,7 +110,7 @@
                 </div>
             </swiper-slide>
 
-            <swiper-slide class="relative bg-gradient-to-br from-gray-200 to-gray-800 rounded-lg shadow-md overflow-hidden">
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
     <div class="p-6 flex flex-col md:flex-row items-center text-white">
         <div class="w-full md:w-1/2 h-70 md:h-auto">
             <img src="{{ asset('images/roles/vor.png') }}" alt="Вор" class="w-full h-full object-cover rounded-lg border border-gray-300">
@@ -147,7 +147,7 @@
             </swiper-slide>
 
             <!-- Карточка Диктатор -->
-            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden">
+            <swiper-slide class="relative bg-gradient-to-br from-gray-900 to-gray-300 bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/diktator.png') }}" alt="Диктатор" class="w-full h-full object-cover rounded-lg border border-gray-300">
