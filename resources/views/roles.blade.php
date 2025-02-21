@@ -37,7 +37,7 @@
             </swiper-slide>
 
             <!-- Карточка Актёра -->
-            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden border-4 border-red-500">
+            <swiper-slide class="relative bg-white rounded-lg shadow-md overflow-hidden border-1 border-red-500">
                 <div class="p-6 flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 h-70 md:h-auto">
                         <img src="{{ asset('images/roles/actor.png') }}" alt="Актёр" class="w-full h-full object-cover rounded-lg border border-gray-300">
