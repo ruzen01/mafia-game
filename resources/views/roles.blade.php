@@ -6,6 +6,9 @@
 $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 @endphp
 
+<h1 class="text-3xl font-bold text-center">РОЛИ</h1>
+<p class="text-lg text-center mb-4">Играть роль не сложно. Оставаться собой — вот где искусство.</p>
+
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     @foreach ($roles as $id => $role)
     <div class="cursor-pointer" onclick="openCard('{{ $id }}')">
