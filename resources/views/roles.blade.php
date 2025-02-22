@@ -38,6 +38,43 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
         const cardContent = document.getElementById('cardContent');
 
         const role = rolesData[cardId];
+
+        // Определяем стили для значения стороны роли
+        let sideValueClass;
+        switch (role.side) {
+            case 'Мафия':
+                sideValueClass = 'bg-black text-white'; // Белый текст на черном фоне
+                break;
+            case 'Мирные':
+                sideValueClass = 'bg-red-500 text-white'; // Белый текст на красном фоне
+                break;
+            case 'Сам за себя':
+                sideValueClass = 'bg-yellow-500 text-white'; // Белый текст на желтом фоне
+                break;
+            default:
+                sideValueClass = 'bg-gray-100 text-black'; // По умолчанию
+        }
+
+        // Проверка: показываем только если не равно 0
+        let checkBlock = '';
+        if (role.check_result !== 0) {
+            let checkValueClass;
+            if (role.check_result === 'Мирный житель') {
+                checkValueClass = 'bg-gray-100 text-red-500'; // Красный текст на сером фоне
+            } else if (role.check_result === 'Мафия') {
+                checkValueClass = 'bg-gray-100 text-black'; // Черный текст на сером фоне
+            } else {
+                checkValueClass = 'bg-gray-100 text-black'; // По умолчанию
+            }
+
+            checkBlock = `
+                <div class="mt-2">
+                    <span class="font-medium">Проверка:</span>
+                    <span class="px-2 py-1 rounded ${checkValueClass}">${role.check_result}</span>
+                </div>
+            `;
+        }
+
         const content = `
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 h-70 md:h-auto">
@@ -45,7 +82,12 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8 text-left">
                     <h3 class="text-xl text-center font-bold mb-4">${role.title}</h3>
-                    <p class="text-sm">
+                    <div>
+                        <span class="font-medium">Сторона:</span>
+                        <span class="px-2 py-1 rounded ${sideValueClass}">${role.side}</span>
+                    </div>
+                    ${checkBlock}
+                    <p class="text-sm mt-4">
                         ${role.description || 'Описание отсутствует.'}
                     </p>
                 </div>
