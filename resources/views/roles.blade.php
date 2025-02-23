@@ -1,5 +1,3 @@
-вот полный код, верни исправленный
-
 @extends('layouts.app')
 @section('title', 'Роли в игре')
 @section('content')
