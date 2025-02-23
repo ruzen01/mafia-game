@@ -90,7 +90,7 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
         const content = `
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 h-70 md:h-auto">
-                    <img src="${role.image}" alt="${role.title}" class="w-full h-full object-cover rounded-lg border border-gray-300">
+<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-contain rounded-lg border border-gray-300">
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8 text-left">
                     <h3 class="text-xl text-center font-bold mb-4">${role.title}</h3>
