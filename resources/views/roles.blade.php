@@ -13,7 +13,7 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
     <div class="cursor-pointer" onclick="openCard('{{ $id }}')">
         <div class="border border-gray-300 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <img src="{{ asset($role['image']) }}" alt="{{ $role['title'] }}" class="w-full h-32 object-cover">
-            <p class="text-center mt-2 p-2 bg-gray-100">{{ $role['title'] }}</p>
+            <p class="text-center p-2 bg-white">{{ $role['title'] }}</p>
         </div>
     </div>
     @endforeach
