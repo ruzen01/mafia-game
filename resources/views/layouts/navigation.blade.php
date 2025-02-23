@@ -2,6 +2,7 @@
 <nav class="bg-gray-200 p-6 shadow-lg sticky top-0 z-50" id="navbar">
     <div class="container mx-auto flex items-center justify-between">
         <!-- Левая часть: Логотип или название -->
+         
         <div class="text-xl font-bold">
             <a href="{{ url('/') }}" class="hover:text-gray-700">MAFIA-VDK</a>
         </div>
