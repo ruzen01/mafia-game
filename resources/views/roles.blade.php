@@ -45,6 +45,10 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 
         const role = rolesData[cardId];
 
+        // Проверяем, существует ли изображение
+        const imagePath = role.image ? "{{ asset('') }}" + role.image : null;
+        const image = imagePath ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">` : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`;
+
         // Определяем стили для значения стороны роли
         let sideValueClass;
         switch (role.side) {
@@ -83,8 +87,8 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 
         const content = `
             <div class="flex flex-col md:flex-row items-center">
-                <div class="w-full md:w-1/2 h-70 md:h-auto">
-                    <img src="${role.image}" alt="${role.title}" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                <div class="w-full md:w-1/2 h-48 md:h-auto">
+                    ${image}
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8 text-left">
                     <h3 class="text-xl text-center font-bold mb-4">${role.title}</h3>
