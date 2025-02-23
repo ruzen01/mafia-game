@@ -11,9 +11,10 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     @foreach ($roles as $id => $role)
     <div class="cursor-pointer" onclick="openCard('{{ $id }}')">
-        <img src="{{ asset($role['image']) }}" alt="{{ $role['title'] }}" class="w-full h-32 object-cover rounded-lg
-        border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
-        <p class="text-center mt-2">{{ $role['title'] }}</p>
+        <div class="border border-gray-300 rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
+            <img src="{{ asset($role['image']) }}" alt="{{ $role['title'] }}" class="w-full h-32 object-cover">
+            <p class="text-center mt-2 p-2 bg-gray-100">{{ $role['title'] }}</p>
+        </div>
     </div>
     @endforeach
 </div>
