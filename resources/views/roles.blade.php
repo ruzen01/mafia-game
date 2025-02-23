@@ -47,7 +47,7 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 
         // Проверяем, существует ли изображение
         const imagePath = role.image ? "{{ asset('') }}" + role.image : null;
-        const image = imagePath ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">` : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`;
+        const image = imagePath ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-contain rounded-lg border border-gray-300">` : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full h-48 object-contain rounded-lg border border-gray-300">`;
 
         // Определяем стили для значения стороны роли
         let sideValueClass;
