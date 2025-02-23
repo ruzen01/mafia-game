@@ -13,8 +13,8 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
     <div class="cursor-pointer" onclick="openCard('{{ $id }}')">
         @php
             // Проверяем, существует ли файл изображения
-            $imagePath = $role['image'] ? public_path('images/roles/' . $role['image']) : null;
-            $image = ($imagePath && file_exists($imagePath)) ? asset('images/roles/' . $role['image']) : asset('images/roles/placeholder.png');
+            $imagePath = $role['image'] ? public_path($role['image']) : null;
+            $image = ($imagePath && file_exists($imagePath)) ? asset($role['image']) : asset('images/roles/placeholder.png');
         @endphp
         <img src="{{ $image }}" alt="{{ $role['title'] }}" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
         <p class="text-center mt-2">{{ $role['title'] }}</p>
