@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Роли в игре')
+@section('title', 'Роли в игре Мафия | Mafia-VDK')
 @section('content')
 
 @php
@@ -16,7 +16,7 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
             $imagePath = $role['image'] ? public_path($role['image']) : null;
             $image = ($imagePath && file_exists($imagePath)) ? asset($role['image']) : asset('images/roles/placeholder.png');
         @endphp
-        <img src="{{ $image }}" alt="{{ $role['title'] }}" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
+        <img src="{{ $image }}" alt="Роль {{ $role['title'] }} в игре Мафия от Mafia-VDK" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
         <p class="text-center mt-2">{{ $role['title'] }}</p>
     </div>
     @endforeach

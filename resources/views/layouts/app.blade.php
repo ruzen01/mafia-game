@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Добавлено -->
+    <meta name="description" content="Узнайте о различных ролях в игре Мафия от Mafia-VDK во Владивостоке. Идеально для вечеринок, корпоративов и развлечений!">
+    <meta name="keywords" content="игра, мафия, городская мафия, владивосток, mafia, vdk, mafia-vdk, вечеринки, корпоративы,  развлечения, игры для компаний">
     <title>@yield('title', 'Мафия')</title>
 
     <!-- Добавляем favicon -->
