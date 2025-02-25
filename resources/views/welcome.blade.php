@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Добро пожаловать')
+@section('title', 'MAFIA-VDK Welcome')
 @section('content')
     <div class="flex items-center justify-center text-center">
         <div class="grid gap-4"> <!-- grid создает сетку, gap-4 добавляет отступы -->
