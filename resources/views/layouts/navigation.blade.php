@@ -46,7 +46,7 @@
 <!-- Сайдбар (боковое меню) -->
 <div id="sidebar" class="fixed left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 top-[64px] bottom-0 overflow-y-auto">
     <div class="pt-4 px-4 space-y-2">
-        <a href="{{ route('rules') }}" class="block px-4 py-2 hover:bg-gray-100">Правила</a>
+        <a href="{{ route('rules') }}" class="block px-4 py-2 pt-4 hover:bg-gray-100">Правила</a>
         <a href="{{ route('roles') }}" class="block px-4 py-2 hover:bg-gray-100">Роли</a>
         <a href="{{ route('players.ranking') }}" class="block px-4 py-2 hover:bg-gray-100">Рейтинг</a>
         <a href="{{ route('games.index') }}" class="block px-4 py-2 hover:bg-gray-100">Игры</a>
