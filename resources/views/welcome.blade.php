@@ -14,8 +14,8 @@
         </a>
 
         <!-- Миниатюра для ссылки "Роли" -->
-        <a href="{{ route('roles') }}" class="cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-            <img src="{{ asset('images/welcome/roles.webp') }}" alt="Роли" class="w-full h-32 object-cover rounded-lg border border-gray-300">
+        <a href="{{ route('roles') }}" class="cursor-pointer">
+            <img src="{{ asset('images/welcome/roles.webp') }}" alt="Роли" class="w-full h-32 object-cover rounded-lg border border-gray-300  transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
             <p class="text-center mt-2">Роли</p>
         </a>
     </div>
