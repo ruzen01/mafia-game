@@ -40,14 +40,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 flex flex-col min-h-screen text-gray-900">
+<body class="bg-zinc-100 flex flex-col min-h-screen text-zinc-900">
     @include('layouts.navigation')
 
     <div class="flex flex-col flex-grow container mx-auto p-4 sm:p-6 md:p-8">
         @yield('content')
     </div>
 
-    <footer class="w-full text-center p-4 bg-gray-200 mt-auto sm:p-6 md:p-8">
+    <footer class="w-full text-center text-white p-4 bg-zinc-800 mt-auto sm:p-6 md:p-8">
         mafia-vdk © 2025
     </footer>
 </body>
