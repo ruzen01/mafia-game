@@ -39,3 +39,7 @@ Route::get('/rules', function () {
 Route::get('/roles', function () {
     return view('roles');
 })->name('roles');
+
+Route::get('/contacts', function () {
+    return view('contacts');
+})->name('contacts');

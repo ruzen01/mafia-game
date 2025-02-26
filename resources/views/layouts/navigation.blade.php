@@ -51,6 +51,8 @@
         <a href="{{ route('players.ranking') }}" class="block px-4 py-2 hover:bg-gray-100">Рейтинг</a>
         <a href="{{ route('games.index') }}" class="block px-4 py-2 hover:bg-gray-100">Игры</a>
         <a href="{{ route('players.index') }}" class="block px-4 py-2 hover:bg-gray-100">Игроки</a>
+        <a href="{{ route('contacts') }}" class="hover:text-gray-700">Контакты</a>
+        <a href="{{ route('contacts') }}" class="block px-4 py-2 hover:bg-gray-100">Контакты</a>
         @auth
             <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100">Дашборд</a>
         @endauth
