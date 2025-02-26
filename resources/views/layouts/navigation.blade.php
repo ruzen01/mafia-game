@@ -1,5 +1,5 @@
 <!-- Блок навигации (закрепленный наверху для широких экранов) -->
-<nav class="bg-gray-700 p-6 shadow-lg sticky top-0 z-50" id="navbar">
+<nav class="bg-zinc-800 p-6 shadow-lg sticky top-0 z-50" id="navbar">
     <div class="container mx-auto flex items-center justify-between">
         <!-- Левая часть: Логотип или название -->
         <div class="text-xl font-bold">
@@ -44,7 +44,7 @@
 </nav>
 
 <!-- Сайдбар (боковое меню) -->
-<div id="sidebar" class="fixed left-0 w-64 bg-gray-600 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 top-[64px] bottom-0 overflow-y-auto">
+<div id="sidebar" class="fixed left-0 w-64 bg-zinc-700 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 top-[64px] bottom-0 overflow-y-auto">
     <div class="pt-4 px-4 space-y-2">
         <a href="{{ route('rules') }}" class="block px-4 py-2 pt-8 text-white hover:bg-gray-700">Правила</a>
         <a href="{{ route('roles') }}" class="block px-4 py-2 text-white hover:bg-gray-700">Роли</a>
