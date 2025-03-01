@@ -6,9 +6,9 @@
 $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 @endphp
 
-<p class="text-center mb-4 text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-400">
+<blockquote class="text-center mb-4 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-400">
   Играть роль не сложно. Оставаться собой — вот где искусство.
-</p>
+</blockquote>
 
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     @foreach ($roles as $id => $role)

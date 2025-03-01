@@ -32,7 +32,7 @@
     }
     </script>
 
-    <title>@yield('title', 'Мафия')</title>
+    <title>@yield('title', 'MAFIA-VDK')</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
