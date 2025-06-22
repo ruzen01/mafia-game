@@ -5,7 +5,7 @@
 <div class="min-h-screen flex flex-col"> <!-- Основной контейнер -->
     <!-- Заголовок -->
     <h1 class="text-center text-3xl font-bold mt-8">Добро пожаловать в мир городской мафии</h1>
-    <p class="text-right italic bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-400 mt-2">
+    <p class="text-center italic bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-400 mt-2">
         где каждый ход может стать последним...
     </p>
 
