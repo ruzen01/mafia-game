@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
-    public function index()
-    {
-        $players = Player::with('games')->paginate(15);
-        return view('players.index', compact('players'));
-    }
 
-    public function create()
+public function index()
+{
+    $players = Player::with('games')
+        ->orderBy('name', 'asc') // 🔥 Сортировка по алфавиту (А → Я)
+        ->paginate(15);
+
+    return view('players.index', compact('players'));
+}
+
+     public function create()
     {
         $this->authorize('create', Player::class);
         $games = Game::all();
@@ -64,16 +68,20 @@ class PlayerController extends Controller
         return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
     }
 
-    public function ranking()
-    {
-        // Получаем всех игроков с их данными, отсортированными по общему количеству баллов
-        $players = Player::with('games')
-            ->get()
-            ->sortByDesc('total_points');
+public function ranking()
+{
+    $players = Player::select('players.*')
+        ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
+        ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
+        ->groupBy('players.id')
+        ->orderByDesc('total_score')
+        ->with('games')
+        ->get();
 
-        // Отправляем данные на представление
-        return view('players.ranking', compact('players'));
-    }
+    return view('players.ranking', compact('players'));
+}
+
+ 
 
     public function show(Player $player)
     {

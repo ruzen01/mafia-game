@@ -20,7 +20,7 @@ class GameController extends Controller
         $this->authorize('create', Game::class); // Политика для создания игр
         $players = Player::all();
         $roles = Role::all();
-        $seasons = ['Осень-зима 2024-2025'];
+        $seasons = ['Осень 2025'];
 
         return view('games.create', compact('players', 'roles', 'seasons'));
     }
@@ -86,7 +86,7 @@ class GameController extends Controller
         $this->authorize('update', $game);
         $allPlayers = Player::all();
         $roles = Role::all();
-        $seasons = ['Осень-зима 2024-2025'];
+        $seasons = ['Осень 2025'];
 
         return view('games.edit', compact('game', 'allPlayers', 'roles', 'seasons'));
     }
