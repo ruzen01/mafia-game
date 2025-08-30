@@ -24,7 +24,7 @@
     </div>
     @endcan
 
-    <div class="overflow-x-auto rounded-lg shadow-lg">
+    <div class="overflow-x-auto overflow-y-visible rounded-lg shadow-lg">
         <table class="table-auto w-full">
             <thead class="bg-gray-300 text-gray-900 text-left"> <!-- Темнее для заголовков таблицы -->
                 <tr>
