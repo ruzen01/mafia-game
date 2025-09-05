@@ -33,48 +33,46 @@
                         @endif
                     </td>
 
-                    <!-- Имя игрока — глянцевый фон на всю ячейку -->
-                    <td class="
-                        border border-zinc-500 px-0 py-0 min-w-0 relative
-                        @if($loop->iteration == 1)
-                            bg-gradient-to-r from-amber-950 via-amber-800 to-amber-900
-                        @elseif($loop->iteration == 2)
-                            bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800
-                        @elseif($loop->iteration == 3)
-                            bg-gradient-to-r from-orange-950 via-orange-800 to-orange-900
-                        @endif
-                    ">
-                        <!-- Глянцевый эффект (тонкий светлый градиент сверху) -->
-                        <div class="
-                            absolute inset-0
-                            @if($loop->iteration == 1)
-                                bg-gradient-to-b from-amber-600/20 to-transparent
-                            @elseif($loop->iteration == 2)
-                                bg-gradient-to-b from-gray-300/20 to-transparent
-                            @elseif($loop->iteration == 3)
-                                bg-gradient-to-b from-orange-400/20 to-transparent
-                            @endif
-                            pointer-events-none rounded-sm
-                        "></div>
-
-                        <a href="{{ route('players.show', $player->id) }}"
-                           class="
-                                block truncate font-semibold text-center sm:text-left
-                                @if($loop->iteration == 1)
-                                    text-amber-50
-                                @elseif($loop->iteration == 2)
-                                    text-gray-50
-                                @elseif($loop->iteration == 3)
-                                    text-orange-50
-                                @else
-                                    text-zinc-100
-                                @endif
-                                px-2 py-1 relative z-10
-                           "
-                           title="{{ $player->name }}">
-                            {{ $player->name }}
-                        </a>
-                    </td>
+                    <!-- Имя игрока — топ-3 с глянцевым фоном на всю ячейку -->
+                    @if($loop->iteration == 1)
+                        <td class="border border-zinc-500 px-0 py-0 min-w-0 relative bg-gradient-to-r from-amber-900 via-amber-800 to-amber-900">
+                            <!-- Глянцевый эффект (светло-золотой) -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-amber-500/30 to-transparent pointer-events-none rounded-sm"></div>
+                            <a href="{{ route('players.show', $player->id) }}"
+                               class="block truncate font-semibold text-amber-50 px-2 py-1 relative z-10 text-center sm:text-left"
+                               title="{{ $player->name }}">
+                                {{ $player->name }}
+                            </a>
+                        </td>
+                    @elseif($loop->iteration == 2)
+                        <td class="border border-zinc-500 px-0 py-0 min-w-0 relative bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800">
+                            <!-- Глянцевый эффект (серебристый) -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-gray-300/20 to-transparent pointer-events-none rounded-sm"></div>
+                            <a href="{{ route('players.show', $player->id) }}"
+                               class="block truncate font-semibold text-gray-50 px-2 py-1 relative z-10 text-center sm:text-left"
+                               title="{{ $player->name }}">
+                                {{ $player->name }}
+                            </a>
+                        </td>
+                    @elseif($loop->iteration == 3)
+                        <td class="border border-zinc-500 px-0 py-0 min-w-0 relative bg-gradient-to-r from-orange-950 via-orange-800 to-orange-900">
+                            <!-- Глянцевый эффект (бронзовый) -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-orange-400/20 to-transparent pointer-events-none rounded-sm"></div>
+                            <a href="{{ route('players.show', $player->id) }}"
+                               class="block truncate font-semibold text-orange-50 px-2 py-1 relative z-10 text-center sm:text-left"
+                               title="{{ $player->name }}">
+                                {{ $player->name }}
+                            </a>
+                        </td>
+                    @else
+                        <td class="border border-zinc-500 px-2 py-1 min-w-0">
+                            <a href="{{ route('players.show', $player->id) }}"
+                               class="block truncate text-zinc-100 font-medium text-center sm:text-left"
+                               title="{{ $player->name }}">
+                                {{ $player->name }}
+                            </a>
+                        </td>
+                    @endif
 
                     <!-- Рейтинг (Р) -->
                     <td class="border border-zinc-500 w-10 px-1 py-1 text-center font-bold text-amber-400">
