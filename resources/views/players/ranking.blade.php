@@ -33,15 +33,19 @@
                         @endif
                     </td>
 
-                    <!-- Имя игрока -->
+                    <!-- Имя игрока — топ-3 с градиентным фоном -->
                     <td class="border border-zinc-500 px-2 py-1 min-w-0">
                         <a href="{{ route('players.show', $player->id) }}"
                            class="
-                                block truncate font-medium
-                                @if($loop->iteration == 1) text-amber-200
-                                @elseif($loop->iteration == 2) text-gray-100
-                                @elseif($loop->iteration == 3) text-orange-200
-                                @else text-zinc-100
+                                block truncate font-semibold
+                                @if($loop->iteration == 1)
+                                    bg-gradient-to-r from-amber-900 to-amber-800 text-amber-50 px-2 py-1 rounded-sm
+                                @elseif($loop->iteration == 2)
+                                    bg-gradient-to-r from-gray-800 to-gray-700 text-gray-50 px-2 py-1 rounded-sm
+                                @elseif($loop->iteration == 3)
+                                    bg-gradient-to-r from-orange-900 to-orange-800 text-orange-50 px-2 py-1 rounded-sm
+                                @else
+                                    text-zinc-100
                                 @endif
                            "
                            title="{{ $player->name }}">
