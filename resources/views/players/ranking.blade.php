@@ -33,20 +33,43 @@
                         @endif
                     </td>
 
-                    <!-- Имя игрока — топ-3 с градиентным фоном -->
-                    <td class="border border-zinc-500 px-2 py-1 min-w-0">
+                    <!-- Имя игрока — глянцевый фон на всю ячейку -->
+                    <td class="
+                        border border-zinc-500 px-0 py-0 min-w-0 relative
+                        @if($loop->iteration == 1)
+                            bg-gradient-to-r from-amber-950 via-amber-800 to-amber-900
+                        @elseif($loop->iteration == 2)
+                            bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800
+                        @elseif($loop->iteration == 3)
+                            bg-gradient-to-r from-orange-950 via-orange-800 to-orange-900
+                        @endif
+                    ">
+                        <!-- Глянцевый эффект (тонкий светлый градиент сверху) -->
+                        <div class="
+                            absolute inset-0
+                            @if($loop->iteration == 1)
+                                bg-gradient-to-b from-amber-600/20 to-transparent
+                            @elseif($loop->iteration == 2)
+                                bg-gradient-to-b from-gray-300/20 to-transparent
+                            @elseif($loop->iteration == 3)
+                                bg-gradient-to-b from-orange-400/20 to-transparent
+                            @endif
+                            pointer-events-none rounded-sm
+                        "></div>
+
                         <a href="{{ route('players.show', $player->id) }}"
                            class="
-                                block truncate font-semibold
+                                block truncate font-semibold text-center sm:text-left
                                 @if($loop->iteration == 1)
-                                    bg-gradient-to-r from-amber-900 to-amber-800 text-amber-50 px-2 py-1 rounded-sm
+                                    text-amber-50
                                 @elseif($loop->iteration == 2)
-                                    bg-gradient-to-r from-gray-800 to-gray-700 text-gray-50 px-2 py-1 rounded-sm
+                                    text-gray-50
                                 @elseif($loop->iteration == 3)
-                                    bg-gradient-to-r from-orange-900 to-orange-800 text-orange-50 px-2 py-1 rounded-sm
+                                    text-orange-50
                                 @else
                                     text-zinc-100
                                 @endif
+                                px-2 py-1 relative z-10
                            "
                            title="{{ $player->name }}">
                             {{ $player->name }}
