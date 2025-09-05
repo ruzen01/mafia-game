@@ -36,7 +36,7 @@
 
                     <!-- Имя игрока -->
                     @if($loop->iteration == 1)
-                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-zinc-600 text-white font-semibold">
+                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-pink-950 text-pink-50 font-semibold">
                             <a href="{{ route('players.show', $player->id) }}"
                                class="block truncate text-center sm:text-left"
                                title="{{ $player->name }}">
@@ -44,7 +44,7 @@
                             </a>
                         </td>
                     @elseif($loop->iteration == 2)
-                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-zinc-600 text-white font-semibold">
+                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-purple-950 text-purple-50 font-semibold">
                             <a href="{{ route('players.show', $player->id) }}"
                                class="block truncate text-center sm:text-left"
                                title="{{ $player->name }}">
@@ -52,7 +52,7 @@
                             </a>
                         </td>
                     @elseif($loop->iteration == 3)
-                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-zinc-600 text-white font-semibold">
+                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-blue-950 text-blue-50 font-semibold">
                             <a href="{{ route('players.show', $player->id) }}"
                                class="block truncate text-center sm:text-left"
                                title="{{ $player->name }}">
@@ -60,7 +60,7 @@
                             </a>
                         </td>
                     @elseif($loop->iteration >= 4 && $loop->iteration <= 16)
-                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-sky-600 text-sky-50 font-medium">
+                        <td class="border border-zinc-500 px-2 py-1 min-w-0 bg-stone-800 text-stone-50 font-medium">
                             <a href="{{ route('players.show', $player->id) }}"
                                class="block truncate text-center sm:text-left"
                                title="{{ $player->name }}">
