@@ -62,32 +62,31 @@
                                 {{ $player->name }}
                             </a>
                         </td>
-                    @elseif($loop->iteration >= 4 && $loop->iteration <= 16)
-                        <td class="border border-zinc-500 px-2 py-1 min-w-0
-                            @switch($loop->iteration)
-                                @case(4) bg-teal-900 @break
-                                @case(5) bg-teal-800 @break
-                                @case(6) bg-teal-800 @break
-                                @case(7) bg-teal-700 @break
-                                @case(8) bg-teal-700 @break
-                                @case(9) bg-teal-600 @break
-                                @case(10) bg-teal-600 @break
-                                @case(11) bg-teal-500 @break
-                                @case(12) bg-teal-500 @break
-                                @case(13) bg-teal-500 @break
-                                @case(14) bg-teal-500 @break
-                                @case(15) bg-teal-500 @break
-                                @case(16) bg-teal-500 @break
-                                @default bg-zinc-600
-                            @endswitch
-                            text-teal-50 font-medium">
-                            <a href="{{ route('players.show', $player->id) }}"
-                               class="block truncate text-center sm:text-left"
-                               title="{{ $player->name }}">
-                                {{ $player->name }}
-                            </a>
-                        </td>
-                    @else
+@elseif($loop->iteration >= 4 && $loop->iteration <= 16)
+    <td class="border border-zinc-500 px-2 py-1 min-w-0
+        @switch($loop->iteration)
+            @case(4) bg-teal-900 @break
+            @case(5) bg-teal-800 @break
+            @case(6) bg-teal-700 @break
+            @case(7) bg-teal-600 @break
+            @case(8) bg-teal-500 @break
+            @case(9) bg-teal-500 @break
+            @case(10) bg-teal-400 @break
+            @case(11) bg-teal-400 @break
+            @case(12) bg-teal-400 @break
+            @case(13) bg-teal-400 @break
+            @case(14) bg-teal-400 @break
+            @case(15) bg-teal-400 @break
+            @case(16) bg-teal-400 @break
+            @default bg-zinc-600
+        @endswitch
+        text-teal-50 font-medium">
+        <a href="{{ route('players.show', $player->id) }}"
+           class="block truncate text-center sm:text-left"
+           title="{{ $player->name }}">
+            {{ $player->name }}
+        </a>
+    </td>                    @else
                         <td class="border border-zinc-500 px-2 py-1 min-w-0">
                             <a href="{{ route('players.show', $player->id) }}"
                                class="block truncate text-zinc-100 font-medium text-center sm:text-left"
