@@ -19,7 +19,15 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-zinc-500">
+                @php
+                    $maxScore = $players->max(fn($p) => $p->games->sum('pivot.score'));
+                @endphp
+
                 @foreach($players as $player)
+                    @php
+                        $score = $player->games->sum('pivot.score');
+                        $progress = $maxScore > 0 ? ($score / $maxScore) * 100 : 0;
+                    @endphp
                 <tr 
                     class="
                         bg-zinc-200
@@ -30,31 +38,49 @@
                 >
                     <td class="border border-zinc-500 w-8 px-1 py-1 text-center">
                         @if($loop->iteration <= 3)
-                            <span class="font-bold text-lg">
-                                {{ $loop->iteration == 1 ? '🥇' : ($loop->iteration == 2 ? '🥈' : '🥉') }}
-                            </span>
+                            <div class="flex justify-center">
+                                @if($loop->iteration == 1)
+                                    <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                                    </svg>
+                                @elseif($loop->iteration == 2)
+                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                                    </svg>
+                                @elseif($loop->iteration == 3)
+                                    <svg class="w-6 h-6 text-amber-700" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                                    </svg>
+                                @endif
+                            </div>
                         @else
                             <span class="text-zinc-700 text-sm">{{ $loop->iteration }}</span>
                         @endif
                     </td>
 
                     <td class="border border-zinc-500 px-2 py-1 min-w-0">
-                        <a href="{{ route('players.show', $player->id) }}"
-                           class="
-                                block truncate text-center sm:text-left font-semibold
-                                @if($loop->iteration == 1) text-pink-700 @endif
-                                @if($loop->iteration == 2) text-violet-700 @endif
-                                @if($loop->iteration == 3) text-blue-700 @endif
-                                @if($loop->iteration > 3 && $loop->iteration <= 10) text-zinc-800 @endif
-                                @if($loop->iteration > 10) text-zinc-700 font-medium @endif
-                           "
-                           title="{{ $player->name }}">
-                            {{ $player->name }}
-                        </a>
+                        <div>
+                            <a href="{{ route('players.show', $player->id) }}"
+                               class="
+                                    block truncate text-center sm:text-left font-semibold
+                                    @if($loop->iteration == 1) text-pink-700 @endif
+                                    @if($loop->iteration == 2) text-violet-700 @endif
+                                    @if($loop->iteration == 3) text-blue-700 @endif
+                                    @if($loop->iteration > 3 && $loop->iteration <= 10) text-zinc-800 @endif
+                                    @if($loop->iteration > 10) text-zinc-700 font-medium @endif
+                               "
+                               title="{{ $player->name }}">
+                                {{ $player->name }}
+                            </a>
+                            <!-- Прогресс-бар -->
+                            <div class="mt-1 w-full bg-zinc-300 rounded-full h-1.5">
+                                <div class="bg-amber-500 h-1.5 rounded-full" style="width: {{ $progress }}%"></div>
+                            </div>
+                        </div>
                     </td>
 
                     <td class="border border-zinc-500 w-10 px-1 py-1 text-center font-bold text-amber-700">
-                        {{ $player->games->sum('pivot.score') }}
+                        {{ $score }}
                     </td>
                     <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-slate-700">
                         {{ $player->total_games }}
