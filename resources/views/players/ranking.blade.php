@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto py-6">
+<div class="container mx-auto py-6" x-data="{ openModal: null, player: null }">
     <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Рейтинг игроков</h1>
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
@@ -59,23 +59,41 @@
                     </td>
 
                     <td class="border border-zinc-500 px-2 py-1 min-w-0">
-                        <div>
-                            <a href="{{ route('players.show', $player->id) }}"
-                               class="
-                                    block truncate text-center sm:text-left font-semibold
-                                    @if($loop->iteration == 1) text-pink-700 @endif
-                                    @if($loop->iteration == 2) text-violet-700 @endif
-                                    @if($loop->iteration == 3) text-blue-700 @endif
-                                    @if($loop->iteration > 3 && $loop->iteration <= 10) text-zinc-800 @endif
-                                    @if($loop->iteration > 10) text-zinc-700 font-medium @endif
-                               "
-                               title="{{ $player->name }}">
-                                {{ $player->name }}
-                            </a>
-                            <!-- Прогресс-бар -->
-                            <div class="mt-1 w-full bg-zinc-300 rounded-full h-1.5">
-                                <div class="bg-amber-500 h-1.5 rounded-full" style="width: {{ $progress }}%"></div>
-                            </div>
+                        <button 
+                            @click="openModal = true; player = {
+                                name: '{{ $player->name }}',
+                                score: {{ $score }},
+                                games: {{ $player->total_games }},
+                                wins: {{ $player->games->where('pivot.score', '>=', 2)->count() }},
+                                best: {{ $player->games->where('pivot.best_player', 1)->count() }},
+                                firstVictim: {{ $player->games->where('pivot.first_victim', 1)->count() }},
+                                bonus: {{ $player->games->sum('pivot.additional_score') }},
+                                recentGames: [
+                                    @foreach($player->games->sortByDesc('game.date')->take(5) as $game)
+                                        {
+                                            date: '{{ $game->date->format('d.m') }}',
+                                            score: {{ $game->pivot->score }},
+                                            best: {{ $game->pivot->best_player ? 'true' : 'false' }},
+                                            firstVictim: {{ $game->pivot->first_victim ? 'true' : 'false' }}
+                                        }@if(!$loop->last),@endif
+                                    @endforeach
+                                ]
+                            }"
+                            class="
+                                block w-full text-left font-semibold truncate
+                                @if($loop->iteration == 1) text-pink-700 @endif
+                                @if($loop->iteration == 2) text-violet-700 @endif
+                                @if($loop->iteration == 3) text-blue-700 @endif
+                                @if($loop->iteration > 3 && $loop->iteration <= 10) text-zinc-800 @endif
+                                @if($loop->iteration > 10) text-zinc-700 font-medium @endif
+                                hover:underline
+                            "
+                            title="Посмотреть статистику"
+                        >
+                            {{ $player->name }}
+                        </button>
+                        <div class="mt-1 w-full bg-zinc-300 rounded-full h-1.5">
+                            <div class="bg-amber-500 h-1.5 rounded-full" style="width: {{ $progress }}%"></div>
                         </div>
                     </td>
 
@@ -102,16 +120,61 @@
             </tbody>
         </table>
     </div>
-</div>
 
-<style>
-    @keyframes fade-in {
-        from { opacity: 0; transform: translateY(10px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in {
-        animation: fade-in 0.6s ease-out forwards;
-        opacity: 0;
-    }
-</style>
+    <!-- Модальное окно -->
+    <div x-show="openModal" 
+         class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+         @click.outside="openModal = false"
+         x-transition.opacity>
+        <div @click.outside="" class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 mx-4 max-h-96 overflow-y-auto">
+            <h3 x-text="player?.name" class="text-xl font-bold text-zinc-800 mb-4"></h3>
+
+            <div class="space-y-3 text-sm">
+                <div><strong>Рейтинг:</strong> <span x-text="player?.score" class="text-amber-700 font-bold"></span></div>
+                <div><strong>Игр:</strong> <span x-text="player?.games"></span></div>
+                <div><strong>Побед:</strong> <span x-text="player?.wins" class="text-green-600"></span></div>
+                <div><strong>Был лучшим:</strong> <span x-text="player?.best" class="text-blue-600"></span></div>
+                <div><strong>Первым убит:</strong> <span x-text="player?.firstVictim" class="text-red-600"></span></div>
+                <div><strong>Доп. баллы:</strong> <span x-text="player?.bonus" class="text-purple-600"></span></div>
+
+                <div class="mt-4 pt-3 border-t border-zinc-200">
+                    <h4 class="font-semibold text-zinc-700">Последние игры:</h4>
+                    <template x-if="player?.recentGames && player.recentGames.length > 0">
+                        <ul class="mt-2 space-y-1">
+                            <template x-for="game in player.recentGames" :key="game.date">
+                                <li class="flex justify-between text-xs">
+                                    <span x-text="game.date"></span>
+                                    <span>
+                                        <span x-text="game.score" :class="game.score >= 2 ? 'text-green-600' : 'text-zinc-600'"></span>
+                                        <span x-show="game.best" class="ml-1 text-blue-500">★</span>
+                                        <span x-show="game.firstVictim" class="ml-1 text-red-500">💀</span>
+                                    </span>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <p x-show="!player?.recentGames || player.recentGames.length === 0" class="text-zinc-500 text-xs">
+                        Нет данных об играх.
+                    </p>
+                </div>
+            </div>
+
+            <button @click="openModal = false"
+                    class="mt-4 w-full py-2 bg-zinc-800 text-white rounded hover:bg-zinc-700 transition">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+</div>
 @endsection
