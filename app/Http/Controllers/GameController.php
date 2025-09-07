@@ -19,7 +19,10 @@ class GameController extends Controller
     public function create()
     {
         $this->authorize('create', Game::class);
-        $players = Player::all();
+        
+        // 🔥 Сортировка игроков по алфавиту
+        $players = Player::orderBy('name')->get();
+        
         $roles = Role::all();
         $seasons = ['Осень 2025'];
 
@@ -104,12 +107,14 @@ class GameController extends Controller
     {
         $game = Game::with('players')->findOrFail($id);
         $this->authorize('update', $game);
-        $players = Player::all();
-        $allPlayers = Player::all();
+        
+        // 🔥 Сортировка всех игроков по алфавиту
+        $allPlayers = Player::orderBy('name')->get();
+        
         $roles = Role::all();
         $seasons = ['Осень 2025'];
 
-        return view('games.create', compact('game', 'players', 'allPlayers', 'roles', 'seasons'));
+        return view('games.edit', compact('game', 'allPlayers', 'roles', 'seasons'));
     }
 
     public function update(Request $request, $id)

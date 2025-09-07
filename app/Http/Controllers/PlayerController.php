@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Player;
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PlayerController extends Controller
 {
+    public function index()
+    {
+        $players = Player::with('games')
+            ->orderBy('name', 'asc')
+            ->paginate(15);
 
-public function index()
-{
-    $players = Player::with('games')
-        ->orderBy('name', 'asc') // 🔥 Сортировка по алфавиту (А → Я)
-        ->paginate(15);
+        return view('players.index', compact('players'));
+    }
 
-    return view('players.index', compact('players'));
-}
-
-     public function create()
+    public function create()
     {
         $this->authorize('create', Player::class);
         $games = Game::all();
@@ -28,8 +28,18 @@ public function index()
     public function store(Request $request)
     {
         $this->authorize('create', Player::class);
+
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('players')->where(function ($query) {
+                    return $query->whereRaw('LOWER(name) = ?', [strtolower(request('name'))]);
+                }),
+            ],
+        ], [
+            'name.unique' => 'Игрок с таким именем уже существует.',
         ]);
 
         Player::create($validated);
@@ -47,41 +57,49 @@ public function index()
     public function update(Request $request, Player $player)
     {
         $this->authorize('update', $player);
+
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('players')->ignore($player->id)->where(function ($query) {
+                    return $query->whereRaw('LOWER(name) = ?', [strtolower(request('name'))]);
+                }),
+            ],
+        ], [
+            'name.unique' => 'Игрок с таким именем уже существует.',
         ]);
 
         $player->update($validated);
 
-        return redirect()->route('players.index')->with('success', 'Игрок успешно обновлен');
+        return redirect()->route('players.index')->with('success', 'Игрок успешно обновлён');
     }
 
     public function destroy(Player $player)
     {
         $this->authorize('delete', $player);
         if ($player->games()->exists()) {
-            return redirect()->route('players.index')->with('error', 'Игрок не может быть удален, так как он участвует в одной или более играх');
+            return redirect()->route('players.index')->with('error', 'Игрок не может быть удалён, так как он участвует в одной или более играх');
         }
 
         $player->delete();
 
-        return redirect()->route('players.index')->with('success', 'Игрок успешно удален');
+        return redirect()->route('players.index')->with('success', 'Игрок успешно удалён');
     }
 
-public function ranking()
-{
-    $players = Player::select('players.*')
-        ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
-        ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
-        ->groupBy('players.id')
-        ->orderByDesc('total_score')
-        ->with('games')
-        ->get();
+    public function ranking()
+    {
+        $players = Player::select('players.*')
+            ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
+            ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
+            ->groupBy('players.id')
+            ->orderByDesc('total_score')
+            ->with('games')
+            ->get();
 
-    return view('players.ranking', compact('players'));
-}
-
- 
+        return view('players.ranking', compact('players'));
+    }
 
     public function show(Player $player)
     {

@@ -1,16 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Создать игрока</h1>
-    <form action="{{ route('players.store') }}" method="POST">
-    @csrf
-    <div class="mb-4">
-        <label for="name" class="block text-sm font-medium">Имя игрока:</label>
-        <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3 text-black">
-    </div>
+<div class="container mx-auto py-6">
+    <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Создать игрока</h1>
 
-    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Создать игрока</button>
-</form>
+    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">
+        <form action="{{ route('players.store') }}" method="POST">
+            @csrf
+
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-zinc-700">Имя игрока</label>
+                <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    value="{{ old('name') }}"
+                    class="mt-1 block w-full border @error('name') border-red-500 @else border-zinc-300 @endif rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Введите имя"
+                    maxlength="255"
+                    required>
+                @error('name')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex justify-end">
+                <a href="{{ route('players.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded mr-2 transition">Отмена</a>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded font-semibold transition">
+                    Создать игрока
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 @endsection
