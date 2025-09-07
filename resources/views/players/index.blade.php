@@ -5,13 +5,13 @@
 
     <!-- Уведомления -->
     @if(session('error'))
-        <div class="absolute left-0 bg-red-500 text-white p-3 rounded mb-4" style="top: 100px; z-index: 10;">
+        <div class="absolute left-0 bg-red-500 text-white p-3 rounded mb-4 animate-fade-in" style="top: 100px; z-index: 10;">
             {{ session('error') }}
         </div>
     @endif
 
     @if(session('success'))
-        <div class="absolute left-0 bg-green-500 text-white p-3 rounded mb-4" style="top: 100px; z-index: 10;">
+        <div class="absolute left-0 bg-green-500 text-white p-3 rounded mb-4 animate-fade-in" style="top: 100px; z-index: 10;">
             {{ session('success') }}
         </div>
     @endif
@@ -40,14 +40,19 @@
             </thead>
             <tbody class="divide-y divide-zinc-500">
                 @php
-                    $playersSorted = $players->sortBy('name'); // По алфавиту
-                    $index = 1;
+                    $playersSorted = $players->sortBy('name');
+                    $currentPage = $players->currentPage();
+                    $perPage = $players->perPage();
+                    $startIndex = ($currentPage - 1) * $perPage + 1;
                 @endphp
 
-                @foreach($playersSorted as $player)
-                <tr class="bg-zinc-200 hover:bg-zinc-300 transition-colors duration-150">
+                @foreach($playersSorted as $index => $player)
+                <tr 
+                    class="bg-zinc-200 hover:bg-zinc-300 transition-colors duration-150 animate-fade-in"
+                    style="animation-delay: {{ ($startIndex + $index) * 0.05 }}s"
+                >
                     <td class="border border-zinc-500 w-8 px-1 py-1 text-center text-zinc-700">
-                        {{ $index++ }}
+                        {{ $startIndex + $index }}
                     </td>
                     <td class="border border-zinc-500 px-2 py-1 min-w-0">
                         <a href="{{ route('players.show', $player->id) }}"
@@ -83,4 +88,16 @@
         {{ $players->appends(request()->query())->links() }}
     </div>
 </div>
+
+<!-- Анимация появления -->
+<style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.6s ease-out forwards;
+        opacity: 0;
+    }
+</style>
 @endsection
