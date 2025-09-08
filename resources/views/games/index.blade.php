@@ -101,55 +101,71 @@
     </div>
 
     <!-- Модальное окно -->
-    <div x-show="openModal" 
-         class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-         @click="openModal = false"
+<!-- Модальное окно -->
+<div x-show="openModal" 
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+     @click="openModal = false"
+     x-transition:enter="ease-out duration-300"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="ease-in duration-200"
+     x-transition:leave-start="opacity-100"
+     x-transition:leave-end="opacity-0">
+    <div @click.stop 
+         class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 mx-4 max-h-96 overflow-y-auto transform transition-all"
          x-transition:enter="ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
+         x-transition:enter-start="scale-95 opacity-0"
+         x-transition:enter-end="scale-100 opacity-100"
          x-transition:leave="ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0">
-        <div @click.stop 
-             class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 mx-4 max-h-96 overflow-y-auto transform transition-all"
-             x-transition:enter="ease-out duration-300"
-             x-transition:enter-start="scale-95 opacity-0"
-             x-transition:enter-end="scale-100 opacity-100"
-             x-transition:leave="ease-in duration-200"
-             x-transition:leave-start="scale-100 opacity-100"
-             x-transition:leave-end="scale-95 opacity-0">
-            <h3 class="text-xl font-bold text-zinc-800 mb-4">
-                <span x-text="game?.name"></span>
-                <span class="text-sm font-normal text-zinc-600" x-text="game?.date"></span>
-            </h3>
+         x-transition:leave-start="scale-100 opacity-100"
+         x-transition:leave-end="scale-95 opacity-0">
+        <h3 class="text-xl font-bold text-zinc-800 mb-4">
+            <span x-text="game?.name"></span>
+            <span class="text-sm font-normal text-zinc-600" x-text="game?.date"></span>
+        </h3>
 
-            <div class="space-y-3">
-                <h4 class="font-semibold text-zinc-700">Список игроков (<span x-text="game?.players?.length || 0"></span>):</h4>
-                
-                <template x-if="game?.players && game.players.length > 0">
-                    <ul class="mt-2 space-y-2">
-                        <template x-for="(player, index) in game.players" :key="player.id">
-                            <li class="p-3 bg-zinc-50 border-l-4 border-blue-500 rounded-r-lg animate-fade-in"
-                                :style="`animation-delay: ${index * 0.1}s`">
-                                <span class="font-medium text-zinc-800">№<span x-text="index + 1"></span>:</span>
-                                <span class="text-sm text-zinc-700 ml-2" x-text="player.name"></span>
-                            </li>
-                        </template>
-                    </ul>
-                </template>
-                
-                <template x-if="!game?.players || game.players.length === 0">
-                    <p class="text-zinc-500 text-sm">Нет игроков в этой игре.</p>
-                </template>
-            </div>
-
-            <button @click="openModal = false"
-                    class="mt-6 w-full py-3 bg-gradient-to-r from-zinc-800 to-zinc-700 text-white rounded-xl hover:from-zinc-700 hover:to-zinc-600 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:scale-95">
-                Закрыть
-            </button>
+        <div class="space-y-3">
+            <h4 class="font-semibold text-zinc-700">Список игроков (<span x-text="game?.players?.length || 0"></span>):</h4>
+            
+            <template x-if="game?.players && game.players.length > 0">
+                <ul class="mt-2 space-y-2">
+                    <template x-for="(player, index) in game.players" :key="player.id">
+                        <li class="p-2 bg-zinc-50 rounded animate-fade-in"
+                            :style="`animation-delay: ${index * 0.1}s`">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-medium text-zinc-800" x-text="index + 1"></span>
+                                    <span class="text-sm text-zinc-700" x-text="player.name"></span>
+                                    <span class="text-xs text-zinc-500 bg-zinc-200 px-2 py-0.5 rounded" x-text="player.role"></span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <template x-if="player.best_player">
+                                        <span class="text-yellow-500 font-bold" title="Лучший игрок">🌟</span>
+                                    </template>
+                                    <template x-if="player.first_victim">
+                                        <span class="text-red-500 font-bold" title="Первая кровь">💉</span>
+                                    </template>
+                                    <template x-if="player.additional_score">
+                                        <span class="text-green-500 font-bold" title="Доп. баллы">➕</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            
+            <template x-if="!game?.players || game.players.length === 0">
+                <p class="text-zinc-500 text-sm">Нет игроков в этой игре.</p>
+            </template>
         </div>
-    </div>
 
+        <button @click="openModal = false"
+                class="mt-6 w-full py-3 bg-gradient-to-r from-zinc-800 to-zinc-700 text-white rounded-xl hover:from-zinc-700 hover:to-zinc-600 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:scale-95">
+            Закрыть
+        </button>
+    </div>
+</div>
     <style>
         @keyframes fade-in {
             from { opacity: 0; transform: translateX(-10px); }

@@ -12,7 +12,7 @@ class GameController extends Controller
 {
     public function index()
     {
-        $games = Game::all();
+$games = Game::with('players.role')->get();
         return view('games.index', compact('games'));
     }
 
