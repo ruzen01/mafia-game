@@ -1,3 +1,31 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container mx-auto py-6">
+
+    <!-- Уведомления (оставим как есть) -->
+    @if(session('error'))
+        <div class="absolute left-0 bg-red-500 text-white p-3 rounded mb-4 animate-fade-in" style="top: 100px; z-index: 10;">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="absolute left-0 bg-green-500 text-white p-3 rounded mb-4 animate-fade-in" style="top: 100px; z-index: 10;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Колода Игроков</h1>
+
+    @can('create', App\Models\Player::class)
+    <div class="flex justify-center mb-8">
+        <a href="{{ route('players.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded font-semibold transition transform hover:scale-105 shadow-md">
+            🃏 Создать игрока
+        </a>
+    </div>
+    @endcan
+
 <!-- Сетка карточек игроков -->
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
     @php
@@ -41,3 +69,28 @@
     </div>
     @endforeach
 </div>
+
+    <!-- Пагинация -->
+    <div class="mt-12 flex justify-center">
+        {{ $players->appends(request()->query())->links() }}
+    </div>
+</div>
+
+<!-- Анимация появления для карточек -->
+<style>
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .animate-fade-in {
+        animation: fade-in-up 0.6s ease-out forwards;
+        opacity: 0;
+    }
+</style>
+@endsection
