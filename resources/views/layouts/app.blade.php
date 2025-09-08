@@ -43,11 +43,9 @@
 <body class="bg-zinc-100 flex flex-col min-h-screen text-zinc-900">
     @include('layouts.navigation')
 
-    <!-- Основной контент с ограничением максимальной ширины для лучшей читаемости -->
+    <!-- Основной контент (БЕЗ лишнего ограничения max-w-4xl) -->
     <div class="flex flex-col flex-grow container mx-auto p-4 sm:p-6">
-        <div class="max-w-4xl mx-auto">
-            @yield('content')
-        </div>
+        @yield('content') <!-- Теперь контент использует всю ширину контейнера -->
     </div>
 
     <!-- Компактный футер -->
