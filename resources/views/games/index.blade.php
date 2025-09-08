@@ -37,9 +37,12 @@
                     <td class="border border-zinc-500 w-20 px-1.5 py-2 text-center text-zinc-700 whitespace-nowrap">
                         {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
                     </td>
-                    <td class="border border-zinc-500 w-8 px-1.5 py-2 text-center text-zinc-700">
-                        {{ $game->game_number }}
-                    </td>
+<td class="border border-zinc-500 w-8 px-1.5 py-2 text-center">
+    <a href="{{ route('games.show', $game->id) }}" 
+       class="font-semibold text-zinc-800 hover:text-blue-600 hover:underline transition truncate block">
+        {{ $game->game_number }}
+    </a>
+</td>
                     <td class="border border-zinc-500 w-12 px-1.5 py-2 text-center text-zinc-700">
                         {{ $game->season }}
                     </td>
