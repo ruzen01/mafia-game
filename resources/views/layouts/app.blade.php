@@ -43,11 +43,15 @@
 <body class="bg-zinc-100 flex flex-col min-h-screen text-zinc-900">
     @include('layouts.navigation')
 
-    <div class="flex flex-col flex-grow container mx-auto p-4 sm:p-6 md:p-8">
-        @yield('content')
+    <!-- Основной контент с ограничением максимальной ширины для лучшей читаемости -->
+    <div class="flex flex-col flex-grow container mx-auto p-4 sm:p-6">
+        <div class="max-w-4xl mx-auto">
+            @yield('content')
+        </div>
     </div>
 
-    <footer class="w-full text-center text-white p-4 bg-zinc-800 mt-auto sm:p-6 md:p-8">
+    <!-- Компактный футер -->
+    <footer class="w-full text-center text-white py-3 px-4 sm:px-6 bg-zinc-800 mt-auto">
         mafia-vdk © 2025
     </footer>
 </body>
