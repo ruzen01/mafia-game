@@ -2,118 +2,143 @@
 
 @section('content')
 <div class="container mx-auto py-6">
+
+    <!-- Уведомления -->
     @if(session('error'))
-    <div class="bg-red-500 text-white p-3 rounded mb-4">
+    <div class="bg-red-500 text-white p-3 rounded mb-6 shadow-lg">
         {{ session('error') }}
     </div>
     @endif
 
     @if(session('success'))
-    <div class="bg-green-500 text-white p-3 rounded mb-4">
+    <div class="bg-green-500 text-white p-3 rounded mb-6 shadow-lg">
         {{ session('success') }}
     </div>
     @endif
 
-    <h1 class="text-center text-4xl font-extrabold text-gray-800 mb-6">Список игр</h1> <!-- Увеличил размер заголовка и сделал его темнее -->
+    <!-- Заголовок -->
+    <h1 class="text-center text-4xl font-extrabold text-gray-800 mb-8">Список игр</h1>
 
+    <!-- Кнопка создания игры -->
     @can('create', App\Models\Game::class)
-    <div class="flex justify-right mb-6">
-        <a href="{{ route('games.create') }}" class="bg-blue-500 shadow-lg shadow-blue-500/5 hover:bg-blue-300 text-white py-2 px-4 rounded">
-            Создать новую игру
+    <div class="flex justify-end mb-8">
+        <a href="{{ route('games.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold">
+            🎮 Создать новую игру
         </a>
     </div>
     @endcan
 
-    <div class="overflow-x-auto overflow-y-visible rounded-lg shadow-lg">
-        <table class="table-auto w-full">
-            <thead class="bg-gray-300 text-gray-900 text-left"> <!-- Темнее для заголовков таблицы -->
-                <tr>
-                    <th class="truncate px-4 py-2">Дата</th>
-                    <th class="truncate px-4 py-2">Имя</th>
-                    <th class="truncate px-4 py-2">№</th>
-                    <th class="truncate px-4 py-2">Ведущий</th>
-                    <th class="truncate px-4 py-2">Сезон</th>
-                    <th class="truncate px-4 py-2">Победитель</th>
-                    <th class="truncate px-4 py-2">Игроки</th>
-                    @can('update', App\Models\Game::class)
-                    <th class="truncate px-4 py-2">Действия</th>
-                    @endcan
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($games as $game)
-                <tr class="odd:bg-gray-100 even:bg-gray-200 hover:bg-gray-300"> <!-- Чередующиеся строки с легким выделением при наведении -->
-                    <td class="truncate px-4 py-2">{{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}</td>
-                    <td class="truncate max-w-xs px-4 py-2">
-                        <a href="{{ route('games.show', $game->id) }}" class="hover:text-blue-500">
+    <!-- Список игр в стиле рейтинга -->
+    <div class="bg-gray-100 rounded-xl shadow-xl overflow-hidden">
+        <!-- Темная шапка таблицы -->
+        <div class="bg-gray-800 text-white p-4 grid grid-cols-12 gap-2 font-semibold text-sm uppercase tracking-wide">
+            <div class="col-span-2">Дата</div>
+            <div class="col-span-3">Имя игры</div>
+            <div class="col-span-1 text-center">№</div>
+            <div class="col-span-2">Ведущий</div>
+            <div class="col-span-1 text-center">Сезон</div>
+            <div class="col-span-2">Победитель</div>
+            <div class="col-span-1 text-center">Игроки</div>
+        </div>
+
+        <!-- Тело таблицы -->
+        <div class="divide-y divide-gray-300">
+            @foreach($games as $game)
+            <div class="bg-white hover:bg-gray-50 transition-colors duration-200 group">
+                <div class="p-4 grid grid-cols-12 gap-2 items-center">
+                    <!-- Дата -->
+                    <div class="col-span-2 text-gray-700 font-medium">
+                        {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
+                    </div>
+                    
+                    <!-- Имя игры -->
+                    <div class="col-span-3">
+                        <a href="{{ route('games.show', $game->id) }}" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline transition-colors">
                             {{ $game->name }}
                         </a>
-                    </td>
-                    <td class="truncate px-4 py-2">{{ $game->game_number }}</td>
-                    <td class="truncate px-4 py-2">{{ $game->host_name }}</td>
-                    <td class="truncate px-4 py-2">{{ $game->season }}</td>
-                    <td class="truncate px-4 py-2">{{ $game->winner }}</td>
-                    <td class="px-4 py-2">
-    <div class="relative inline-block text-left">
-        <!-- Начало details -->
-        <details class="group">
-            <!-- Summary - кнопка для открытия списка -->
-            <summary class="inline-flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer">
-                Игроки
-                <!-- Иконка стрелки -->
-                <svg class="ml-2 h-5 w-5 transition-transform group-open:-rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </summary>
-
-            <!-- Выпадающий список -->
-            <div class="origin-top-right absolute right-0 z-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
-                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="players-dropdown">
-                    @if ($game->players->count() > 0)
-                        @foreach($game->players as $player)
-                            <div class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <!-- Аватар или инициалы игрока -->
-                                <div class="flex-shrink-0 flex items-center justify-center w-6 h-6 mr-2 rounded-full bg-blue-500 text-white font-bold">
-                                    @php
-                                    // Получение инициалов
-                                    $initials = strtoupper(substr($player->name, 0, 1));
-                                    if (str_contains($player->name, ' ')) {
-                                        $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
-                                    }
-                                    @endphp
-                                    {{ $initials }}
+                    </div>
+                    
+                    <!-- Номер игры -->
+                    <div class="col-span-1 text-center text-gray-700 font-bold">
+                        {{ $game->game_number }}
+                    </div>
+                    
+                    <!-- Ведущий -->
+                    <div class="col-span-2 text-gray-700">
+                        {{ $game->host_name }}
+                    </div>
+                    
+                    <!-- Сезон -->
+                    <div class="col-span-1 text-center text-gray-700">
+                        {{ $game->season }}
+                    </div>
+                    
+                    <!-- Победитель -->
+                    <div class="col-span-2 text-gray-700 font-medium">
+                        {{ $game->winner }}
+                    </div>
+                    
+                    <!-- Игроки (улучшенный выпадающий список) -->
+                    <div class="col-span-1 flex justify-center">
+                        <div class="relative inline-block text-left">
+                            <details class="group">
+                                <summary class="cursor-pointer inline-flex items-center justify-center w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <span class="text-sm font-bold text-gray-700">{{ $game->players->count() }}</span>
+                                </summary>
+                                
+                                <!-- Выпадающий список игроков - теперь открывается вниз и показывает всех игроков -->
+                                <div class="origin-top-right absolute right-0 mt-2 w-64 max-h-96 overflow-y-auto rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="p-3">
+                                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Игроки ({{ $game->players->count() }})</div>
+                                        @if ($game->players->count() > 0)
+                                            <div class="space-y-2">
+                                                @foreach($game->players as $player)
+                                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 transition-colors">
+                                                        <!-- Аватар или инициалы -->
+                                                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mr-3">
+                                                            <span class="text-white text-xs font-bold">
+                                                                @php
+                                                                    $initials = strtoupper(substr($player->name, 0, 1));
+                                                                    if (str_contains($player->name, ' ')) {
+                                                                        $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
+                                                                    }
+                                                                @endphp
+                                                                {{ $initials }}
+                                                            </span>
+                                                        </div>
+                                                        <!-- Имя игрока -->
+                                                        <span class="text-sm text-gray-700">{{ $player->name }}</span>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="p-3 text-center text-gray-500 text-sm">Нет игроков</div>
+                                        @endif
+                                    </div>
                                 </div>
-                                <!-- Имя игрока -->
-                                {{ $player->name }}
-                            </div>
-                        @endforeach
-                    @else
-                        <!-- Если игроков нет -->
-                        <div class="px-4 py-2 text-sm text-gray-500">Нет игроков</div>
-                    @endif
-                </div>
-            </div>
-        </details>
-    </div>
-</td>
+                            </details>
+                        </div>
+                    </div>
+                    
+                    <!-- Действия -->
                     @can('update', [$game])
-                    <td class="truncate px-4 py-2">
-                        <form action="{{ route('games.edit', $game->id) }}" method="GET" style="display:inline-block;">
-                            <button type="submit" class="bg-yellow-500 text-white py-1 px-2 rounded hover:bg-yellow-400">Изменить</button>
-                        </form>
-                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" style="display:inline-block;">
+                    <div class="col-span-12 mt-3 pt-3 border-t border-gray-200 flex justify-end space-x-2">
+                        <a href="{{ route('games.edit', $game->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1.5 px-4 rounded text-sm font-medium transition-colors duration-200">
+                            ✏️ Изменить
+                        </a>
+                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-400" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
-                                Удалить
+                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1.5 px-4 rounded text-sm font-medium transition-colors duration-200" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
+                                🗑️ Удалить
                             </button>
                         </form>
-                    </td>
+                    </div>
                     @endcan
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection
