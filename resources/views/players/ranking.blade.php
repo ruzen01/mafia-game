@@ -10,12 +10,12 @@
                 <tr>
                     <th class="border border-zinc-500 w-8 px-1 py-2 text-center">№</th>
                     <th class="border border-zinc-500 px-1 sm:px-2 py-2 text-left">Игрок</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-amber-700 font-bold">Р</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-slate-700">И</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-green-700">П</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-blue-700">БЛ</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-red-700">ПУ</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-purple-700">ДБ</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-amber-300 font-bold">Р</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-slate-300">И</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-green-300">П</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-blue-300">БЛ</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-red-300">ПУ</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-purple-300">ДБ</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-zinc-500">
