@@ -1,57 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto py-6" x-data="{ openModal: false, game: null }">
+<div class="container mx-auto py-6 px-2 sm:px-4" x-data="{ openModal: false, game: null }">
     <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Список игр</h1>
 
     @can('create', App\Models\Game::class)
     <div class="flex justify-end mb-6">
-        <a href="{{ route('games.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded font-semibold transition transform hover:scale-105 shadow-md">
-            🎮 Создать новую игру
+        <a href="{{ route('games.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 sm:px-6 rounded font-semibold transition transform hover:scale-105 shadow-md text-sm sm:text-base">
+            🎮 Создать игру
         </a>
     </div>
     @endcan
 
-    <div class="overflow-x-auto rounded-lg shadow-lg">
-        <table class="table-fixed border-collapse w-full bg-zinc-200 text-xs sm:text-sm">
+    <!-- Таблица БЕЗ горизонтальной прокрутки -->
+    <div class="rounded-lg shadow-lg bg-zinc-200 overflow-hidden">
+        <table class="table-fixed border-collapse w-full text-xs sm:text-sm">
             <thead class="bg-zinc-700 text-zinc-100 uppercase text-xs font-semibold">
                 <tr>
-                    <th class="border border-zinc-500 w-20 px-1 py-2 text-center">Дата</th>
-                    <th class="border border-zinc-500 px-1 sm:px-2 py-2 text-left">Имя игры</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center">№</th>
-                    <th class="border border-zinc-500 w-24 px-1 py-2 text-center">Ведущий</th>
-                    <th class="border border-zinc-500 w-16 px-1 py-2 text-center">Сезон</th>
-                    <th class="border border-zinc-500 w-24 px-1 py-2 text-center">Победитель</th>
-                    <th class="border border-zinc-500 w-16 px-1 py-2 text-center">Игроки</th>
+                    <th class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center">Дата</th>
+                    <th class="border border-zinc-500 w-1/4 px-1.5 py-2 text-left">Имя игры</th>
+                    <th class="border border-zinc-500 w-1/12 px-1.5 py-2 text-center">№</th>
+                    <th class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center">Ведущий</th>
+                    <th class="border border-zinc-500 w-1/12 px-1.5 py-2 text-center">Сезон</th>
+                    <th class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center">Победитель</th>
+                    <th class="border border-zinc-500 w-1/12 px-1.5 py-2 text-center">Игроки</th>
                     @can('update', App\Models\Game::class)
-                    <th class="border border-zinc-500 w-28 px-1 py-2 text-center">Действия</th>
+                    <th class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center">Действия</th>
                     @endcan
                 </tr>
             </thead>
             <tbody class="divide-y divide-zinc-500">
                 @foreach($games as $game)
                 <tr class="bg-zinc-200 animate-fade-in" style="animation-delay: {{ $loop->iteration * 0.1 }}s">
-                    <td class="border border-zinc-500 w-20 px-1 py-1 text-center text-zinc-700">
+                    <td class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center text-zinc-700">
                         {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
                     </td>
-                    <td class="border border-zinc-500 px-1 sm:px-2 py-1 min-w-0">
+                    <td class="border border-zinc-500 w-1/4 px-1.5 py-2 text-left">
                         <a href="{{ route('games.show', $game->id) }}" class="block truncate font-semibold text-zinc-800 hover:text-blue-600 hover:underline" title="{{ $game->name }}">
                             {{ $game->name }}
                         </a>
                     </td>
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-zinc-700">
+                    <td class="border border-zinc-500 w-1/12 px-1.5 py-2 text-center text-zinc-700">
                         {{ $game->game_number }}
                     </td>
-                    <td class="border border-zinc-500 w-24 px-1 py-1 text-center text-zinc-700">
+                    <td class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center text-zinc-700 truncate" title="{{ $game->host_name }}">
                         {{ $game->host_name }}
                     </td>
-                    <td class="border border-zinc-500 w-16 px-1 py-1 text-center text-zinc-700">
+                    <td class="border border-zinc-500 w-1/12 px-1.5 py-2 text-center text-zinc-700">
                         {{ $game->season }}
                     </td>
-                    <td class="border border-zinc-500 w-24 px-1 py-1 text-center text-zinc-700">
+                    <td class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center text-zinc-700 truncate" title="{{ $game->winner }}">
                         {{ $game->winner }}
                     </td>
-                    <td class="border border-zinc-500 w-16 px-1 py-1 text-center">
+                    <td class="border border-zinc-500 w-1/12 px-1.5 py-2 text-center">
                         @if($game->players->count() > 0)
                         <button 
                             @click="openModal = true; game = {
@@ -76,19 +77,19 @@
                         @endif
                     </td>
                     @can('update', [$game])
-                    <td class="border border-zinc-500 w-28 px-1 py-1 text-center space-y-1">
-                        <form action="{{ route('games.edit', $game->id) }}" method="GET" class="inline-block">
-                            <button type="submit" class="bg-yellow-500 text-white text-xs py-1 px-2 rounded hover:bg-yellow-600 transition">
+                    <td class="border border-zinc-500 w-1/6 sm:w-1/12 px-1.5 py-2 text-center space-y-1">
+                        <div class="flex justify-center space-x-1">
+                            <a href="{{ route('games.edit', $game->id) }}" class="bg-yellow-500 text-white text-xs py-1 px-2 rounded hover:bg-yellow-600 transition">
                                 ✏️
-                            </button>
-                        </form>
-                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white text-xs py-1 px-2 rounded hover:bg-red-600 transition" onclick="return confirm('Удалить игру {{ $game->name }}?')">
-                                🗑️
-                            </button>
-                        </form>
+                            </a>
+                            <form action="{{ route('games.destroy', $game->id) }}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white text-xs py-1 px-2 rounded hover:bg-red-600 transition" onclick="return confirm('Удалить игру {{ addslashes($game->name) }}?')">
+                                    🗑️
+                                </button>
+                            </form>
+                        </div>
                     </td>
                     @endcan
                 </tr>
