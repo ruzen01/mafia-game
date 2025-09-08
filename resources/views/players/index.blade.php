@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Колода Игроков</h1>
+    <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Игроки</h1>
 
     @can('create', App\Models\Player::class)
     <div class="flex justify-center mb-8">
