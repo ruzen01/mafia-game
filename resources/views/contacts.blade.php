@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl sm:text-4xl font-extrabold mb-8 text-center text-zinc-800">Связаться с нами</h1>
+    {{--<h1 class="text-3xl sm:text-4xl font-extrabold mb-8 text-center text-zinc-800">Связаться с нами</h1>--}}
     
     <div class="max-w-2xl mx-auto">
         <div class="bg-zinc-800 rounded-xl shadow-xl overflow-hidden">
