@@ -5,17 +5,17 @@
     <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Рейтинг игроков</h1>
 
     <div class="overflow-x-auto rounded-lg shadow-lg">
-        <table class="table-fixed border-collapse w-full bg-zinc-200 text-sm">
+        <table class="table-fixed border-collapse w-full bg-zinc-200 text-xs sm:text-sm">
             <thead class="bg-zinc-700 text-zinc-100 uppercase text-xs font-semibold">
                 <tr>
                     <th class="border border-zinc-500 w-8 px-1 py-2 text-center">№</th>
-                    <th class="border border-zinc-500 px-2 py-2 text-left">Игрок</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center text-amber-700 font-bold">Р</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center text-slate-700">И</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center text-green-700">П</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center text-blue-700">БЛ</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center text-red-700">ПУ</th>
-                    <th class="border border-zinc-500 w-10 px-1 py-2 text-center text-purple-700">ДБ</th>
+                    <th class="border border-zinc-500 px-1 sm:px-2 py-2 text-left">Игрок</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-amber-700 font-bold">Р</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-slate-700">И</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-green-700">П</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-blue-700">БЛ</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-red-700">ПУ</th>
+                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-purple-700">ДБ</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-zinc-500">
@@ -54,11 +54,11 @@
                                 @endif
                             </div>
                         @else
-                            <span class="text-zinc-700 text-sm">{{ $loop->iteration }}</span>
+                            <span class="text-zinc-700 text-xs sm:text-sm">{{ $loop->iteration }}</span>
                         @endif
                     </td>
 
-                    <td class="border border-zinc-500 px-2 py-1 min-w-0">
+                    <td class="border border-zinc-500 px-1 sm:px-2 py-1 min-w-0 w-full">
                         <button 
                             @click="openModal = true; player = {
                                 name: '{{ $player->name }}',
@@ -97,22 +97,22 @@
                         </div>
                     </td>
 
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center font-bold text-amber-700">
+                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center font-bold text-amber-700">
                         {{ $score }}
                     </td>
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-slate-700">
+                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-slate-700">
                         {{ $player->total_games }}
                     </td>
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-green-700">
+                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-green-700">
                         {{ $player->games->where('pivot.score', '>=', 2)->count() }}
                     </td>
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-blue-700">
+                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-blue-700">
                         {{ $player->games->where('pivot.best_player', 1)->count() }}
                     </td>
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-red-700">
+                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-red-700">
                         {{ $player->games->where('pivot.first_victim', 1)->count() }}
                     </td>
-                    <td class="border border-zinc-500 w-10 px-1 py-1 text-center text-purple-700">
+                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-purple-700">
                         {{ $player->games->sum('pivot.additional_score') }}
                     </td>
                 </tr>
