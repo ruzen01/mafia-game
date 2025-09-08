@@ -26,7 +26,7 @@
                    class="block bg-green-600 hover:bg-green-700 text-white p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-4">
-                            <i class="fa-brands fa-whatsapp text-green-600 text-xl"></i>
+                            <i class="fab fa-whatsapp text-green-600 text-xl"></i>
                         </div>
                         <div class="flex-1">
                             <div class="font-semibold text-white">WhatsApp группа</div>
@@ -45,7 +45,7 @@
                    class="block bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-4">
-                            <i class="fa-brands fa-telegram text-blue-600 text-xl"></i>
+                            <i class="fab fa-telegram-plane text-blue-600 text-xl"></i>
                         </div>
                         <div class="flex-1">
                             <div class="font-semibold text-white">Telegram группа</div>
@@ -64,7 +64,7 @@
                    class="block bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-4">
-                            <i class="fa-brands fa-instagram text-pink-500 text-xl"></i>
+                            <i class="fab fa-instagram text-pink-500 text-xl"></i>
                         </div>
                         <div class="flex-1">
                             <div class="font-semibold text-white">Instagram</div>
@@ -81,7 +81,7 @@
                    class="block bg-zinc-600 hover:bg-zinc-700 text-white p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-4">
-                            <i class="fa-solid fa-phone text-zinc-600 text-xl"></i>
+                            <i class="fas fa-phone text-zinc-600 text-xl"></i>
                         </div>
                         <div class="flex-1">
                             <div class="font-semibold text-white">Телефон</div>
