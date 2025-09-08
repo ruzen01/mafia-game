@@ -57,7 +57,11 @@
                                     @foreach($game->players as $player)
                                         {
                                             id: {{ $player->id }},
-                                            name: '{{ addslashes($player->name) }}'
+                                            name: '{{ addslashes($player->name) }}',
+                                            role: '{{ addslashes($player->role->name ?? '—') }}',
+                                            best_player: {{ $player->best_player ? 'true' : 'false' }},
+                                            first_victim: {{ $player->first_victim ? 'true' : 'false' }},
+                                            additional_score: {{ $player->additional_score ? 'true' : 'false' }}
                                         }@if(!$loop->last),@endif
                                     @endforeach
                                 ]
@@ -129,10 +133,26 @@
                 <template x-if="game?.players && game.players.length > 0">
                     <ul class="mt-2 space-y-2">
                         <template x-for="(player, index) in game.players" :key="player.id">
-                            <li class="p-3 bg-zinc-50 border-l-4 border-blue-500 rounded-r-lg animate-fade-in"
+                            <li class="p-2 bg-zinc-50 rounded animate-fade-in"
                                 :style="`animation-delay: ${index * 0.1}s`">
-                                <span class="font-medium text-zinc-800">№<span x-text="index + 1"></span>:</span>
-                                <span class="text-sm text-zinc-700 ml-2" x-text="player.name"></span>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="font-medium text-zinc-800" x-text="index + 1"></span>
+                                        <span class="text-sm text-zinc-700" x-text="player.name"></span>
+                                        <span class="text-xs text-zinc-500 bg-zinc-200 px-2 py-0.5 rounded" x-text="player.role"></span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <template x-if="player.best_player">
+                                            <span class="text-yellow-500 font-bold" title="Лучший игрок">🌟</span>
+                                        </template>
+                                        <template x-if="player.first_victim">
+                                            <span class="text-red-500 font-bold" title="Первая кровь">💉</span>
+                                        </template>
+                                        <template x-if="player.additional_score">
+                                            <span class="text-green-500 font-bold" title="Доп. баллы">➕</span>
+                                        </template>
+                                    </div>
+                                </div>
                             </li>
                         </template>
                     </ul>
