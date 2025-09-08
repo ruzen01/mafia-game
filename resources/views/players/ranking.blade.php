@@ -1,180 +1,144 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto py-6" x-data="{ openModal: null, player: null }">
-    <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Рейтинг игроков</h1>
+<div class="container mx-auto py-6">
 
-    <div class="overflow-x-auto rounded-lg shadow-lg">
-        <table class="table-fixed border-collapse w-full bg-zinc-200 text-xs sm:text-sm">
-            <thead class="bg-zinc-700 text-zinc-100 uppercase text-xs font-semibold">
-                <tr>
-                    <th class="border border-zinc-500 w-8 px-1 py-2 text-center">№</th>
-                    <th class="border border-zinc-500 px-1 sm:px-2 py-2 text-left">Игрок</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-amber-300 font-bold">Р</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-slate-300">И</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-green-300">П</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-blue-300">БЛ</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-red-300">ПУ</th>
-                    <th class="border border-zinc-500 w-6 sm:w-10 px-1 py-2 text-center text-purple-300">ДБ</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-zinc-500">
-                @php
-                    $maxScore = $players->max(fn($p) => $p->games->sum('pivot.score'));
-                @endphp
-
-                @foreach($players as $player)
-                    @php
-                        $score = $player->games->sum('pivot.score');
-                        $progress = $maxScore > 0 ? ($score / $maxScore) * 100 : 0;
-                    @endphp
-                <tr 
-                    class="
-                        bg-zinc-200
-                        @if($loop->iteration <= 3) border border-zinc-400 @endif
-                        animate-fade-in
-                    "
-                    style="animation-delay: {{ $loop->iteration * 0.1 }}s"
-                >
-                    <td class="border border-zinc-500 w-8 px-1 py-1 text-center">
-                        @if($loop->iteration <= 3)
-                            <div class="flex justify-center">
-                                @if($loop->iteration == 1)
-                                    <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
-                                    </svg>
-                                @elseif($loop->iteration == 2)
-                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
-                                    </svg>
-                                @elseif($loop->iteration == 3)
-                                    <svg class="w-6 h-6 text-amber-700" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
-                                    </svg>
-                                @endif
-                            </div>
-                        @else
-                            <span class="text-zinc-700 text-xs sm:text-sm">{{ $loop->iteration }}</span>
-                        @endif
-                    </td>
-
-                    <td class="border border-zinc-500 px-1 sm:px-2 py-1 min-w-0 w-full">
-                        <button 
-                            @click="openModal = true; player = {
-                                name: '{{ $player->name }}',
-                                score: {{ $score }},
-                                games: {{ $player->total_games }},
-                                wins: {{ $player->games->where('pivot.score', '>=', 2)->count() }},
-                                best: {{ $player->games->where('pivot.best_player', 1)->count() }},
-                                firstVictim: {{ $player->games->where('pivot.first_victim', 1)->count() }},
-                                bonus: {{ $player->games->sum('pivot.additional_score') }},
-                                recentGames: [
-                                    @foreach($player->games->sortByDesc('game.date')->take(5) as $game)
-                                        {
-                                            date: '{{ $game->date->format('d.m') }}',
-                                            score: {{ $game->pivot->score }},
-                                            best: {{ $game->pivot->best_player ? 'true' : 'false' }},
-                                            firstVictim: {{ $game->pivot->first_victim ? 'true' : 'false' }}
-                                        }@if(!$loop->last),@endif
-                                    @endforeach
-                                ]
-                            }"
-                            class="
-                                block w-full text-left font-semibold truncate
-                                @if($loop->iteration == 1) text-pink-700 @endif
-                                @if($loop->iteration == 2) text-violet-700 @endif
-                                @if($loop->iteration == 3) text-blue-700 @endif
-                                @if($loop->iteration > 3 && $loop->iteration <= 10) text-zinc-800 @endif
-                                @if($loop->iteration > 10) text-zinc-700 font-medium @endif
-                                hover:underline
-                            "
-                            title="Посмотреть статистику"
-                        >
-                            {{ $player->name }}
-                        </button>
-                        <div class="mt-1 w-full bg-zinc-300 rounded-full h-1.5">
-                            <div class="bg-amber-500 h-1.5 rounded-full" style="width: {{ $progress }}%"></div>
-                        </div>
-                    </td>
-
-                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center font-bold text-amber-700">
-                        {{ $score }}
-                    </td>
-                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-slate-700">
-                        {{ $player->total_games }}
-                    </td>
-                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-green-700">
-                        {{ $player->games->where('pivot.score', '>=', 2)->count() }}
-                    </td>
-                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-blue-700">
-                        {{ $player->games->where('pivot.best_player', 1)->count() }}
-                    </td>
-                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-red-700">
-                        {{ $player->games->where('pivot.first_victim', 1)->count() }}
-                    </td>
-                    <td class="border border-zinc-500 w-6 sm:w-10 px-1 py-1 text-center text-purple-700">
-                        {{ $player->games->sum('pivot.additional_score') }}
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <!-- Уведомления -->
+    @if(session('error'))
+    <div class="bg-red-500 text-white p-3 rounded mb-6 shadow-lg">
+        {{ session('error') }}
     </div>
+    @endif
 
-    <!-- Модальное окно -->
-    <div x-show="openModal" 
-         class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-         @click.outside="openModal = false"
-         x-transition.opacity>
-        <div @click.outside="" class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 mx-4 max-h-96 overflow-y-auto">
-            <h3 x-text="player?.name" class="text-xl font-bold text-zinc-800 mb-4"></h3>
+    @if(session('success'))
+    <div class="bg-green-500 text-white p-3 rounded mb-6 shadow-lg">
+        {{ session('success') }}
+    </div>
+    @endif
 
-            <div class="space-y-3 text-sm">
-                <div><strong>Рейтинг:</strong> <span x-text="player?.score" class="text-amber-700 font-bold"></span></div>
-                <div><strong>Игр:</strong> <span x-text="player?.games"></span></div>
-                <div><strong>Побед:</strong> <span x-text="player?.wins" class="text-green-600"></span></div>
-                <div><strong>Был лучшим:</strong> <span x-text="player?.best" class="text-blue-600"></span></div>
-                <div><strong>Первым убит:</strong> <span x-text="player?.firstVictim" class="text-red-600"></span></div>
-                <div><strong>Доп. баллы:</strong> <span x-text="player?.bonus" class="text-purple-600"></span></div>
+    <!-- Заголовок -->
+    <h1 class="text-center text-4xl font-extrabold text-gray-800 mb-8">Список игр</h1>
 
-                <div class="mt-4 pt-3 border-t border-zinc-200">
-                    <h4 class="font-semibold text-zinc-700">Последние игры:</h4>
-                    <template x-if="player?.recentGames && player.recentGames.length > 0">
-                        <ul class="mt-2 space-y-1">
-                            <template x-for="game in player.recentGames" :key="game.date">
-                                <li class="flex justify-between text-xs">
-                                    <span x-text="game.date"></span>
-                                    <span>
-                                        <span x-text="game.score" :class="game.score >= 2 ? 'text-green-600' : 'text-zinc-600'"></span>
-                                        <span x-show="game.best" class="ml-1 text-blue-500">★</span>
-                                        <span x-show="game.firstVictim" class="ml-1 text-red-500">💀</span>
-                                    </span>
-                                </li>
-                            </template>
-                        </ul>
-                    </template>
-                    <p x-show="!player?.recentGames || player.recentGames.length === 0" class="text-zinc-500 text-xs">
-                        Нет данных об играх.
-                    </p>
+    <!-- Кнопка создания игры -->
+    @can('create', App\Models\Game::class)
+    <div class="flex justify-end mb-8">
+        <a href="{{ route('games.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold">
+            🎮 Создать новую игру
+        </a>
+    </div>
+    @endcan
+
+    <!-- Список игр в стиле рейтинга -->
+    <div class="bg-gray-100 rounded-xl shadow-xl overflow-hidden">
+        <!-- Темная шапка таблицы -->
+        <div class="bg-gray-800 text-white p-4 grid grid-cols-12 gap-2 font-semibold text-sm uppercase tracking-wide">
+            <div class="col-span-2">Дата</div>
+            <div class="col-span-3">Имя игры</div>
+            <div class="col-span-1 text-center">№</div>
+            <div class="col-span-2">Ведущий</div>
+            <div class="col-span-1 text-center">Сезон</div>
+            <div class="col-span-2">Победитель</div>
+            <div class="col-span-1 text-center">Игроки</div>
+        </div>
+
+        <!-- Тело таблицы -->
+        <div class="divide-y divide-gray-300">
+            @foreach($games as $game)
+            <div class="bg-white hover:bg-gray-50 transition-colors duration-200 group">
+                <div class="p-4 grid grid-cols-12 gap-2 items-center">
+                    <!-- Дата -->
+                    <div class="col-span-2 text-gray-700 font-medium">
+                        {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
+                    </div>
+                    
+                    <!-- Имя игры -->
+                    <div class="col-span-3">
+                        <a href="{{ route('games.show', $game->id) }}" class="text-blue-600 hover:text-blue-800 font-semibold hover:underline transition-colors">
+                            {{ $game->name }}
+                        </a>
+                    </div>
+                    
+                    <!-- Номер игры -->
+                    <div class="col-span-1 text-center text-gray-700 font-bold">
+                        {{ $game->game_number }}
+                    </div>
+                    
+                    <!-- Ведущий -->
+                    <div class="col-span-2 text-gray-700">
+                        {{ $game->host_name }}
+                    </div>
+                    
+                    <!-- Сезон -->
+                    <div class="col-span-1 text-center text-gray-700">
+                        {{ $game->season }}
+                    </div>
+                    
+                    <!-- Победитель -->
+                    <div class="col-span-2 text-gray-700 font-medium">
+                        {{ $game->winner }}
+                    </div>
+                    
+                    <!-- Игроки (улучшенный выпадающий список) -->
+                    <div class="col-span-1 flex justify-center">
+                        <div class="relative inline-block text-left">
+                            <details class="group">
+                                <summary class="cursor-pointer inline-flex items-center justify-center w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <span class="text-sm font-bold text-gray-700">{{ $game->players->count() }}</span>
+                                </summary>
+                                
+                                <!-- Выпадающий список игроков - теперь открывается вниз и показывает всех игроков -->
+                                <div class="origin-top-right absolute right-0 mt-2 w-64 max-h-96 overflow-y-auto rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="p-3">
+                                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Игроки ({{ $game->players->count() }})</div>
+                                        @if ($game->players->count() > 0)
+                                            <div class="space-y-2">
+                                                @foreach($game->players as $player)
+                                                    <div class="flex items-center p-2 rounded hover:bg-gray-100 transition-colors">
+                                                        <!-- Аватар или инициалы -->
+                                                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mr-3">
+                                                            <span class="text-white text-xs font-bold">
+                                                                @php
+                                                                    $initials = strtoupper(substr($player->name, 0, 1));
+                                                                    if (str_contains($player->name, ' ')) {
+                                                                        $initials .= strtoupper(substr(explode(' ', $player->name)[1], 0, 1));
+                                                                    }
+                                                                @endphp
+                                                                {{ $initials }}
+                                                            </span>
+                                                        </div>
+                                                        <!-- Имя игрока -->
+                                                        <span class="text-sm text-gray-700">{{ $player->name }}</span>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="p-3 text-center text-gray-500 text-sm">Нет игроков</div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                    
+                    <!-- Действия -->
+                    @can('update', [$game])
+                    <div class="col-span-12 mt-3 pt-3 border-t border-gray-200 flex justify-end space-x-2">
+                        <a href="{{ route('games.edit', $game->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1.5 px-4 rounded text-sm font-medium transition-colors duration-200">
+                            ✏️ Изменить
+                        </a>
+                        <form action="{{ route('games.destroy', $game->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1.5 px-4 rounded text-sm font-medium transition-colors duration-200" onclick="return confirm('Вы уверены, что хотите удалить эту игру?')">
+                                🗑️ Удалить
+                            </button>
+                        </form>
+                    </div>
+                    @endcan
                 </div>
             </div>
-
-            <button @click="openModal = false"
-                    class="mt-4 w-full py-2 bg-zinc-800 text-white rounded hover:bg-zinc-700 transition">
-                Закрыть
-            </button>
+            @endforeach
         </div>
     </div>
-
-    <style>
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fade-in 0.6s ease-out forwards;
-            opacity: 0;
-        }
-    </style>
 </div>
 @endsection
