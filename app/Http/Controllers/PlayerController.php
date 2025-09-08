@@ -101,8 +101,19 @@ class PlayerController extends Controller
         return view('players.ranking', compact('players'));
     }
 
-    public function show(Player $player)
-    {
-        return view('players.show', compact('player'));
-    }
+// app/Http/Controllers/PlayerController.php
+
+public function show(Player $player)
+{
+    // Загружаем игры игрока (с pivot-данными)
+    $player->load('games');
+
+    // Собираем все role_id из pivot
+    $roleIds = $player->games->pluck('pivot.role_id')->filter()->unique();
+
+    // Загружаем соответствующие роли одним запросом
+    $roles = Role::whereIn('id', $roleIds)->get()->keyBy('id');
+
+    return view('players.show', compact('player', 'roles'));
+}
 }
