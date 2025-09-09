@@ -10,14 +10,29 @@ use Illuminate\Validation\Rule;
 
 class PlayerController extends Controller
 {
-    public function index()
-    {
-        $players = Player::with('games')
-            ->orderBy('name', 'asc')
-            ->paginate(15);
+public function index()
+{
+    // Получаем всех игроков с глобальным рейтингом (как в ranking)
+    $playersWithTotalScore = Player::select('players.*')
+        ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
+        ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
+        ->groupBy('players.id')
+        ->orderByDesc('total_score')
+        ->get();
 
-        return view('players.index', compact('players'));
+    // Создаем карту: player_id => rank
+    $rankMap = [];
+    foreach ($playersWithTotalScore as $index => $player) {
+        $rankMap[$player->id] = $index + 1;
     }
+
+    // Получаем игроков для пагинации (с отношениями, сортировка по имени)
+    $players = Player::with('games')
+        ->orderBy('name', 'asc')
+        ->paginate(15);
+
+    return view('players.index', compact('players', 'rankMap'));
+}
 
     public function create()
     {
