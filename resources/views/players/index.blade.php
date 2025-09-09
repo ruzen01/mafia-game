@@ -30,7 +30,7 @@
     </div>
     @endcan
 
-<!-- Сетка карточек игроков -->
+<!-- Сетка карточек игроков — БЕЗ ПАГИНАЦИИ, ВСЕ ИГРОКИ -->
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
     @php
         $playersSorted = $players->sortBy('name');
@@ -44,7 +44,7 @@
     <a 
         href="{{ route('players.show', $player->id) }}" 
         class="w-48 h-64 bg-white rounded-xl shadow-lg border-2 border-zinc-300 hover:shadow-xl hover:scale-105 hover:border-amber-400 transition-all duration-300 cursor-pointer relative overflow-hidden group block"
-        style="animation-delay: {{ $index * 0.1 }}s; filter: contrast(125%);"
+        style="animation-delay: {{ $index * 0.1 }}s; filter: sepia(30%);"
     >
         <!-- Область фото -->
         <div class="w-full h-36 flex items-center justify-center overflow-hidden bg-white">
@@ -54,19 +54,19 @@
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
             >
-            <div class="w-full h-full flex items-center justify-center text-zinc-300" style="display: none;">
+            <div class="w-full h-full flex items-center justify-center text-zinc-400" style="display: none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
                   <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
                 </svg>
             </div>
         </div>
 
-        <!-- Имя и статистика -->
+        <!-- Имя и статистика — УБРАН РЕЙТИНГ, ОСТАВЛЕНЫ ТОЛЬКО ИГРЫ И МЕСТО -->
         <div class="p-3 text-center flex flex-col items-center justify-center h-28">
             <div class="font-semibold text-zinc-800 group-hover:text-amber-700 transition-colors leading-tight">
                 {{ $player->name }}
             </div>
-            <div class="mt-2 text-xs text-zinc-600 space-y-1">
+            <div class="mt-2 text-xs text-zinc-800 space-y-1 font-medium"> <!-- ← Повышен контраст: text-zinc-800 -->
                 <div>Игр: {{ $totalGames }}</div>
                 @if(isset($rankMap[$player->id]))
                     <div>Место: {{ $rankMap[$player->id] }}</div>
@@ -77,8 +77,9 @@
     @endforeach
 </div>
 
-<!-- Пагинация УДАЛЕНА -->
+<!-- ❌ Пагинация УДАЛЕНА -->
 
+<!-- Анимация появления для карточек -->
 <style>
     @keyframes fade-in-up {
         from {

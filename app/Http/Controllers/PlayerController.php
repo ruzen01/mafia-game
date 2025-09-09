@@ -12,8 +12,8 @@ class PlayerController extends Controller
 {
 public function index()
 {
-    // Получаем всех игроков с глобальным рейтингом (как в ranking)
-    $playersWithTotalScore = Player::select('players.*')
+    // Получаем всех игроков с суммой баллов для расчёта места
+    $playersWithScore = Player::select('players.*')
         ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
         ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
         ->groupBy('players.id')
@@ -22,14 +22,14 @@ public function index()
 
     // Создаем карту: player_id => rank
     $rankMap = [];
-    foreach ($playersWithTotalScore as $index => $player) {
+    foreach ($playersWithScore as $index => $player) {
         $rankMap[$player->id] = $index + 1;
     }
 
-    // Получаем игроков для пагинации (с отношениями, сортировка по имени)
+    // Получаем ВСЕХ игроков (без пагинации) с играми
     $players = Player::with('games')
         ->orderBy('name', 'asc')
-        ->paginate(15);
+        ->get(); // ← get(), а не paginate()
 
     return view('players.index', compact('players', 'rankMap'));
 }
