@@ -37,6 +37,16 @@
     @endphp
 
     @foreach($playersSorted as $index => $player)
+<<<<<<< HEAD
+        @php
+            $totalGames = $player->games->count();
+        @endphp
+
+    <a 
+        href="{{ route('players.show', $player->id) }}" 
+        class="w-48 h-64 bg-white rounded-xl shadow-lg border-2 border-zinc-300 hover:shadow-xl hover:scale-105 hover:border-amber-400 transition-all duration-300 cursor-pointer relative overflow-hidden group block"
+        style="animation-delay: {{ $index * 0.1 }}s; filter: contrast(125%);"
+=======
         @php
             $totalScore = $player->games->sum('pivot.score');
             $rank = $rankMap[$player->id] ?? '-';
@@ -47,6 +57,7 @@
         href="{{ route('players.show', $player->id) }}" 
         class="w-48 h-64 bg-white rounded-xl shadow-lg border-2 border-zinc-300 hover:shadow-xl hover:scale-105 hover:border-amber-400 transition-all duration-300 cursor-pointer relative overflow-hidden group block"
         style="animation-delay: {{ $index * 0.1 }}s; filter: sepia(30%);"
+>>>>>>> a3241f93f38d5990d52900b23de0ab7aae416501
     >
         <!-- Область фото -->
         <div class="w-full h-36 flex items-center justify-center overflow-hidden bg-white">
@@ -67,24 +78,22 @@
         <div class="p-3 text-center flex flex-col items-center justify-center h-28">
             <div class="font-semibold text-zinc-800 group-hover:text-amber-700 transition-colors leading-tight">
                 {{ $player->name }}
+<<<<<<< HEAD
             </div>
             <div class="mt-2 text-xs text-zinc-600 space-y-1">
                 <div>Игр: {{ $totalGames }}</div>
-                <div>Рейтинг: {{ $totalScore }}</div>
-                <div>Место: {{ $rank }}</div>
+                @if(isset($rankMap[$player->id]))
+                    <div>Место: {{ $rankMap[$player->id] }}</div>
+                @endif
             </div>
+
         </div>
     </a>
     @endforeach
 </div>
 
-    <!-- Пагинация -->
-    <div class="mt-12 flex justify-center">
-        {{ $players->appends(request()->query())->links() }}
-    </div>
-</div>
+<!-- Пагинация УДАЛЕНА -->
 
-<!-- Анимация появления для карточек -->
 <style>
     @keyframes fade-in-up {
         from {
