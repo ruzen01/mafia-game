@@ -28,9 +28,9 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
             class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia"
         >
         <p class="text-center mt-2 font-medium text-white
-            @if($role['side'] === 'Мафия') bg-zinc-800
-            @elseif($role['side'] === 'Мирные') bg-red-500
-            @elseif($role['side'] === 'Сам за себя') bg-orange-500
+            @if($role['side'] === 'Мафия') bg-zinc-700
+            @elseif($role['side'] === 'Мирные') bg-red-700
+            @elseif($role['side'] === 'Сам за себя') bg-orange-700
             @else bg-gray-600 @endif
             px-2 py-0.5 rounded-md inline-block"
         >
@@ -92,13 +92,13 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
         let sideValueClass;
         switch (role.side) {
             case 'Мафия':
-                sideValueClass = 'bg-zinc-500 text-white';
+                sideValueClass = 'bg-zinc-700 text-white';
                 break;
             case 'Мирные':
-                sideValueClass = 'bg-red-300 text-white';
+                sideValueClass = 'bg-red-700 text-white';
                 break;
             case 'Сам за себя':
-                sideValueClass = 'bg-orange-300 text-white';
+                sideValueClass = 'bg-orange-700 text-white';
                 break;
             default:
                 sideValueClass = 'bg-gray-600 text-white';
