@@ -5,9 +5,9 @@
     class="container mx-auto py-6" 
     x-data="{
         search: '',
-        sortBy: 'name', // 'name', 'rank', 'games'
+        sortBy: 'name',
         get filteredPlayers() {
-            let players = @js($players->map(fn($p) => [
+            let players = @json($players->map(fn($p) => [
                 'id' => $p->id,
                 'name' => $p->name,
                 'games_count' => $p->games->count(),
@@ -15,14 +15,12 @@
                 'avatar_url' => $p->avatar_url
             ]));
 
-            // Фильтр поиска
             if (this.search) {
                 players = players.filter(p => 
                     p.name.toLowerCase().includes(this.search.toLowerCase())
                 );
             }
 
-            // Сортировка
             if (this.sortBy === 'rank') {
                 players.sort((a, b) => (a.rank || 999) - (b.rank || 999));
             } else if (this.sortBy === 'games') {
@@ -34,6 +32,7 @@
             return players;
         }
     }"
+>
 >
     <!-- Уведомления -->
     @if(session('error'))
