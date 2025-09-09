@@ -27,8 +27,21 @@ class Player extends Model
         return $this->games()->count();
     }
 
-    public function getAvatarUrlAttribute()
-    {
-        return $this->avatar ? asset('storage/' . $this->avatar) : asset('images/default-avatar.png');
+
+public function getAvatarUrlAttribute()
+{
+    $possibleExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    $baseDir = public_path('images/players');
+    $baseUrl = asset('images/players');
+
+    foreach ($possibleExtensions as $ext) {
+        $path = "{$baseDir}/{$this->id}.{$ext}";
+        if (file_exists($path)) {
+            return "{$baseUrl}/{$this->id}.{$ext}?v=" . filemtime($path);
+        }
     }
+
+    // fallback — если изображения нет
+    return asset('images/players/placeholder.png');
+}
 }
