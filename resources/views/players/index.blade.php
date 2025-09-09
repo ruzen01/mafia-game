@@ -48,7 +48,7 @@
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
         <!-- Область фото -->
-        <div class="w-full h-36 flex items-center justify-center overflow-hidden bg-white">
+        <div class="w-full h-36 flex items-start justify-center overflow-hidden bg-white">
             <img 
                 src="{{ $player->avatar_url }}" 
                 alt="{{ $player->name }}" 
