@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto py-6 px-2" x-data="{ tab: 'stats' }">
-    <h1 class="text-center text-2xl sm:text-3xl font-bold mb-6 text-zinc-800">{{ $player->name }} — Профиль</h1>
+    <h1 class="text-center text-2xl sm:text-3xl font-bold mb-6 text-zinc-800">{{ $player->name }} </h1>
 
     <!-- Табы -->
     <div class="flex justify-center mb-6 space-x-1 sm:space-x-4">
@@ -37,7 +37,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
                 </svg>
-                <span>📈 Основная статистика</span>
+                <span> Основная статистика</span>
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Всего игр -->
@@ -93,7 +93,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-steps" viewBox="0 0 16 16">
                   <path d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0zM2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
                 </svg>
-                <span>🎯 Коэффициенты побед</span>
+                <span> Коэффициенты побед</span>
             </h2>
             <div class="space-y-4">
 
@@ -151,7 +151,7 @@
               <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
               <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
             </svg>
-            <span>🎮 Последние игры ({{ $player->games->count() }})</span>
+            <span> Последние игры ({{ $player->games->count() }})</span>
         </h2>
 
         <div class="overflow-x-auto">
