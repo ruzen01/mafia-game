@@ -28,11 +28,11 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
             class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia"
         >
         <p class="text-center mt-2 font-medium text-white
-            @if($role['side'] === 'Мафия') bg-black
+            @if($role['side'] === 'Мафия') bg-zinc-800
             @elseif($role['side'] === 'Мирные') bg-red-500
             @elseif($role['side'] === 'Сам за себя') bg-orange-500
             @else bg-gray-600 @endif
-            px-2 py-1 rounded-full inline-block"
+            px-2 py-0.5 rounded-md inline-block"
         >
             {{ $role['title'] }}
         </p>
@@ -82,23 +82,23 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
         const cardContent = document.getElementById('cardContent');
         const role = rolesData[cardId];
 
-        // Изображение
+        // Изображение — без обрезания, сохраняет пропорции
         const imagePath = role.image ? "{{ asset('') }}" + role.image : null;
         const image = imagePath 
-            ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`
-            : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`;
+            ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full max-h-80 object-contain rounded-lg border border-gray-300 mx-auto">`
+            : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full max-h-80 object-contain rounded-lg border border-gray-300 mx-auto">`;
 
-        // Стиль стороны (фон + белый текст)
+        // Стиль стороны: фон + белый текст
         let sideValueClass;
         switch (role.side) {
             case 'Мафия':
-                sideValueClass = 'bg-black text-white';
+                sideValueClass = 'bg-zinc-500 text-white';
                 break;
             case 'Мирные':
-                sideValueClass = 'bg-red-500 text-white';
+                sideValueClass = 'bg-red-300 text-white';
                 break;
             case 'Сам за себя':
-                sideValueClass = 'bg-orange-500 text-white';
+                sideValueClass = 'bg-orange-300 text-white';
                 break;
             default:
                 sideValueClass = 'bg-gray-600 text-white';
@@ -127,11 +127,11 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
         // Формируем контент
         const content = `
             <div class="flex flex-col md:flex-row items-center">
-                <div class="w-full md:w-1/2 h-70 md:h-auto mb-4 md:mb-0">
+                <div class="w-full md:w-1/2 mb-4 md:mb-0 flex justify-center">
                     ${image}
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8 text-left">
-                    <h3 class="text-xl text-center font-bold mb-4 text-white ${sideValueClass} px-3 py-2 rounded-lg inline-block">
+                    <h3 class="text-xl font-bold mb-4 text-white ${sideValueClass} px-3 py-1.5 rounded-md text-center inline-block w-full">
                         ${role.title}
                     </h3>
                     <div class="mt-3">
