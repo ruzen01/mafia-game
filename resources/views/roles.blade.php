@@ -6,77 +6,113 @@
 $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 @endphp
 
-<blockquote class="text-center mb-4 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-400">
+<blockquote class="text-center mb-8 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-400">
   Играть роль не сложно. Оставаться собой — вот где искусство.
 </blockquote>
 
+<!-- Сетка ролей с анимацией -->
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     @foreach ($roles as $id => $role)
-    <div class="cursor-pointer" onclick="openCard('{{ $id }}')">
+    <div 
+        class="cursor-pointer animate-fade-in opacity-0"
+        style="animation-delay: {{ $loop->index * 0.1 }}s"
+        onclick="openCard('{{ $id }}')"
+    >
         @php
-            // Проверяем, существует ли файл изображения
             $imagePath = $role['image'] ? public_path($role['image']) : null;
             $image = ($imagePath && file_exists($imagePath)) ? asset($role['image']) : asset('images/roles/placeholder.png');
         @endphp
-        <img src="{{ $image }}" alt="Роль {{ $role['title'] }} в игре Мафия от Mafia-VDK" class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia">
-        <p class="text-center mt-2">{{ $role['title'] }}</p>
+        <img 
+            src="{{ $image }}" 
+            alt="Роль {{ $role['title'] }} в игре Мафия от Mafia-VDK" 
+            class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia"
+        >
+        <p class="text-center mt-2 font-medium 
+            @if($role['side'] === 'Мафия') text-black
+            @elseif($role['side'] === 'Мирные') text-red-500
+            @elseif($role['side'] === 'Сам за себя') text-orange-500
+            @else text-gray-700 @endif">
+            {{ $role['title'] }}
+        </p>
     </div>
     @endforeach
 </div>
 
-<!-- Контейнер для карточки -->
-<div id="cardContainer" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center p-4 overflow-y-auto" style="top: 64px;">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl w-full relative my-4">
-        <button onclick="closeCard()" class="absolute top-2 right-2 bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300">
-            &times;
-        </button>
+<!-- Модальное окно роли -->
+<div 
+    id="cardContainer" 
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center p-4 overflow-y-auto hidden opacity-0 transition-opacity duration-300"
+    style="top: 64px;"
+    onclick="closeCard(event)"
+>
+    <div 
+        class="bg-white rounded-lg shadow-xl max-w-2xl w-full my-4 transform scale-95 transition-transform duration-300"
+        onclick="event.stopPropagation()" <!-- Блокируем всплытие клика -->
+    >
         <div id="cardContent" class="p-6">
-            <!-- Контент карточки будет загружен сюда -->
+            <!-- Контент будет вставлен сюда -->
         </div>
     </div>
 </div>
 
+<style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.6s ease-out forwards;
+    }
+
+    /* Анимация модального окна */
+    #cardContainer.show {
+        opacity: 1;
+    }
+    #cardContainer.show > div {
+        transform: scale(1);
+    }
+</style>
+
 <script>
-    // Передача данных из Blade в JavaScript
     const rolesData = @json($roles);
 
-    // Функция для открытия карточки
     function openCard(cardId) {
         const cardContainer = document.getElementById('cardContainer');
         const cardContent = document.getElementById('cardContent');
-
         const role = rolesData[cardId];
 
-                // Проверяем, существует ли изображение
-                const imagePath = role.image ? "{{ asset('') }}" + role.image : null;
-        const image = imagePath ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">` : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`;
+        // Изображение
+        const imagePath = role.image ? "{{ asset('') }}" + role.image : null;
+        const image = imagePath 
+            ? `<img src="${imagePath}" onerror="this.src='{{ asset('images/roles/placeholder.png') }}'" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`
+            : `<img src="{{ asset('images/roles/placeholder.png') }}" alt="${role.title}" class="w-full h-48 object-cover rounded-lg border border-gray-300">`;
 
-        // Определяем стили для значения стороны роли
+        // Стиль стороны
         let sideValueClass;
         switch (role.side) {
             case 'Мафия':
-                sideValueClass = 'bg-black text-white'; // Белый текст на черном фоне
+                sideValueClass = 'bg-black text-white';
                 break;
             case 'Мирные':
-                sideValueClass = 'bg-red-500 text-white'; // Белый текст на красном фоне
+                sideValueClass = 'bg-red-500 text-white';
                 break;
             case 'Сам за себя':
-                sideValueClass = 'bg-yellow-500 text-white'; // Белый текст на желтом фоне
+                sideValueClass = 'bg-yellow-500 text-white';
                 break;
             default:
-                sideValueClass = 'bg-gray-100 text-black'; // По умолчанию
+                sideValueClass = 'bg-gray-100 text-black';
         }
 
-        // Проверка: показываем только если не равно 0
+        // Блок проверки (если не 0)
         let checkBlock = '';
         if (role.check_result !== 0) {
             let checkValueClass;
             if (role.check_result === 'Мирный житель') {
-                checkValueClass = 'bg-gray-100 text-red-500'; // Красный текст на сером фоне
+                checkValueClass = 'bg-gray-100 text-red-500';
             } else if (role.check_result === 'Мафия') {
-                checkValueClass = 'bg-gray-100 text-black'; // Черный текст на сером фоне
+                checkValueClass = 'bg-gray-100 text-black';
             } else {
-                checkValueClass = 'bg-gray-100 text-black'; // По умолчанию
+                checkValueClass = 'bg-gray-100 text-black';
             }
 
             checkBlock = `
@@ -87,10 +123,11 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
             `;
         }
 
+        // Формируем контент
         const content = `
             <div class="flex flex-col md:flex-row items-center">
-                <div class="w-full md:w-1/2 h-70 md:h-auto">
-                    <img src="${role.image}" alt="${role.title}" class="w-full h-full object-cover rounded-lg border border-gray-300">
+                <div class="w-full md:w-1/2 h-70 md:h-auto mb-4 md:mb-0">
+                    ${image}
                 </div>
                 <div class="w-full md:w-1/2 md:pl-8 text-left">
                     <h3 class="text-xl text-center font-bold mb-4">${role.title}</h3>
@@ -108,12 +145,15 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
 
         cardContent.innerHTML = content;
         cardContainer.classList.remove('hidden');
+        setTimeout(() => cardContainer.classList.add('show'), 10); // Запуск анимации
     }
 
-    // Функция для закрытия карточки
-    function closeCard() {
+    function closeCard(event) {
         const cardContainer = document.getElementById('cardContainer');
-        cardContainer.classList.add('hidden');
+        if (event.target === cardContainer) {
+            cardContainer.classList.remove('show');
+            setTimeout(() => cardContainer.classList.add('hidden'), 300);
+        }
     }
 </script>
 
