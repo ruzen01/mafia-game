@@ -62,18 +62,40 @@
         </div>
 
         <!-- Имя и статистика — МЕСТО и ИГРЫ в ОДНУ СТРОКУ -->
-        <div class="p-3 text-center flex flex-col items-center justify-center h-28">
-            <div class="font-semibold text-zinc-800 group-hover:text-blue-600 transition-colors leading-tight">
-                {{ $player->name }}
+<!-- Имя и статистика -->
+<div class="p-3 text-center flex flex-col items-center justify-center h-28">
+    <div class="font-semibold text-zinc-800 group-hover:text-blue-600 transition-colors leading-tight" x-text="player.name">
+    </div>
+    <div class="mt-2 flex items-center justify-center space-x-2">
+        <!-- Иконка + место -->
+        <template x-if="player.rank">
+            <div class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-bar-graph" viewBox="0 0 16 16">
+                  <path d="M4.5 12a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1z"/>
+                  <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                </svg>
+                <span 
+                    class="text-sm font-bold"
+                    :class="{
+                        'text-yellow-600': player.rank === 1,
+                        'text-gray-400': player.rank === 2,
+                        'text-amber-700': player.rank === 3,
+                        'text-zinc-800': player.rank > 3
+                    }"
+                    x-text="player.rank"
+                ></span>
             </div>
-            <div class="mt-2 text-xs text-zinc-800 font-medium">
-                @if(isset($rankMap[$player->id]))
-                    <span>🏅{{ $rankMap[$player->id] }}</span>
-                @endif
-                <span class="mx-1">•</span>
-                <span>Игр: {{ $totalGames }}</span>
-            </div>
+        </template>
+
+        <!-- Разделитель -->
+        <span class="text-zinc-400">•</span>
+
+        <!-- Количество игр -->
+        <div class="text-xs text-zinc-800 font-medium">
+            Игр: <span x-text="player.games_count"></span>
         </div>
+    </div>
+</div>
     </a>
     @endforeach
 </div>
