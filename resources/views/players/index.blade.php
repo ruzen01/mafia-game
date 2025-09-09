@@ -3,36 +3,9 @@
 @section('content')
 <div 
     class="container mx-auto py-6" 
-    x-data="{
-        search: '',
-        sortBy: 'name',
-        get filteredPlayers() {
-            let players = @json($players->map(fn($p) => [
-                'id' => $p->id,
-                'name' => $p->name,
-                'games_count' => $p->games->count(),
-                'rank' => $rankMap[$p->id] ?? null,
-                'avatar_url' => $p->avatar_url
-            ]));
-
-            if (this.search) {
-                players = players.filter(p => 
-                    p.name.toLowerCase().includes(this.search.toLowerCase())
-                );
-            }
-
-            if (this.sortBy === 'rank') {
-                players.sort((a, b) => (a.rank || 999) - (b.rank || 999));
-            } else if (this.sortBy === 'games') {
-                players.sort((a, b) => b.games_count - a.games_count);
-            } else {
-                players.sort((a, b) => a.name.localeCompare(b.name));
-            }
-
-            return players;
-        }
-    }"
+    x-data="{ search: '', sortBy: 'name' }"
 >
+    <h2 x-text="search">Тест Alpine</h2>
 >
     <!-- Уведомления -->
     @if(session('error'))

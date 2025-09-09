@@ -29,9 +29,9 @@ public function index()
     // Получаем ВСЕХ игроков (без пагинации) с играми
     $players = Player::with('games')
         ->orderBy('name', 'asc')
-        ->get(); // ← get(), а не paginate()
+        ->get();
 
-    return view('players.index', compact('players', 'rankMap'));
+    return view('players.index', compact('players', 'rankMap')); // ← ОБЯЗАТЕЛЬНО!
 }
 
     public function create()
