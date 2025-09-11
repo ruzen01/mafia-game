@@ -56,7 +56,7 @@
     </div>
 
 <!-- Компактный футер -->
-<footer class="w-screen text-center text-white py-1 bg-zinc-800 mt-auto">
+<footer class="w-full max-w-none text-center text-white py-1 bg-zinc-800 mt-auto">
     mafia-vdk © 2025
 </footer>
 </body>
