@@ -34,25 +34,17 @@
 <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 justify-items-center px-2 sm:px-0">
     @php
         $playersSorted = $players->sortBy('name');
-        // Список цветов для случайного выбора
-        $colors = [
-            'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal',
-            'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink',
-            'rose', 'slate', 'gray', 'zinc', 'neutral', 'stone'
-        ];
     @endphp
 
     @foreach($playersSorted as $index => $player)
         @php
             $totalGames = $player->games->count();
             $rank = $rankMap[$player->id] ?? null;
-            // Выбираем случайный цвет для этой карточки
-            $randomColor = $colors[array_rand($colors)];
         @endphp
 
     <a 
         href="{{ route('players.show', $player->id) }}" 
-        class="w-44 h-60 bg-gradient-to-br from-{{ $randomColor }}-700 to-{{ $randomColor }}-900 border-2 border-{{ $randomColor }}-600 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
+        class="w-44 h-60 bg-gradient-to-br from-teal-700 to-teal-900 border-2 border-teal-600 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
         <!-- Область фото с усиленной виньеткой -->
