@@ -21,7 +21,7 @@
         </div>
 
         <!-- Заголовок -->
-        <h1 class="text-2xl sm:text-3xl font-bold text-white">{{ $player->name }}</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-zinc-800">{{ $player->name }}</h1>
 
         <!-- Кнопки действий (только для админов) -->
         @canany(['update', 'delete'], $player)
@@ -57,30 +57,30 @@
         @endcanany
     </div>
 
-    <!-- Табы -->
-    <div class="flex justify-center mb-6 space-x-1 sm:space-x-4">
-        <button 
-            @click="tab = 'stats'"
-            :class="tab === 'stats' ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-zinc-300'"
-            class="px-4 py-2 rounded-lg font-semibold transition hover:bg-zinc-600 focus:outline-none flex items-center space-x-2"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
-              <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
-            </svg>
-            <span>Статистика</span>
-        </button>
-        <button 
-            @click="tab = 'games'"
-            :class="tab === 'games' ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-zinc-300'"
-            class="px-4 py-2 rounded-lg font-semibold transition hover:bg-zinc-600 focus:outline-none flex items-center space-x-2"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dice-5" viewBox="0 0 16 16">
-              <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
-              <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-            </svg>
-            <span>Игры</span>
-        </button>
-    </div>
+<!-- Табы -->
+<div class="flex justify-center mb-6 space-x-1 sm:space-x-4">
+    <button 
+        @click="tab = 'stats'"
+        :class="tab === 'stats' ? 'bg-zinc-700 text-white shadow-inner' : 'bg-zinc-200 text-zinc-800 hover:bg-zinc-300'"
+        class="px-4 py-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 flex items-center space-x-2"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+          <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+        </svg>
+        <span>Статистика</span>
+    </button>
+    <button 
+        @click="tab = 'games'"
+        :class="tab === 'games' ? 'bg-zinc-700 text-white shadow-inner' : 'bg-zinc-200 text-zinc-800 hover:bg-zinc-300'"
+        class="px-4 py-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 flex items-center space-x-2"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dice-5" viewBox="0 0 16 16">
+          <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
+          <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        </svg>
+        <span>Игры</span>
+    </button>
+</div>
 
     <!-- Вкладка: Статистика -->
     <div x-show="tab === 'stats'" class="space-y-6">
@@ -298,7 +298,7 @@
     <!-- Кнопка назад -->
     <div class="mt-8 text-center animate-fade-in" style="animation-delay: 0.5s">
         <a href="{{ route('players.index') }}" 
-           class="bg-zinc-700 hover:bg-zinc-600 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center space-x-2">
+   class="bg-zinc-200 hover:bg-zinc-300 active:bg-zinc-400 text-zinc-800 py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg active:shadow-inner inline-flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>
