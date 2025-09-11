@@ -21,7 +21,7 @@
         </div>
 
         <!-- Заголовок -->
-        <h1 class="text-2xl sm:text-3xl font-bold text-zinc-800">{{ $player->name }}</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-white">{{ $player->name }}</h1>
 
         <!-- Кнопки действий (только для админов) -->
         @canany(['update', 'delete'], $player)
@@ -61,8 +61,8 @@
     <div class="flex justify-center mb-6 space-x-1 sm:space-x-4">
         <button 
             @click="tab = 'stats'"
-            :class="tab === 'stats' ? 'bg-blue-500 text-white' : 'bg-zinc-200 text-zinc-700'"
-            class="px-4 py-2 rounded-lg font-semibold transition hover:bg-blue-600 focus:outline-none flex items-center space-x-2"
+            :class="tab === 'stats' ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-zinc-300'"
+            class="px-4 py-2 rounded-lg font-semibold transition hover:bg-zinc-600 focus:outline-none flex items-center space-x-2"
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
               <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
@@ -71,8 +71,8 @@
         </button>
         <button 
             @click="tab = 'games'"
-            :class="tab === 'games' ? 'bg-blue-500 text-white' : 'bg-zinc-200 text-zinc-700'"
-            class="px-4 py-2 rounded-lg font-semibold transition hover:bg-blue-600 focus:outline-none flex items-center space-x-2"
+            :class="tab === 'games' ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-zinc-300'"
+            class="px-4 py-2 rounded-lg font-semibold transition hover:bg-zinc-600 focus:outline-none flex items-center space-x-2"
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dice-5" viewBox="0 0 16 16">
               <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
@@ -233,8 +233,8 @@
     </div>
 
     <!-- Вкладка: Игры -->
-    <div x-show="tab === 'games'" class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-lg p-6 border border-green-100 animate-slide-up" style="animation-delay: 0.3s">
-        <h2 class="text-xl font-bold mb-4 text-zinc-800 flex items-center space-x-2">
+    <div x-show="tab === 'games'" class="bg-zinc-500 rounded-xl shadow-lg p-6 border border-zinc-600 animate-slide-up" style="animation-delay: 0.3s">
+        <h2 class="text-xl font-bold mb-4 text-white flex items-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dice-5" viewBox="0 0 16 16">
               <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
               <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -243,49 +243,49 @@
         </h2>
 
         <div class="overflow-x-auto">
-            <table class="table-auto border-collapse border border-zinc-300 w-full text-xs sm:text-sm">
-                <thead class="bg-zinc-700 text-zinc-100 uppercase text-xs font-semibold">
+            <table class="w-full text-xs sm:text-sm border-collapse border border-zinc-600 rounded-lg overflow-hidden">
+                <thead class="bg-zinc-900 text-white uppercase text-xs font-semibold">
                     <tr>
-                        <th class="border border-zinc-300 px-3 py-2 text-left">Дата</th>
-                        <th class="border border-zinc-300 px-3 py-2 text-left">Роль</th>
-                        <th class="border border-zinc-300 px-3 py-2 text-center text-amber-300">Р</th>
-                        <th class="border border-zinc-300 px-3 py-2 text-center text-blue-300">БЛ</th>
-                        <th class="border border-zinc-300 px-3 py-2 text-center text-red-300">ПУ</th>
-                        <th class="border border-zinc-300 px-3 py-2 text-center text-purple-300">ДБ</th>
+                        <th class="border border-zinc-600 px-3 py-2 text-left">Дата</th>
+                        <th class="border border-zinc-600 px-3 py-2 text-left">Роль</th>
+                        <th class="border border-zinc-600 px-3 py-2 text-center">Р</th>
+                        <th class="border border-zinc-600 px-3 py-2 text-center">БЛ</th>
+                        <th class="border border-zinc-600 px-3 py-2 text-center">ПУ</th>
+                        <th class="border border-zinc-600 px-3 py-2 text-center">ДБ</th>
                     </tr>
                 </thead>
-                <tbody class="bg-zinc-100 divide-y divide-zinc-300">
+                <tbody class="bg-zinc-800 divide-y divide-zinc-700 text-zinc-200">
                     @foreach($player->games->sortByDesc('date') as $game)
                         @php
                             $roleId = $game->pivot->role_id;
                             $role = $roles[$roleId] ?? null;
                         @endphp
-                        <tr class="hover:bg-zinc-200 transition">
-                            <td class="border border-zinc-300 px-3 py-2 font-medium text-zinc-800 whitespace-nowrap">
-                                <a href="{{ route('games.show', $game->id) }}" class="hover:underline hover:text-blue-600">
+                        <tr class="hover:bg-zinc-700 transition">
+                            <td class="border border-zinc-600 px-3 py-2 font-medium whitespace-nowrap">
+                                <a href="{{ route('games.show', $game->id) }}" class="hover:underline hover:text-blue-400">
                                     {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
                                 </a>
                             </td>
-                            <td class="border border-zinc-300 px-3 py-2 text-zinc-600">
+                            <td class="border border-zinc-600 px-3 py-2">
                                 {{ $role->name ?? '—' }}
                                 <span class="block text-xs 
-                                    @if($role && $role->category === 'Мирные жители') text-red-600
-                                    @elseif($role && $role->category === 'Мафия') text-zinc-800
-                                    @elseif($role && $role->category === 'Третья сторона') text-orange-600
-                                    @else text-zinc-500 @endif">
+                                    @if($role && $role->category === 'Мирные жители') text-red-400
+                                    @elseif($role && $role->category === 'Мафия') text-zinc-300
+                                    @elseif($role && $role->category === 'Третья сторона') text-orange-400
+                                    @else text-zinc-400 @endif">
                                     {{ $role->category ?? '' }}
                                 </span>
                             </td>
-                            <td class="border border-zinc-300 px-3 py-2 text-center font-bold text-amber-700">
+                            <td class="border border-zinc-600 px-3 py-2 text-center font-bold text-amber-400">
                                 {{ $game->pivot->score }}
                             </td>
-                            <td class="border border-zinc-300 px-3 py-2 text-center text-blue-700">
+                            <td class="border border-zinc-600 px-3 py-2 text-center text-blue-400">
                                 {{ $game->pivot->best_player ? '★' : '' }}
                             </td>
-                            <td class="border border-zinc-300 px-3 py-2 text-center text-red-700">
+                            <td class="border border-zinc-600 px-3 py-2 text-center text-red-400">
                                 {{ $game->pivot->first_victim ? '💀' : '' }}
                             </td>
-                            <td class="border border-zinc-300 px-3 py-2 text-center text-purple-700">
+                            <td class="border border-zinc-600 px-3 py-2 text-center text-purple-400">
                                 {{ $game->pivot->additional_score ? '➕' : '' }}
                             </td>
                         </tr>
@@ -298,7 +298,7 @@
     <!-- Кнопка назад -->
     <div class="mt-8 text-center animate-fade-in" style="animation-delay: 0.5s">
         <a href="{{ route('players.index') }}" 
-           class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center space-x-2">
+           class="bg-zinc-700 hover:bg-zinc-600 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>
