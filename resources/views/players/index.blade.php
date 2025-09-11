@@ -52,9 +52,8 @@
 
     <a 
         href="{{ route('players.show', $player->id) }}" 
-        class="w-44 h-60 rounded-xl shadow-lg border-2 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
+        class="w-44 h-60 bg-gradient-to-br from-{{ $randomColor }}-700 to-{{ $randomColor }}-900 border-2 border-{{ $randomColor }}-600 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
-        class="w-44 h-60 bg-{{ $randomColor }}-700 border-{{ $randomColor }}-600 rounded-xl shadow-lg border-2 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
     >
         <!-- Область фото с усиленной виньеткой -->
         <div class="w-full h-36 p-1.5 relative">
