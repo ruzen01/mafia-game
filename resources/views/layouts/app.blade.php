@@ -56,10 +56,8 @@
     </div>
 
     <!-- Компактный футер -->
-    <footer class="w-full text-center text-white py-3 px-4 sm:px-6 bg-zinc-800 mt-auto">
-        <div class="container mx-auto">
-            mafia-vdk © 2025
-        </div>
+    <footer class="w-full text-center text-white py-1 px-4 sm:px-6 bg-zinc-800 mt-auto">
+        mafia-vdk © 2025
     </footer>
 </body>
 
