@@ -44,10 +44,10 @@
 
     <a 
         href="{{ route('players.show', $player->id) }}" 
-        class="w-44 h-60 bg-gradient-to-br from-zinc-500 to-zinc-700 border-2 border-zinc-600 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
+        class="w-44 h-60 bg-gradient-to-br from-zinc-100 to-zinc-200 border-2 border-zinc-300 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
-        <!-- Область фото с усиленной виньеткой -->
+        <!-- Область фото с обратным эффектом (светлеет к краям) -->
         <div class="w-full h-36 p-1.5 relative">
             <div class="w-full h-full rounded-lg overflow-hidden relative">
                 <img 
@@ -57,40 +57,40 @@
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
                 >
                 <!-- Заглушка -->
-                <div class="absolute inset-0 flex items-center justify-center text-white/80 bg-black/20" style="display: none;">
+                <div class="absolute inset-0 flex items-center justify-center text-zinc-500 bg-zinc-200" style="display: none;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
                       <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
                     </svg>
                 </div>
-                <!-- Усиленный эффект виньетки -->
-                <div class="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-black/40 via-transparent to-black/40"></div>
+                <!-- Обратный эффект: фото светлеет и сереет к краям -->
+                <div class="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-t from-white/40 via-transparent to-white/40"></div>
             </div>
         </div>
 
         <!-- Имя и статистика -->
         <div class="p-3 text-center flex flex-col items-center justify-center h-24">
-            <div class="font-semibold text-white group-hover:text-white/90 transition-colors text-sm leading-tight">
+            <div class="font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors text-sm leading-tight">
                 {{ $player->name }}
             </div>
             <div class="mt-1 flex items-center justify-center space-x-2">
                 <!-- Иконка + место -->
                 @if($rank)
                     <div class="flex items-center space-x-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-file-bar-graph text-white/70" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-file-bar-graph text-zinc-600" viewBox="0 0 16 16">
                           <path d="M4.5 12a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1z"/>
                           <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
                         </svg>
-                        <span class="text-xs font-bold text-white">
+                        <span class="text-xs font-bold text-zinc-800">
                             {{ $rank }}
                         </span>
                     </div>
                 @endif
 
                 <!-- Разделитель -->
-                <span class="text-white/50">•</span>
+                <span class="text-zinc-500">•</span>
 
                 <!-- Количество игр -->
-                <div class="text-xs text-white/70 font-medium">
+                <div class="text-xs text-zinc-600 font-medium">
                     Игр: {{ $totalGames }}
                 </div>
             </div>
@@ -98,7 +98,6 @@
     </a>
     @endforeach
 </div>
-
 <!-- Анимация появления для карточек -->
 <style>
     @keyframes fade-in-up {
