@@ -3,17 +3,18 @@
 @section('content')
 <div class="container mx-auto py-6">
 
-@if(session('error'))
-    <div class="bg-red-500 text-white p-3 rounded mb-4">
-        {{ session('error') }}
-    </div>
-@endif
+    <!-- Уведомления -->
+    @if(session('error'))
+        <div class="absolute left-0 bg-red-500 text-white p-3 rounded mb-4 animate-fade-in" style="top: 100px; z-index: 10;">
+            {{ session('error') }}
+        </div>
+    @endif
 
-@if(session('success'))
-    <div class="bg-green-500 text-white p-3 rounded mb-4">
-        {{ session('success') }}
-    </div>
-@endif
+    @if(session('success'))
+        <div class="absolute left-0 bg-green-500 text-white p-3 rounded mb-4 animate-fade-in" style="top: 100px; z-index: 10;">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-zinc-800">Игроки</h1>
 
