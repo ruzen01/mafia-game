@@ -52,7 +52,7 @@
             <img 
                 src="{{ $player->avatar_url }}" 
                 alt="{{ $player->name }}" 
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
             >
             <div class="w-full h-full flex items-center justify-center text-zinc-400" style="display: none;">
