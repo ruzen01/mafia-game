@@ -232,68 +232,68 @@
         </div>
     </div>
 
-    <!-- Вкладка: Игры -->
-    <div x-show="tab === 'games'" class="bg-zinc-500 rounded-xl shadow-lg p-6 border border-zinc-600 animate-slide-up" style="animation-delay: 0.3s">
-        <h2 class="text-xl font-bold mb-4 text-white flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dice-5" viewBox="0 0 16 16">
-              <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
-              <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-            </svg>
-            <span> Последние игры ({{ $player->games->count() }})</span>
-        </h2>
+<!-- Вкладка: Игры -->
+<div x-show="tab === 'games'" class="bg-zinc-500 rounded-xl shadow-lg p-4 sm:p-6 border border-zinc-600 animate-slide-up" style="animation-delay: 0.3s">
+    <h2 class="text-xl font-bold mb-4 text-white flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dice-5" viewBox="0 0 16 16">
+          <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
+          <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        </svg>
+        <span> Последние игры ({{ $player->games->count() }})</span>
+    </h2>
 
-        <div class="overflow-x-auto">
-            <table class="w-full text-xs sm:text-sm border-collapse border border-zinc-600 rounded-lg overflow-hidden">
-                <thead class="bg-zinc-900 text-white uppercase text-xs font-semibold">
-                    <tr>
-                        <th class="border border-zinc-600 px-3 py-2 text-left">Дата</th>
-                        <th class="border border-zinc-600 px-3 py-2 text-left">Роль</th>
-                        <th class="border border-zinc-600 px-3 py-2 text-center">Р</th>
-                        <th class="border border-zinc-600 px-3 py-2 text-center">БЛ</th>
-                        <th class="border border-zinc-600 px-3 py-2 text-center">ПУ</th>
-                        <th class="border border-zinc-600 px-3 py-2 text-center">ДБ</th>
+    <div class="overflow-x-auto">
+        <table class="w-full text-[10px] sm:text-xs border-collapse border border-zinc-600 rounded-lg overflow-hidden">
+            <thead class="bg-zinc-900 text-white uppercase text-[10px] sm:text-xs font-semibold">
+                <tr>
+                    <th class="border border-zinc-600 px-2 py-1.5 sm:px-3 sm:py-2 text-left">Дата</th>
+                    <th class="border border-zinc-600 px-2 py-1.5 sm:px-3 sm:py-2 text-left">Роль</th>
+                    <th class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center" title="Рейтинг">Р</th>
+                    <th class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center" title="Лучший игрок">★</th>
+                    <th class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center" title="Первая жертва">💀</th>
+                    <th class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center" title="Доп. баллы">➕</th>
+                </tr>
+            </thead>
+            <tbody class="bg-zinc-800 divide-y divide-zinc-700 text-zinc-200">
+                @foreach($player->games->sortByDesc('date') as $game)
+                    @php
+                        $roleId = $game->pivot->role_id;
+                        $role = $roles[$roleId] ?? null;
+                    @endphp
+                    <tr class="hover:bg-zinc-700 transition">
+                        <td class="border border-zinc-600 px-2 py-1.5 sm:px-3 sm:py-2 font-medium whitespace-nowrap">
+                            <a href="{{ route('games.show', $game->id) }}" class="hover:underline hover:text-blue-400">
+                                {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
+                            </a>
+                        </td>
+                        <td class="border border-zinc-600 px-2 py-1.5 sm:px-3 sm:py-2">
+                            <div class="font-medium">{{ $role->name ?? '—' }}</div>
+                            <div class="text-[9px] sm:text-xs 
+                                @if($role && $role->category === 'Мирные жители') text-red-400
+                                @elseif($role && $role->category === 'Мафия') text-zinc-300
+                                @elseif($role && $role->category === 'Третья сторона') text-orange-400
+                                @else text-zinc-400 @endif">
+                                {{ $role->category ?? '' }}
+                            </div>
+                        </td>
+                        <td class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center font-bold text-amber-400">
+                            {{ $game->pivot->score }}
+                        </td>
+                        <td class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center text-blue-400">
+                            {{ $game->pivot->best_player ? '★' : '' }}
+                        </td>
+                        <td class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center text-red-400">
+                            {{ $game->pivot->first_victim ? '💀' : '' }}
+                        </td>
+                        <td class="border border-zinc-600 px-1.5 py-1.5 sm:px-2 sm:py-2 text-center text-purple-400">
+                            {{ $game->pivot->additional_score ? '➕' : '' }}
+                        </td>
                     </tr>
-                </thead>
-                <tbody class="bg-zinc-800 divide-y divide-zinc-700 text-zinc-200">
-                    @foreach($player->games->sortByDesc('date') as $game)
-                        @php
-                            $roleId = $game->pivot->role_id;
-                            $role = $roles[$roleId] ?? null;
-                        @endphp
-                        <tr class="hover:bg-zinc-700 transition">
-                            <td class="border border-zinc-600 px-3 py-2 font-medium whitespace-nowrap">
-                                <a href="{{ route('games.show', $game->id) }}" class="hover:underline hover:text-blue-400">
-                                    {{ \Carbon\Carbon::parse($game->date)->format('d.m.Y') }}
-                                </a>
-                            </td>
-                            <td class="border border-zinc-600 px-3 py-2">
-                                {{ $role->name ?? '—' }}
-                                <span class="block text-xs 
-                                    @if($role && $role->category === 'Мирные жители') text-red-400
-                                    @elseif($role && $role->category === 'Мафия') text-zinc-300
-                                    @elseif($role && $role->category === 'Третья сторона') text-orange-400
-                                    @else text-zinc-400 @endif">
-                                    {{ $role->category ?? '' }}
-                                </span>
-                            </td>
-                            <td class="border border-zinc-600 px-3 py-2 text-center font-bold text-amber-400">
-                                {{ $game->pivot->score }}
-                            </td>
-                            <td class="border border-zinc-600 px-3 py-2 text-center text-blue-400">
-                                {{ $game->pivot->best_player ? '★' : '' }}
-                            </td>
-                            <td class="border border-zinc-600 px-3 py-2 text-center text-red-400">
-                                {{ $game->pivot->first_victim ? '💀' : '' }}
-                            </td>
-                            <td class="border border-zinc-600 px-3 py-2 text-center text-purple-400">
-                                {{ $game->pivot->additional_score ? '➕' : '' }}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
 
     <!-- Кнопка назад -->
     <div class="mt-8 text-center animate-fade-in" style="animation-delay: 0.5s">
