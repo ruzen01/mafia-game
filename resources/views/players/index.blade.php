@@ -44,7 +44,7 @@
 
     <a 
         href="{{ route('players.show', $player->id) }}" 
-        class="w-48 h-64 bg-white rounded-xl shadow-lg border-2 border-zinc-300 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block"
+        class="w-48 h-64 bg-white rounded-xl shadow-lg border-2 border-zinc-300 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
         <!-- Область фото -->
@@ -114,7 +114,7 @@
             transform: translateY(0) scale(1);
         }
     }
-    .animate-fade-in {
+    .animate-fade-in-up {
         animation: fade-in-up 0.6s ease-out forwards;
         opacity: 0;
     }
