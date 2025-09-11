@@ -47,21 +47,21 @@
         class="w-44 h-60 bg-gradient-to-br from-zinc-100 to-zinc-200 border-2 border-zinc-300 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
-        <!-- Область фото с обратным эффектом (светлеет к краям) -->
-        <div class="w-full h-36 p-1.5 relative">
-            <div class="w-full h-full rounded-lg overflow-hidden relative">
+        <!-- Область фото (без эффектов) -->
+        <div class="w-full h-36 p-1.5">
+            <div class="w-full h-full rounded-lg overflow-hidden">
                 <img 
                     src="{{ $player->avatar_url }}" 
                     alt="{{ $player->name }}" 
                     class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
                 >
-                <!-- Заглушка -->
-                <div class="absolute inset-0 flex items-center justify-center text-zinc-500 bg-zinc-200" style="display: none;">
+                <!-- Заглушка (без фона и эффектов) -->
+                <div class="w-full h-full flex items-center justify-center text-zinc-500" style="display: none;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
                       <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
                     </svg>
-
+                </div>
             </div>
         </div>
 
@@ -96,6 +96,7 @@
     </a>
     @endforeach
 </div>
+
 <!-- Анимация появления для карточек -->
 <style>
     @keyframes fade-in-up {
