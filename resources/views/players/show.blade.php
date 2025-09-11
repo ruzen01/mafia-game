@@ -85,60 +85,59 @@
     <!-- Вкладка: Статистика -->
     <div x-show="tab === 'stats'" class="space-y-6">
         <!-- Основная статистика -->
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6 border border-blue-100 animate-slide-up">
-            <h2 class="text-xl font-bold mb-4 text-zinc-800 flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
-                </svg>
-                <span> Основная статистика</span>
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Всего игр -->
-                <div class="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
-                    <div class="text-3xl font-bold text-slate-700">{{ $player->games->count() }}</div>
-                    <div class="text-sm text-zinc-600 mt-1">Всего игр</div>
-                </div>
-
-                <!-- Всего побед -->
-                @php
-                    $totalWins = $player->games->where('pivot.score', '>=', 2)->count();
-                    $totalGames = $player->games->count();
-                    $winRate = $totalGames > 0 ? round(($totalWins / $totalGames) * 100, 1) : 0;
-                @endphp
-                <div class="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-green-100">
-                    <div class="text-3xl font-bold text-green-700">{{ $totalWins }}</div>
-                    <div class="text-sm text-zinc-600 mt-1">Побед</div>
-                    <div class="text-xs text-green-600 mt-1">{{ $winRate }}% побед</div>
-                </div>
-
-                <!-- Лучший игрок -->
-                <div class="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-blue-100">
-                    <div class="text-3xl font-bold text-blue-700">{{ $player->games->where('pivot.best_player', 1)->count() }}</div>
-                    <div class="text-sm text-zinc-600 mt-1">Лучший игрок</div>
-                    <div class="text-xs text-blue-600 mt-1">★</div>
-                </div>
-
-                <!-- Первая жертва -->
-                <div class="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-red-100">
-                    <div class="text-3xl font-bold text-red-700">{{ $player->games->where('pivot.first_victim', 1)->count() }}</div>
-                    <div class="text-sm text-zinc-600 mt-1">Первая жертва</div>
-                    <div class="text-xs text-red-600 mt-1">💀</div>
-                </div>
-
-                <!-- Доп. баллы -->
-                <div class="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-purple-100">
-                    <div class="text-3xl font-bold text-purple-700">{{ $player->games->sum('pivot.additional_score') }}</div>
-                    <div class="text-sm text-zinc-600 mt-1">Доп. баллы</div>
-                    <div class="text-xs text-purple-600 mt-1">➕</div>
-                </div>
-
-                <!-- Баллы от ведущего -->
-                <div class="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-amber-100">
-                    <div class="text-3xl font-bold text-amber-700">{{ $player->games->sum('pivot.leader_score') }}</div>
-                    <div class="text-sm text-zinc-600 mt-1">От ведущего</div>
-                </div>
-            </div>
+<div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6 border border-blue-100 animate-slide-up">
+    <h2 class="text-xl font-bold mb-6 text-zinc-800 flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
+        </svg>
+        <span> Основная статистика</span>
+    </h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 justify-items-center">
+        <!-- Всего игр -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-white">
+            <div class="text-3xl font-bold">{{ $player->games->count() }}</div>
+            <div class="text-xs mt-1 text-center px-2">Всего игр</div>
         </div>
+
+        <!-- Всего побед -->
+        @php
+            $totalWins = $player->games->where('pivot.score', '>=', 2)->count();
+            $totalGames = $player->games->count();
+            $winRate = $totalGames > 0 ? round(($totalWins / $totalGames) * 100, 1) : 0;
+        @endphp
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-white">
+            <div class="text-3xl font-bold">{{ $totalWins }}</div>
+            <div class="text-xs mt-1 text-center px-2">Побед ({{ $winRate }}%)</div>
+        </div>
+
+        <!-- Лучший игрок -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-white">
+            <div class="text-3xl font-bold">{{ $player->games->where('pivot.best_player', 1)->count() }}</div>
+            <div class="text-xs mt-1 text-center px-2">Лучший игрок</div>
+            <div class="text-lg">★</div>
+        </div>
+
+        <!-- Первая жертва -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-white">
+            <div class="text-3xl font-bold">{{ $player->games->where('pivot.first_victim', 1)->count() }}</div>
+            <div class="text-xs mt-1 text-center px-2">Первая жертва</div>
+            <div class="text-lg">💀</div>
+        </div>
+
+        <!-- Доп. баллы -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-white">
+            <div class="text-3xl font-bold">{{ $player->games->sum('pivot.additional_score') }}</div>
+            <div class="text-xs mt-1 text-center px-2">Доп. баллы</div>
+            <div class="text-lg">➕</div>
+        </div>
+
+        <!-- Баллы от ведущего -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-white">
+            <div class="text-3xl font-bold">{{ $player->games->sum('pivot.leader_score') }}</div>
+            <div class="text-xs mt-1 text-center px-2">От ведущего</div>
+        </div>
+    </div>
+</div>
 
         <!-- Коэффициенты побед по фракциям -->
         <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl shadow-lg p-6 border border-orange-100 animate-slide-up" style="animation-delay: 0.2s">
