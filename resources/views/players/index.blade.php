@@ -31,7 +31,7 @@
     @endcan
 
 <!-- Сетка карточек игроков -->
-<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 sm:gap-6 justify-items-center px-4 sm:px-0">
+<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 justify-items-center px-6 sm:px-0">
     @php
         $playersSorted = $players->sortBy('name');
     @endphp
@@ -44,11 +44,11 @@
 
     <a 
         href="{{ route('players.show', $player->id) }}" 
-        class="w-48 h-64 bg-zinc-700 rounded-xl shadow-lg border-2 border-zinc-600 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
+        class="w-40 h-56 bg-zinc-700 rounded-xl shadow-lg border-2 border-zinc-600 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
         <!-- Область фото с усиленной виньеткой -->
-        <div class="w-full h-36 p-1.5 relative">
+        <div class="w-full h-32 p-1.5 relative">
             <div class="w-full h-full rounded-lg overflow-hidden relative">
                 <img 
                     src="{{ $player->avatar_url }}" 
@@ -56,9 +56,9 @@
                     class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
                 >
-                <!-- Заглушка (светлая на тёмном фоне) -->
+                <!-- Заглушка -->
                 <div class="absolute inset-0 flex items-center justify-center text-zinc-400 bg-zinc-800" style="display: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
                       <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
                     </svg>
                 </div>
@@ -68,25 +68,25 @@
         </div>
 
         <!-- Имя и статистика -->
-        <div class="p-3 text-center flex flex-col items-center justify-center h-28">
-            <div class="font-semibold text-white group-hover:text-blue-300 transition-colors leading-tight">
+        <div class="p-2.5 text-center flex flex-col items-center justify-center h-24">
+            <div class="font-semibold text-white group-hover:text-blue-300 transition-colors text-sm leading-tight">
                 {{ $player->name }}
             </div>
-            <div class="mt-2 flex items-center justify-center space-x-2">
+            <div class="mt-1 flex items-center justify-center space-x-2">
                 <!-- Иконка + место -->
                 @if($rank)
                     <div class="flex items-center space-x-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-bar-graph text-zinc-300" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-file-bar-graph text-zinc-300" viewBox="0 0 16 16">
                           <path d="M4.5 12a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1z"/>
                           <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
                         </svg>
                         <span 
-                            class="text-sm font-bold"
+                            class="text-xs font-bold"
                             @class([
-                                'text-yellow-300' => $rank === 1,
-                                'text-gray-300' => $rank === 2,
-                                'text-amber-300' => $rank === 3,
-                                'text-zinc-300' => $rank > 3,
+                                'text-yellow-100' => $rank === 1,
+                                'text-gray-100' => $rank === 2,
+                                'text-amber-100' => $rank === 3,
+                                'text-zinc-100' => $rank > 3,
                             ])
                         >
                             {{ $rank }}
