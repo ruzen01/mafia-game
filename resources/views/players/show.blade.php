@@ -3,59 +3,59 @@
 @section('content')
 <div class="container mx-auto py-6 px-2" x-data="{ tab: 'stats' }">
     <div class="text-center mb-6">
-    <!-- Аватар игрока -->
-    <div class="mb-4 flex justify-center">
-        <div class="w-24 h-24 rounded-full bg-white border-4 border-zinc-200 shadow-md flex items-center justify-center overflow-hidden">
-            <img 
-                src="{{ $player->avatar_url }}" 
-                alt="{{ $player->name }}" 
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-            >
-            <div class="w-full h-full flex items-center justify-center text-zinc-300" style="display: none;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
-                  <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
-                </svg>
+        <!-- Аватар игрока -->
+        <div class="mb-4 flex justify-center">
+            <div class="w-24 h-24 rounded-full bg-white border-4 border-zinc-200 shadow-md flex items-center justify-center overflow-hidden">
+                <img 
+                    src="{{ $player->avatar_url }}" 
+                    alt="{{ $player->name }}" 
+                    class="w-full h-full object-cover"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+                >
+                <div class="w-full h-full flex items-center justify-center text-zinc-300" style="display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
+                      <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
+                    </svg>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Заголовок -->
-    <h1 class="text-2xl sm:text-3xl font-bold text-zinc-800">{{ $player->name }}</h1>
+        <!-- Заголовок -->
+        <h1 class="text-2xl sm:text-3xl font-bold text-zinc-800">{{ $player->name }}</h1>
 
-    <!-- Кнопки действий (только для админов) -->
-    @canany(['update', 'delete'], $player)
-    <div class="flex justify-center space-x-3 mt-4">
-        @can('update', $player)
-        <a href="{{ route('players.edit', $player->id) }}" 
-           class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg font-semibold transition transform hover:scale-105 shadow-md flex items-center space-x-2"
-           title="Редактировать">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-            </svg>
-            <span>Редактировать</span>
-        </a>
-        @endcan
-
-        @can('delete', $player)
-        <form action="{{ route('players.destroy', $player->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Удалить игрока {{ $player->name }}?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" 
-                    class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-semibold transition transform hover:scale-105 shadow-md flex items-center space-x-2"
-                    title="Удалить">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+        <!-- Кнопки действий (только для админов) -->
+        @canany(['update', 'delete'], $player)
+        <div class="flex justify-center space-x-3 mt-4">
+            @can('update', $player)
+            <a href="{{ route('players.edit', $player->id) }}" 
+               class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg font-semibold transition transform hover:scale-105 shadow-md flex items-center space-x-2"
+               title="Редактировать">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
-                <span>Удалить</span>
-            </button>
-        </form>
-        @endcan
+                <span>Редактировать</span>
+            </a>
+            @endcan
+
+            @can('delete', $player)
+            <form action="{{ route('players.destroy', $player->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Удалить игрока {{ $player->name }}?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" 
+                        class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-semibold transition transform hover:scale-105 shadow-md flex items-center space-x-2"
+                        title="Удалить">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    <span>Удалить</span>
+                </button>
+            </form>
+            @endcan
+        </div>
+        @endcanany
     </div>
-    @endcanany
-</div>
 
     <!-- Табы -->
     <div class="flex justify-center mb-6 space-x-1 sm:space-x-4">
@@ -84,148 +84,153 @@
 
     <!-- Вкладка: Статистика -->
     <div x-show="tab === 'stats'" class="space-y-6">
-<!-- Основная статистика -->
-<!-- Основная статистика -->
-<div class="bg-zinc-500 rounded-xl shadow-lg p-6 border border-zinc-600 animate-slide-up">
-    <h2 class="text-xl font-bold mb-6 text-white flex items-center space-x-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
-        </svg>
-        <span> Основная статистика</span>
-    </h2>
+        <!-- Основная статистика -->
+        <div class="bg-zinc-500 rounded-xl shadow-lg p-6 border border-zinc-600 animate-slide-up">
+            <h2 class="text-xl font-bold mb-6 text-white flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
+                </svg>
+                <span> Основная статистика</span>
+            </h2>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Левая часть: Два больших блока -->
-        <div class="flex flex-col space-y-4">
-            <!-- Всего игр -->
-            <div class="bg-zinc-800 rounded-xl p-6 text-center shadow-md border border-zinc-700">
-                <div class="text-4xl font-extrabold text-white">{{ $player->games->count() }}</div>
-                <div class="text-sm text-zinc-300 mt-2">Всего игр</div>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Левая часть: Два больших блока -->
+                <div class="flex flex-col space-y-4">
+                    <!-- Всего игр -->
+                    <div class="bg-zinc-800 rounded-xl p-6 text-center shadow-md border border-zinc-700">
+                        <div class="text-4xl font-extrabold text-white">{{ $player->games->count() }}</div>
+                        <div class="text-sm text-zinc-300 mt-2">Всего игр</div>
+                    </div>
 
-            <!-- Общий винрейт -->
-            @php
-                $totalWins = $player->games->where('pivot.score', '>=', 2)->count();
-                $totalGames = $player->games->count();
-                $winRate = $totalGames > 0 ? round(($totalWins / $totalGames) * 100, 1) : 0;
-            @endphp
-            <div class="bg-zinc-800 rounded-xl p-6 text-center shadow-md border border-zinc-700">
-                <div class="text-4xl font-extrabold text-green-400">{{ $winRate }}<span class="text-xl">%</span></div>
-                <div class="text-sm text-zinc-300 mt-2">Общий винрейт</div>
-            </div>
-        </div>
-
-        <!-- Правая часть: Таблица по сторонам -->
-        <div class="bg-zinc-800 rounded-lg shadow-md border border-zinc-700 overflow-hidden">
-            <div class="grid grid-cols-3 bg-zinc-900 px-4 py-3 font-semibold text-white text-sm">
-                <div>Сторона</div>
-                <div class="text-center">Игры</div>
-                <div class="text-center">Винрейт</div>
-            </div>
-
-            @php
-                $gamesAsPeace = $player->games->filter(function ($game) use ($roles) {
-                    $roleId = $game->pivot->role_id;
-                    return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мирные жители';
-                })->count();
-                $winsAsPeace = $player->games->filter(function ($game) use ($roles) {
-                    $roleId = $game->pivot->role_id;
-                    return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мирные жители' && $game->pivot->score >= 2;
-                })->count();
-                $winRatePeace = $gamesAsPeace > 0 ? round(($winsAsPeace / $gamesAsPeace) * 100, 1) : 0;
-
-                $gamesAsMafia = $player->games->filter(function ($game) use ($roles) {
-                    $roleId = $game->pivot->role_id;
-                    return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мафия';
-                })->count();
-                $winsAsMafia = $player->games->filter(function ($game) use ($roles) {
-                    $roleId = $game->pivot->role_id;
-                    return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мафия' && $game->pivot->score >= 2;
-                })->count();
-                $winRateMafia = $gamesAsMafia > 0 ? round(($winsAsMafia / $gamesAsMafia) * 100, 1) : 0;
-
-                $gamesAsOther = $player->games->filter(function ($game) use ($roles) {
-                    $roleId = $game->pivot->role_id;
-                    return isset($roles[$roleId]) && $roles[$roleId]->category === 'Третья сторона';
-                })->count();
-                $winsAsOther = $player->games->filter(function ($game) use ($roles) {
-                    $roleId = $game->pivot->role_id;
-                    return isset($roles[$roleId]) && $roles[$roleId]->category === 'Третья сторона' && $game->pivot->score >= 2;
-                })->count();
-                $winRateOther = $gamesAsOther > 0 ? round(($winsAsOther / $gamesAsOther) * 100, 1) : 0;
-            @endphp
-
-            <div class="divide-y divide-zinc-700">
-                <!-- Мирные жители -->
-                <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition">
-                    <div class="font-medium text-red-400">Мирные</div>
-                    <div class="text-center font-medium text-white">{{ $gamesAsPeace }}</div>
-                    <div class="text-center text-green-400 font-medium">{{ $winRatePeace }}%</div>
+                    <!-- Общий винрейт -->
+                    @php
+                        $totalWins = $player->games->where('pivot.score', '>=', 2)->count();
+                        $totalGames = $player->games->count();
+                        $winRate = $totalGames > 0 ? round(($totalWins / $totalGames) * 100, 1) : 0;
+                    @endphp
+                    <div class="bg-zinc-800 rounded-xl p-6 text-center shadow-md border border-zinc-700">
+                        <div class="text-4xl font-extrabold text-green-400">{{ $winRate }}<span class="text-xl">%</span></div>
+                        <div class="text-sm text-zinc-300 mt-2">Общий винрейт</div>
+                    </div>
                 </div>
 
-                <!-- Мафия -->
-                <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition">
-                    <div class="font-medium text-zinc-300">Мафия</div>
-                    <div class="text-center font-medium text-white">{{ $gamesAsMafia }}</div>
-                    <div class="text-center text-green-400 font-medium">{{ $winRateMafia }}%</div>
+                <!-- Правая часть: Таблица по сторонам -->
+                <div class="bg-zinc-800 rounded-lg shadow-md border border-zinc-700 overflow-hidden">
+                    <div class="grid grid-cols-3 bg-zinc-900 px-4 py-3 font-semibold text-white text-sm">
+                        <div>Сторона</div>
+                        <div class="text-center">Игры</div>
+                        <div class="text-center">Винрейт</div>
+                    </div>
+
+                    @php
+                        $gamesAsPeace = $player->games->filter(function ($game) use ($roles) {
+                            $roleId = $game->pivot->role_id;
+                            return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мирные жители';
+                        })->count();
+                        $winsAsPeace = $player->games->filter(function ($game) use ($roles) {
+                            $roleId = $game->pivot->role_id;
+                            return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мирные жители' && $game->pivot->score >= 2;
+                        })->count();
+                        $winRatePeace = $gamesAsPeace > 0 ? round(($winsAsPeace / $gamesAsPeace) * 100, 1) : 0;
+
+                        $gamesAsMafia = $player->games->filter(function ($game) use ($roles) {
+                            $roleId = $game->pivot->role_id;
+                            return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мафия';
+                        })->count();
+                        $winsAsMafia = $player->games->filter(function ($game) use ($roles) {
+                            $roleId = $game->pivot->role_id;
+                            return isset($roles[$roleId]) && $roles[$roleId]->category === 'Мафия' && $game->pivot->score >= 2;
+                        })->count();
+                        $winRateMafia = $gamesAsMafia > 0 ? round(($winsAsMafia / $gamesAsMafia) * 100, 1) : 0;
+
+                        $gamesAsOther = $player->games->filter(function ($game) use ($roles) {
+                            $roleId = $game->pivot->role_id;
+                            return isset($roles[$roleId]) && $roles[$roleId]->category === 'Третья сторона';
+                        })->count();
+                        $winsAsOther = $player->games->filter(function ($game) use ($roles) {
+                            $roleId = $game->pivot->role_id;
+                            return isset($roles[$roleId]) && $roles[$roleId]->category === 'Третья сторона' && $game->pivot->score >= 2;
+                        })->count();
+                        $winRateOther = $gamesAsOther > 0 ? round(($winsAsOther / $gamesAsOther) * 100, 1) : 0;
+                    @endphp
+
+                    <div class="divide-y divide-zinc-700">
+                        <!-- Мирные жители -->
+                        <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition">
+                            <div class="font-medium text-red-400">Мирные</div>
+                            <div class="text-center font-medium text-white">{{ $gamesAsPeace }}</div>
+                            <div class="text-center text-green-400 font-medium">{{ $winRatePeace }}%</div>
+                        </div>
+
+                        <!-- Мафия -->
+                        <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition">
+                            <div class="font-medium text-zinc-300">Мафия</div>
+                            <div class="text-center font-medium text-white">{{ $gamesAsMafia }}</div>
+                            <div class="text-center text-green-400 font-medium">{{ $winRateMafia }}%</div>
+                        </div>
+
+                        <!-- Третья сторона -->
+                        <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition">
+                            <div class="font-medium text-orange-400">Другие</div>
+                            <div class="text-center font-medium text-white">{{ $gamesAsOther }}</div>
+                            <div class="text-center text-green-400 font-medium">{{ $winRateOther }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Нижняя таблица: Дополнительные показатели -->
+            <div class="mt-8 bg-zinc-800 rounded-lg shadow-md border border-zinc-700 overflow-hidden">
+                <div class="grid grid-cols-3 bg-zinc-900 px-4 py-3 font-semibold text-white text-sm">
+                    <div>Показатель</div>
+                    <div class="text-center">Значение</div>
+                    <div class="text-center">Описание</div>
                 </div>
 
-                <!-- Третья сторона -->
-                <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition">
-                    <div class="font-medium text-orange-400">Другие</div>
-                    <div class="text-center font-medium text-white">{{ $gamesAsOther }}</div>
-                    <div class="text-center text-green-400 font-medium">{{ $winRateOther }}%</div>
+                <div class="divide-y divide-zinc-700">
+                    <!-- Лучший игрок -->
+                    <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
+                        <div class="font-medium text-blue-400">Лучший игрок</div>
+                        <div class="text-center font-bold text-white flex items-center justify-center space-x-2">
+                            <span class="text-blue-400 text-lg">★</span>
+                            <span>{{ $player->games->where('pivot.best_player', 1)->count() }}</span>
+                        </div>
+                        <div class="text-xs text-zinc-400 text-center">Выбран ведущим</div>
+                    </div>
+
+                    <!-- Первая жертва -->
+                    <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
+                        <div class="font-medium text-red-400">Первая жертва</div>
+                        <div class="text-center font-bold text-white flex items-center justify-center space-x-2">
+                            <span class="text-red-400 text-lg">💀</span>
+                            <span>{{ $player->games->where('pivot.first_victim', 1)->count() }}</span>
+                        </div>
+                        <div class="text-xs text-zinc-400 text-center">Первым выбыл</div>
+                    </div>
+
+                    <!-- Доп. баллы -->
+                    <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
+                        <div class="font-medium text-purple-400">Доп. баллы</div>
+                        <div class="text-center font-bold text-white flex items-center justify-center space-x-2">
+                            <span class="text-purple-400 text-lg">➕</span>
+                            <span>{{ $player->games->sum('pivot.additional_score') }}</span>
+                        </div>
+                        <div class="text-xs text-zinc-400 text-center">За активность</div>
+                    </div>
+
+                    <!-- Баллы от ведущего -->
+                    <div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
+                        <div class="font-medium text-amber-400">От ведущего</div>
+                        <div class="text-center font-bold text-white flex items-center justify-center space-x-2">
+                            <span class="text-amber-400 text-lg">👑</span>
+                            <span>{{ $player->games->sum('pivot.leader_score') }}</span>
+                        </div>
+                        <div class="text-xs text-zinc-400 text-center">Субъективная оценка</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Нижняя таблица: Дополнительные показатели -->
-    <div class="mt-8 bg-zinc-800 rounded-lg shadow-md border border-zinc-700 overflow-hidden">
-        <div class="grid grid-cols-4 bg-zinc-900 px-4 py-3 font-semibold text-white text-sm">
-            <div>Показатель</div>
-            <div class="text-center">Значение</div>
-            <div class="text-center">Иконка</div>
-            <div class="text-center">Описание</div>
-        </div>
-
-        <div class="divide-y divide-zinc-700">
-            <!-- Лучший игрок -->
-            <div class="grid grid-cols-4 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
-                <div class="font-medium text-blue-400">Лучший игрок</div>
-                <div class="text-center font-bold text-white">{{ $player->games->where('pivot.best_player', 1)->count() }}</div>
-                <div class="text-center text-blue-400 text-lg">★</div>
-                <div class="text-xs text-zinc-400 text-center">Выбран ведущим</div>
-            </div>
-
-            <!-- Первая жертва -->
-            <div class="grid grid-cols-4 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
-                <div class="font-medium text-red-400">Первая жертва</div>
-                <div class="text-center font-bold text-white">{{ $player->games->where('pivot.first_victim', 1)->count() }}</div>
-                <div class="text-center text-red-400 text-lg">💀</div>
-                <div class="text-xs text-zinc-400 text-center">Первым выбыл</div>
-            </div>
-
-            <!-- Доп. баллы -->
-            <div class="grid grid-cols-4 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
-                <div class="font-medium text-purple-400">Доп. баллы</div>
-                <div class="text-center font-bold text-white">{{ $player->games->sum('pivot.additional_score') }}</div>
-                <div class="text-center text-purple-400 text-lg">➕</div>
-                <div class="text-xs text-zinc-400 text-center">За активность</div>
-            </div>
-
-            <!-- Баллы от ведущего -->
-            <div class="grid grid-cols-4 px-4 py-3 text-sm hover:bg-zinc-700 transition items-center">
-                <div class="font-medium text-amber-400">От ведущего</div>
-                <div class="text-center font-bold text-white">{{ $player->games->sum('pivot.leader_score') }}</div>
-                <div class="text-center text-amber-400 text-lg">👑</div>
-                <div class="text-xs text-zinc-400 text-center">Субъективная оценка</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
     <!-- Вкладка: Игры -->
     <div x-show="tab === 'games'" class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-lg p-6 border border-green-100 animate-slide-up" style="animation-delay: 0.3s">
