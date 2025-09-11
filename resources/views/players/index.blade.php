@@ -44,7 +44,7 @@
 
     <a 
         href="{{ route('players.show', $player->id) }}" 
-        class="w-44 h-60 bg-gradient-to-br from-zinc-700 to-zinc-900 border-2 border-teal-600 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
+        class="w-44 h-60 bg-gradient-to-br from-zinc-500 to-zinc-700 border-2 border-zinc-600 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer relative overflow-hidden group block animate-fade-in-up"
         style="animation-delay: {{ $index * 0.1 }}s;"
     >
         <!-- Область фото с усиленной виньеткой -->
