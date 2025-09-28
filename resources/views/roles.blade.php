@@ -25,7 +25,7 @@ $roles = json_decode(file_get_contents(resource_path('json/roles.json')), true);
         <img 
             src="{{ $image }}" 
             alt="Роль {{ $role['title'] }} в игре Мафия от Mafia-VDK" 
-            class="w-full h-32 object-cover rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia"
+            class="w-full h-32 object-cover object-top rounded-lg border border-gray-300 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:sepia"
         >
         <div class="mt-2 text-center flex items-center justify-center">
             <!-- Иконка слева от названия -->
