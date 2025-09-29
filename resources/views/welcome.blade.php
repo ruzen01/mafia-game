@@ -4,46 +4,54 @@
 
 @push('styles')
 <style>
-    .parallax-bg {
+    .mafia-bg {
         background-image: url('{{ asset('images/fon.png') }}');
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
         background-repeat: no-repeat;
+        background-attachment: fixed;
         position: relative;
+        width: 100%;
+        min-height: 100vh;
     }
 
-    .parallax-bg::before {
+    .mafia-bg::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.55); /* Затемнение для лучшей читаемости */
-        z-index: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
     }
 
-    .content-wrapper {
+    .mafia-content {
         position: relative;
-        z-index: 1;
+        z-index: 2;
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
     }
 </style>
 @endpush
 
 @section('content')
-<div class="parallax-bg min-h-screen flex flex-col">
-    <div class="content-wrapper flex flex-col items-center justify-center flex-grow text-center px-4">
-        <!-- Заголовок -->
-        <h1 class="text-3xl md:text-4xl font-bold text-white mt-8 drop-shadow-lg">
+<div class="mafia-bg">
+    <div class="mafia-content">
+        <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg">
             Добро пожаловать в мир городской мафии
         </h1>
-        <p class="italic text-white mt-2 text-lg md:text-xl drop-shadow">
+        <p class="italic mt-2 text-lg md:text-xl drop-shadow">
             где каждый ход может стать последним...
         </p>
 
-        <!-- Блок без ссылок (только текст) -->
-        <div class="mt-8 space-y-4 text-white text-xl font-medium">
+        <div class="mt-8 space-y-4 text-xl font-medium">
             <p>Правила</p>
             <p>Роли</p>
         </div>
