@@ -5,10 +5,11 @@
 @push('styles')
 <style>
     .parallax-bg {
-        background-image: url('{{ asset('fon.png') }}');
+        background-image: url('{{ asset('images/fon.png') }}');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
+        background-repeat: no-repeat;
         position: relative;
     }
 
@@ -19,7 +20,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* Затемнение для контраста */
+        background: rgba(0, 0, 0, 0.55); /* Затемнение для лучшей читаемости */
         z-index: 0;
     }
 
@@ -41,7 +42,7 @@
             где каждый ход может стать последним...
         </p>
 
-        <!-- Блок без ссылок -->
+        <!-- Блок без ссылок (только текст) -->
         <div class="mt-8 space-y-4 text-white text-xl font-medium">
             <p>Правила</p>
             <p>Роли</p>
