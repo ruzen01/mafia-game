@@ -24,7 +24,7 @@ class GameController extends Controller
         $players = Player::orderBy('name')->get();
         
         $roles = Role::all();
-        $seasons = ['Осень 2025'];
+        $seasons = ['Открытая лига (60 игр)'];
 
         return view('games.create', compact('players', 'roles', 'seasons'));
     }
@@ -112,7 +112,7 @@ class GameController extends Controller
         $allPlayers = Player::orderBy('name')->get();
         
         $roles = Role::all();
-        $seasons = ['Осень 2025'];
+        $seasons = ['Открытая лига (60 игр)'];
 
         return view('games.edit', compact('game', 'allPlayers', 'roles', 'seasons'));
     }
