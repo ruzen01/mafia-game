@@ -105,18 +105,21 @@ public function index()
     }
 
     public function ranking()
-    {
-        $players = Player::select('players.*')
-            ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
-            ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
-            ->groupBy('players.id')
-            ->orderByDesc('total_score')
-            ->with('games')
-            ->get();
+{
+    // Считаем общее количество игр одним быстрым запросом
+    $totalGames = \App\Models\Game::count();
 
-        return view('players.ranking', compact('players'));
-    }
+    $players = Player::select('players.*')
+        ->leftJoin('game_player', 'players.id', '=', 'game_player.player_id')
+        ->selectRaw('COALESCE(SUM(game_player.score), 0) as total_score')
+        ->groupBy('players.id')
+        ->orderByDesc('total_score')
+        ->with('games')
+        ->get();
 
+    // Передаем $totalGames вместе с $players
+    return view('players.ranking', compact('players', 'totalGames'));
+}
 // app/Http/Controllers/PlayerController.php
 
 public function show(Player $player)
