@@ -4,10 +4,7 @@
 <div class="container mx-auto py-6">
     <!-- Заголовок и счетчик игр -->
     <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
-        <h1 class="text-2xl sm:text-3xl font-bold text-center sm:text-left text-zinc-800">
-            Рейтинг игроков
-        </h1>
-        
+       
         <!-- Плашка с общим количеством игр (исправленная) -->
         <div class="mt-3 sm:mt-0 bg-zinc-800 text-white px-6 py-2.5 rounded-lg shadow-md flex items-center transform hover:scale-105 transition-transform duration-200">
             <span class="font-semibold text-sm sm:text-base">
